@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+            name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>qrental</title>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+<body class="container">
+<h1 class="py-5">Potential Drivers</h1>
+<form class="col card p-3 mb-5" method="post" th:action="@{/drivers-potential/}" th:object="${driverInfo}">
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input class="form-control" id="firstName" placeholder="Enter First Name" required
+               th:field="*{firstName}"
+               type="text"/>
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input class="form-control" id="lastName" placeholder="Enter Last Name" required
+               th:field="*{lastName}"
+               type="text"/>
+    </div>
+    <div class="form-group">
+        <label for="lastName">Phone</label>
+        <input class="form-control" id="phone" placeholder="Enter Phone" required
+               th:field="*{phone}"
+               type="text"/>
+    </div>
+
+    <div class="form-group">
+        <label for="lastName">Comment</label>
+        <input class="form-control" id="comment" placeholder="Enter Comment" required
+               th:field="*{comment}"
+               type="text"/>
+    </div>
+
+    <input class="btn btn-primary" type="submit" value="Add Potential Driver">
+</form>
+<table class="table table-striped table-bordered">
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone</th>
+        <th>Comment</th>
+    </tr>
+    <tr th:if="${#lists.isEmpty(drivers)}">
+        <td colspan="5">No potential drivers</td>
+    </tr>
+    <tr th:each="driver : ${drivers}">
+        <td th:text="${driver.firstName}"></td>
+        <td th:text="${driver.lastName}"></td>
+        <td th:text="${driver.phone}"></td>
+        <td th:text="${driver.comment}"></td>
+    </tr>
+</table>
+</body>
+</html>
