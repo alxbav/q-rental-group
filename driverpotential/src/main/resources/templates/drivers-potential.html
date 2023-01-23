@@ -1,15 +1,10 @@
 <!doctype html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta
-            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-            name="viewport">
-    <meta content="ie=edge" http-equiv="X-UA-Compatible">
-    <title>qrental</title>
-    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css"
-          rel="stylesheet">
-</head>
+
+<div th:replace="index :: header"></div>
+
+<div th:replace="index :: head-menu"></div>
+
 <body class="container">
 <h1 class="py-5">Potential Drivers</h1>
 <form class="col card p-3 mb-5" method="post" th:action="@{/drivers-potential/}" th:object="${driverInfo}">

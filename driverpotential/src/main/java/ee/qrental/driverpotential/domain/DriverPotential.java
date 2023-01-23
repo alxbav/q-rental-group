@@ -3,12 +3,16 @@ package ee.qrental.driverpotential.domain;
 
 import lombok.Getter;
 
+import java.util.List;
+
 import static java.lang.String.format;
 
 
 @Getter
 public class DriverPotential {
     private static final Integer FIRST_NAME_MAX_SIZE = 15;
+    private static final Integer LAST_NAME_MAX_SIZE = 30;
+    private static final Integer COMMENT_MAX_SIZE = 150;
     private Long id;
     private String firstName;
     private String lastName;
@@ -45,13 +49,32 @@ public class DriverPotential {
                     "characters!", length, FIRST_NAME_MAX_SIZE));
         }
     }
+
     private void validateLastName(final String lastName) {
-        //TODO ..
+        if (lastName == null || lastName.isEmpty()) {
+            throw new RuntimeException("Last Name for Potential Driver must be filled!");
+        }
+        final var length = lastName.length();
+        if (length > LAST_NAME_MAX_SIZE) {
+            throw new RuntimeException(format("Last Name length for Potential Driver is %d.But must not exceed %d " +
+                    "characters!", length, LAST_NAME_MAX_SIZE));
+        }
+
+
     }
+
     private void validatePhone(final String phone) {
+
         //TODO ..
     }
+
     private void validateComment(final String comment) {
-        //TODO ..
+        final var length = comment.length();
+        if (length > COMMENT_MAX_SIZE) {
+            throw new RuntimeException(format("Comment length is %d. Comment must not exceed %d",
+                    length, COMMENT_MAX_SIZE));
+        }
+
+
     }
 }

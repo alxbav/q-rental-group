@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head th:fragment="header">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Q-Rental</title>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
+</head>
+
+<body class="container">
+<div th:fragment="head-menu" class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">QRent Info System</a>
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/link">Links</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/remont">Remont</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/car">Cars</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/driver">Drivers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/balance">Balance</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+</body>
