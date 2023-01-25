@@ -43,7 +43,8 @@
                     <driver>org.postgresql.Driver</driver>
                     <url>jdbc:postgresql://localhost:5432/postgres</url>
                     <user>postgres</user>
-                    <password>Alex321!</password>
+                    <user>${env.SPRING_DATASOURCE_USERNAME}</user>
+                    <password>${env.SPRING_DATASOURCE_PASSWORD}</password>
                     <schemas>public</schemas>
                 </configuration>
             </plugin>

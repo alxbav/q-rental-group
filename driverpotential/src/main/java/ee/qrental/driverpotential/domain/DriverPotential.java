@@ -12,6 +12,7 @@ import static java.lang.String.format;
 public class DriverPotential {
     private static final Integer FIRST_NAME_MAX_SIZE = 15;
     private static final Integer LAST_NAME_MAX_SIZE = 30;
+    private static final Integer PHONE_MAX_SIZE = 30;
     private static final Integer COMMENT_MAX_SIZE = 150;
     private Long id;
     private String firstName;
@@ -19,7 +20,6 @@ public class DriverPotential {
     private String phone;
     private Boolean active;
     private String comment;
-
 
     public DriverPotential(Long id,
                            String firstName,
@@ -36,6 +36,30 @@ public class DriverPotential {
         this.lastName = lastName;
         this.phone = phone;
         this.active = active;
+        this.comment = comment;
+    }
+
+    public void setFirstName(String firstName) {
+        validateFirstName(firstName);
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        validateLastName(lastName);
+        this.lastName = lastName;
+    }
+
+    public void setPhone(String phone) {
+        validatePhone(phone);
+        this.phone = phone;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public void setComment(String comment) {
+        validateComment(comment);
         this.comment = comment;
     }
 
@@ -59,13 +83,17 @@ public class DriverPotential {
             throw new RuntimeException(format("Last Name length for Potential Driver is %d.But must not exceed %d " +
                     "characters!", length, LAST_NAME_MAX_SIZE));
         }
-
-
     }
 
     private void validatePhone(final String phone) {
-
-        //TODO ..
+        if (phone == null || phone.isEmpty()) {
+            throw new RuntimeException("Phone for Potential Driver must be filled!");
+        }
+        final var length = phone.length();
+        if (length > PHONE_MAX_SIZE) {
+            throw new RuntimeException(format("Phone length for Potential Driver is %d.But must not exceed %d " +
+                    "characters!", length, PHONE_MAX_SIZE));
+        }
     }
 
     private void validateComment(final String comment) {
@@ -74,7 +102,5 @@ public class DriverPotential {
             throw new RuntimeException(format("Comment length is %d. Comment must not exceed %d",
                     length, COMMENT_MAX_SIZE));
         }
-
-
     }
 }
