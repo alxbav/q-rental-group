@@ -29,6 +29,7 @@
     <modules>
         <module>application</module>
         <module>driverpotential</module>
+        <module>driver</module>
         <module>flyway</module>
     </modules>
 
