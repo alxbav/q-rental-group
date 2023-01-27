@@ -13,3 +13,7 @@ cd flyway
 ./mvnw clean package
 ```
 ## Running application:
+
+
+## Localisation:
+{url}?lang={ee, en, ru}
