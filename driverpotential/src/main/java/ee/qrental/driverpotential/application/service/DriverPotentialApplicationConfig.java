@@ -1,8 +1,9 @@
 package ee.qrental.driverpotential.application.service;
 
-import ee.qrental.driverpotential.application.port.out.AddDriverPotentialPort;
-import ee.qrental.driverpotential.application.port.out.LoadDriverPotentialPort;
-import ee.qrental.driverpotential.application.port.out.UpdateDriverPotentialPort;
+import ee.qrental.driverpotential.application.port.out.DriverPotentialAddPort;
+import ee.qrental.driverpotential.application.port.out.DriverPotentialDeletePort;
+import ee.qrental.driverpotential.application.port.out.DriverPotentialLoadPort;
+import ee.qrental.driverpotential.application.port.out.DriverPotentialUpdatePort;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,11 +12,13 @@ public class DriverPotentialApplicationConfig {
 
     @Bean
     public DriverPotentialService getDriverPotentialService(
-            final AddDriverPotentialPort addDriverPotentialPort,
-            final UpdateDriverPotentialPort updateDriverPotentialPort,
-            final LoadDriverPotentialPort loadDriverPotentialPort){
-        return new DriverPotentialService(addDriverPotentialPort,
-                updateDriverPotentialPort,
-                loadDriverPotentialPort);
+            final DriverPotentialAddPort driverPotentialAddPort,
+            final DriverPotentialUpdatePort driverPotentialUpdatePort,
+            final DriverPotentialLoadPort driverPotentialLoadPort,
+            final DriverPotentialDeletePort driverPotentialDeletePort){
+        return new DriverPotentialService(driverPotentialAddPort,
+                driverPotentialUpdatePort,
+                driverPotentialLoadPort,
+                driverPotentialDeletePort);
     }
 }

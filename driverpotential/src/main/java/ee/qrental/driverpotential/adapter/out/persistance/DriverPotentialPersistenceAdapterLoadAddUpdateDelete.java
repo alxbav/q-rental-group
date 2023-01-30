@@ -1,8 +1,9 @@
 package ee.qrental.driverpotential.adapter.out.persistance;
 
-import ee.qrental.driverpotential.application.port.out.AddDriverPotentialPort;
-import ee.qrental.driverpotential.application.port.out.LoadDriverPotentialPort;
-import ee.qrental.driverpotential.application.port.out.UpdateDriverPotentialPort;
+import ee.qrental.driverpotential.application.port.out.DriverPotentialAddPort;
+import ee.qrental.driverpotential.application.port.out.DriverPotentialDeletePort;
+import ee.qrental.driverpotential.application.port.out.DriverPotentialLoadPort;
+import ee.qrental.driverpotential.application.port.out.DriverPotentialUpdatePort;
 import ee.qrental.driverpotential.domain.DriverPotential;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -14,10 +15,11 @@ import static java.util.stream.Collectors.toList;
 
 @Component
 @AllArgsConstructor
-public class DriverPotentialPersistenceAdapter implements
-        LoadDriverPotentialPort,
-        AddDriverPotentialPort,
-        UpdateDriverPotentialPort {
+public class DriverPotentialPersistenceAdapterLoadAddUpdateDelete implements
+        DriverPotentialLoadPort,
+        DriverPotentialAddPort,
+        DriverPotentialUpdatePort,
+        DriverPotentialDeletePort {
 
     private final SpringDataDriverPotentialRepository springDataDriverPotentialRepository;
     private final DriverPotentialMapper driverPotentialMapper;
@@ -57,5 +59,10 @@ public class DriverPotentialPersistenceAdapter implements
                 springDataDriverPotentialRepository.save(
                         driverPotentialMapper.mapToEntity(driverPotential)
                 ));
+    }
+
+    @Override
+    public void deleteDriverPotential(Long id) {
+        springDataDriverPotentialRepository.deleteById(id);
     }
 }
