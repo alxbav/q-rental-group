@@ -30,7 +30,7 @@
         <module>application</module>
         <module>driverpotential</module>
         <module>flyway</module>
-        <module>thymeleaf-ui</module>
+        <module>commonui</module>
     </modules>
 
 </project>

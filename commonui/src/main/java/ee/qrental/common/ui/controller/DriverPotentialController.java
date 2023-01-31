@@ -1,4 +1,4 @@
-package ee.qrental.driverpotential.adapter.in.web.controller;
+package ee.qrental.common.ui.controller;
 
 
 import ee.qrental.driverpotential.application.port.in.command.DriverPotentialAddCommand;
@@ -27,7 +27,7 @@ public class DriverPotentialController {
     @GetMapping(value = "/add-form")
     public String addForm(final Model model) {
         model.addAttribute("driverAddCommand", new DriverPotentialAddCommand());
-        return "addFormPotentialDriver";
+        return "driverPotential/addForm";
     }
 
     @PostMapping(value = "/add")
@@ -40,7 +40,7 @@ public class DriverPotentialController {
     public String updateForm(@PathVariable("id") long id, Model model) {
         final var driverUpdateCommand = mapToCommand(driverPotentialLoadPort.loadPotentialDriverById(id));
         model.addAttribute("driverUpdateCommand", driverUpdateCommand);
-        return "updateFormPotentialDriver";
+        return "driverPotential/updateForm";
     }
 
     private DriverPotentialUpdateCommand mapToCommand(final DriverPotential domain) {

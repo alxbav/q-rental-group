@@ -17,9 +17,11 @@
     <dependencies>
         <dependency>
             <groupId>ee.q-rental</groupId>
-            <artifactId>driverpotential</artifactId>
+            <artifactId>commonui</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
+
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>

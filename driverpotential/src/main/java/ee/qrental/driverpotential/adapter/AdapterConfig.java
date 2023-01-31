@@ -16,14 +16,4 @@ public class AdapterConfig {
         return new DriverPotentialMapper();
     }
 
-/*    @Bean
-    public LoadDriverPotentialPort getLoadDriverPotentialPort(
-            DriverPotentialMapper mapper,
-            SpringDataDriverPotentialRepository springDataDriverPotentialRepository
-    ){
-        return new DriverPotentialPersistenceAdapter(springDataDriverPotentialRepository, mapper);
-    }*/
-
-
-
 }
