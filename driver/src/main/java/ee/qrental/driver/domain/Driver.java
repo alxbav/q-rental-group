@@ -15,7 +15,6 @@ public class Driver {
     private Boolean active;
     private String firstName;
     private String lastName;
-
     private String isikukood;
     private String phone;
     private String email;

@@ -28,8 +28,8 @@
 
     <modules>
         <module>application</module>
-        <module>driverpotential</module>
         <module>driver</module>
+        <module>driverpotential</module>
         <module>flyway</module>
     </modules>
 
