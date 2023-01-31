@@ -27,20 +27,14 @@ public class DriverPotentialController {
     @GetMapping(value = "/add-form")
     public String addForm(final Model model) {
         model.addAttribute("driverAddCommand", new DriverPotentialAddCommand());
-        return "driverPotential/addForm";
-    }
-
-    @PostMapping(value = "/add")
-    public String addDriverDriverPotential(@ModelAttribute final DriverPotentialAddCommand driverInfo) {
-        driverPotentialAddUseCase.add(driverInfo);
-        return "redirect:/";
+        return "addFormDriverPotential";
     }
 
     @GetMapping(value = "/update-form/{id}")
     public String updateForm(@PathVariable("id") long id, Model model) {
         final var driverUpdateCommand = mapToCommand(driverPotentialLoadPort.loadPotentialDriverById(id));
         model.addAttribute("driverUpdateCommand", driverUpdateCommand);
-        return "driverPotential/updateForm";
+        return "updateFormDriverPotential";
     }
 
     private DriverPotentialUpdateCommand mapToCommand(final DriverPotential domain) {

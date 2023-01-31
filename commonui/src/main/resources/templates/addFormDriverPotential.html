@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/common.html :: qrental-head">
+<head th:replace="fragments/head.html :: qrental-head">
 </head>
 <body class="container">
 <nav th:replace="fragments/navigation.html :: qrental-navigation"></nav>
+
 <div class="row">
     <div class="col"></div>
     <div class="col">
-        <h3>Update Potential Driver</h3>
+        <h3>Add new Potential Driver</h3>
         <form class="col card p-3 mb-5" method="post"
-              th:action="@{/drivers-potential/update}"
-              th:object="${driverUpdateCommand}">
-            <input id="driverId" required
-                   th:field="*{id}"
-                   type="text"
-                   hidden/>
+              th:action="@{/drivers-potential/add}" th:object="${driverAddCommand}">
+
             <div class="form-group">
                 <label for="firstName">First Name</label>
                 <input class="form-control" id="firstName" placeholder="Enter First Name" required
@@ -34,6 +31,7 @@
                        th:field="*{phone}"
                        type="text"/>
             </div>
+
             <div class="form-group">
                 <label for="comment">Comment</label>
                 <textarea class="form-control"
@@ -43,10 +41,14 @@
             </div>
             <input class="btn btn-success"
                    type="submit"
-                   value="Update Potential Driver">
+                   value="Add Potential Driver"
+                   data-bs-dismiss="modal">
         </form>
     </div>
-    <div class="col"></div>
+    <div class="col">
+
+    </div>
 </div>
+
 </body>
 </html>
