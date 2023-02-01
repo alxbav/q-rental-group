@@ -30,11 +30,29 @@ public class DriverPotentialController {
         return "addFormDriverPotential";
     }
 
+    @PostMapping(value = "/add")
+    public String addDriverDriverPotential(@ModelAttribute final DriverPotentialAddCommand driverInfo) {
+        driverPotentialAddUseCase.add(driverInfo);
+        return "redirect:/";
+    }
+
     @GetMapping(value = "/update-form/{id}")
     public String updateForm(@PathVariable("id") long id, Model model) {
         final var driverUpdateCommand = mapToCommand(driverPotentialLoadPort.loadPotentialDriverById(id));
         model.addAttribute("driverUpdateCommand", driverUpdateCommand);
         return "updateFormDriverPotential";
+    }
+
+    @PostMapping("/update")
+    public String updateDriverDriverPotential(
+            final DriverPotentialUpdateCommand driverUpdateCommand) {
+        driverPotentialUpdateUseCase.update(driverUpdateCommand);
+        return "redirect:/";
+    }
+    @GetMapping("/delete/{id}")
+    public String deleteForm(@PathVariable("id") long id) {
+        driverPotentialDeleteUseCase.delete(id);
+        return "redirect:/";
     }
 
     private DriverPotentialUpdateCommand mapToCommand(final DriverPotential domain) {
@@ -45,18 +63,5 @@ public class DriverPotentialController {
         result.setPhone(domain.getPhone());
         result.setComment(domain.getComment());
         return result;
-    }
-
-    @PostMapping("/update")
-    public String updateDriverDriverPotential(
-            final DriverPotentialUpdateCommand driverUpdateCommand) {
-        driverPotentialUpdateUseCase.update(driverUpdateCommand);
-        return "redirect:/";
-    }
-
-    @GetMapping("/delete/{id}")
-    public String deleteForm(@PathVariable("id") long id) {
-        driverPotentialDeleteUseCase.delete(id);
-        return "redirect:/";
     }
 }

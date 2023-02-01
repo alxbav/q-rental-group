@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan(basePackages = "ee.qrental.driverpotential.adapter")
 @EnableJpaRepositories("ee.qrental.driverpotential.adapter.out.persistance")
 @EntityScan("ee.qrental.driverpotential.adapter.out.persistance")
-public class AdapterConfig {
+public class DriverPotentialAdapterConfig {
 
     @Bean
     public DriverPotentialMapper getDriverPotentialMapper(){
