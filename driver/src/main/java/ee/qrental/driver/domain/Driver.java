@@ -3,7 +3,7 @@ package ee.qrental.driver.domain;
 
 import lombok.Getter;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import static java.lang.String.format;
 
@@ -19,7 +19,7 @@ public class Driver {
     private String firstName;
     private String lastName;
 
-    private String isikukood;
+    private Long isikukood;
     private String phone;
     private String email;
 
@@ -27,7 +27,7 @@ public class Driver {
     private String iban2;
     private String iban3;
     private String driverLicenseNumber;
-    private java.sql.Date driverLicenseExp;
+    private LocalDate driverLicenseExp;
     private String taxiLicense;
     private String address;
     private String comment;
@@ -36,14 +36,14 @@ public class Driver {
                   Boolean active,
                   String firstName,
                   String lastName,
-                  String isikukood,
+                  Long isikukood,
                   String phone,
                   String email,
                   String iban1,
                   String iban2,
                   String iban3,
                   String driverLicenseNumber,
-                  java.sql.Date driverLicenseExp,
+                  LocalDate driverLicenseExp,
                   String taxiLicense,
                   String address,
                   String comment) {
@@ -82,7 +82,7 @@ public class Driver {
         this.lastName = lastName;
     }
 
-    public void setIsikukood(String isikukood) {
+    public void setIsikukood(Long isikukood) {
         this.isikukood = isikukood;
     }
 
@@ -111,7 +111,7 @@ public class Driver {
         this.driverLicenseNumber = driverLicenseNumber;
     }
 
-    public void setDriverLicenseExp(Date driverLicenseExp) {
+    public void setDriverLicenseExp(LocalDate driverLicenseExp) {
         this.driverLicenseExp = driverLicenseExp;
     }
 

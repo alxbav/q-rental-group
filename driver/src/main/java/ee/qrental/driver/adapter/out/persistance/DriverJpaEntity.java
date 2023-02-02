@@ -8,7 +8,7 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -37,7 +37,7 @@ public class DriverJpaEntity {
     private String lastName;
 
     @Column(name = "isikukood")
-    private String isikukood;
+    private Long isikukood;
 
     @Column(name = "phone")
     private String phone;
@@ -62,7 +62,7 @@ public class DriverJpaEntity {
 
 
     @Column(name = "driver_license_exp")
-    private Date driverLicenseExp;
+    private LocalDate driverLicenseExp;
 
 
     @Column(name = "taxi_license")

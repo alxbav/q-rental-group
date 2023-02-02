@@ -7,7 +7,6 @@ import ee.qrental.driver.application.port.in.usecase.DriverDeleteUseCase;
 import ee.qrental.driver.application.port.in.usecase.DriverUpdateUseCase;
 import ee.qrental.driver.application.port.out.DriverLoadPort;
 import ee.qrental.driver.domain.Driver;
-import ee.qrental.driverpotential.application.port.out.DriverPotentialLoadPort;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +21,6 @@ public class DriverController {
     private final DriverLoadPort driverLoadPort;
     private final DriverAddUseCase driverAddUseCase;
     private final DriverUpdateUseCase driverUpdateUseCase;
-
     private final DriverDeleteUseCase driverDeleteUseCase;
 
     @GetMapping()
@@ -35,10 +33,6 @@ public class DriverController {
         final var drivers = driverLoadPort.loadAllDrivers();
         model.addAttribute("drivers", drivers);
     }
-
-
-
-
 
     @GetMapping(value = "/add-form")
     public String addForm(final Model model) {

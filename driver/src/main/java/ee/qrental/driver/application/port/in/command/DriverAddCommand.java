@@ -3,8 +3,9 @@ package ee.qrental.driver.application.port.in.command;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -13,14 +14,16 @@ public class DriverAddCommand {
 
     private String firstName;
     private String lastName;
-    private String isikukood;
+    private Long isikukood;
     private String phone;
     private String email;
     private String iban1;
     private String iban2;
     private String iban3;
     private String driverLicenseNumber;
-    private Date driverLicenseExp;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate driverLicenseExp;
     private String taxiLicense;
     private String address;
     private String comment;
