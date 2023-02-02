@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Date;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,7 +21,7 @@ public class DriverUpdateCommand {
     private String iban2;
     private String iban3;
     private String driverLicenseNumber;
-    private String driverLicenseExp;
+    private Date driverLicenseExp;
     private String taxiLicense;
     private String address;
     private String comment;

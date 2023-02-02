@@ -3,6 +3,8 @@ package ee.qrental.driver.domain;
 
 import lombok.Getter;
 
+import java.sql.Date;
+
 import static java.lang.String.format;
 
 
@@ -25,7 +27,7 @@ public class Driver {
     private String iban2;
     private String iban3;
     private String driverLicenseNumber;
-    private String driverLicenseExp;
+    private java.sql.Date driverLicenseExp;
     private String taxiLicense;
     private String address;
     private String comment;
@@ -41,7 +43,7 @@ public class Driver {
                   String iban2,
                   String iban3,
                   String driverLicenseNumber,
-                  String driverLicenseExp,
+                  java.sql.Date driverLicenseExp,
                   String taxiLicense,
                   String address,
                   String comment) {
@@ -109,7 +111,7 @@ public class Driver {
         this.driverLicenseNumber = driverLicenseNumber;
     }
 
-    public void setDriverLicenseExp(String driverLicenseExp) {
+    public void setDriverLicenseExp(Date driverLicenseExp) {
         this.driverLicenseExp = driverLicenseExp;
     }
 

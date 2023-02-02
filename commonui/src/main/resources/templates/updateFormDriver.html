@@ -12,6 +12,7 @@
         <form class="col card p-3 mb-5" method="post"
               th:action="@{/drivers/update}"
               th:object="${driverUpdateCommand}">
+
             <input id="driverId" required
                    th:field="*{id}"
                    type="text"
@@ -28,12 +29,78 @@
                        th:field="*{lastName}"
                        type="text"/>
             </div>
+
+            <div class="form-group">
+                <label for="isikukood">Isikukood</label>
+                <input class="form-control" id="isikukood" placeholder="Enter Isikukood" required
+                       th:field="*{isikukood}"
+                       type="text"/>
+            </div>
+
             <div class="form-group">
                 <label for="phone">Phone</label>
                 <input class="form-control" id="phone" placeholder="Enter Phone" required
                        th:field="*{phone}"
                        type="text"/>
             </div>
+
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input class="form-control" id="email" placeholder="Enter E-mail" required
+                       th:field="*{email}"
+                       type="text"/>
+            </div>
+
+            <div class="form-group">
+                <label for="iban1">IBAN1</label>
+                <input class="form-control" id="iban1" placeholder="Enter IBAN1" required
+                       th:field="*{iban1}"
+                       type="text"/>
+            </div>
+
+            <div class="form-group">
+                <label for="iban2">IBAN2</label>
+                <input class="form-control" id="iban2" placeholder="Enter IBAN2" required
+                       th:field="*{iban2}"
+                       type="text"/>
+            </div>
+
+            <div class="form-group">
+                <label for="iban3">IBAN3</label>
+                <input class="form-control" id="iban3" placeholder="Enter IBAN3" required
+                       th:field="*{iban3}"
+                       type="text"/>
+            </div>
+
+            <div class="form-group">
+                <label for="driverLicenseNumber">Driver License Number</label>
+                <input class="form-control" id="driverLicenseNumber" placeholder="Enter Driver License Number" required
+                       th:field="*{driverLicenseNumber}"
+                       type="text"/>
+            </div>
+
+            <div class="form-group">
+                <label for="driverLicenseExp">Driver License Exp</label>
+                <input class="form-control" id="driverLicenseExp" placeholder="Enter Driver License Exp" required
+                       th:field="*{driverLicenseExp}"
+                       type="date"/>
+            </div>
+
+            <div class="form-group">
+                <label for="taxiLicense">Driver TAXI License </label>
+                <input class="form-control" id="taxiLicense" placeholder="Enter Driver TAXI License " required
+                       th:field="*{taxiLicense}"
+                       type="text"/>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Driver Address</label>
+                <input class="form-control" id="address" placeholder="Enter Driver Address" required
+                       th:field="*{address}"
+                       type="text"/>
+            </div>
+
+
             <div class="form-group">
                 <label for="comment">Comment</label>
                 <textarea class="form-control"

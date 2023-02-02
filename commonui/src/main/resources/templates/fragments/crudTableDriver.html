@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="fragments/head.html :: qrental-head">
+</head>
+
+<body class="container">
+<nav th:replace="fragments/navigation.html :: qrental-navigation"></nav>
+
+<div th:fragment="qrental-table-driver">
+    <h1 class="py-5">Drivers</h1>
+    <table  class="table table-striped table-bordered">
+        <tr>
+            <th>
+                <a class="btn btn-sm btn-success"
+                   href="/drivers/add-form"
+                   role="button"
+                   aria-controls="offcanvasExample">
+                    Add Driver
+                </a>
+            </th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Isikukood</th>
+            <th>Phone</th>
+            <th>Comment</th>
+        </tr>
+        <tr th:if="${#lists.isEmpty(drivers)}">
+            <td colspan="5">No drivers</td>
+        </tr>
+        <tr th:each="driver : ${drivers}">
+            <td>
+                <a class="btn btn-sm btn-warning"
+                   th:href="@{/drivers/update-form/{id}(id=${driver.id})}">Edit</a>
+                <a class="btn btn-sm btn-danger"
+                   th:href="@{/drivers/delete/{id}(id=${driver.id})}">Delete</a>
+            </td>
+            <td th:text="${driver.firstName}"></td>
+            <td th:text="${driver.lastName}"></td>
+            <td th:text="${driver.isikukood}"></td>
+            <td th:text="${driver.phone}"></td>
+            <td th:text="${driver.comment}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

@@ -8,6 +8,8 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 
+import java.sql.Date;
+
 import static javax.persistence.GenerationType.IDENTITY;
 
 
@@ -60,7 +62,7 @@ public class DriverJpaEntity {
 
 
     @Column(name = "driver_license_exp")
-    private String driverLicenseExp;
+    private Date driverLicenseExp;
 
 
     @Column(name = "taxi_license")

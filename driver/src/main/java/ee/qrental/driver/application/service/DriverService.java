@@ -65,7 +65,16 @@ class DriverService implements
             final Driver toUpdate) {
         toUpdate.setFirstName(command.getFirstName());
         toUpdate.setLastName(command.getLastName());
+        toUpdate.setIsikukood(command.getIsikukood());
         toUpdate.setPhone(command.getPhone());
+        toUpdate.setEmail(command.getEmail());
+        toUpdate.setIban1(command.getIban1());
+        toUpdate.setIban2(command.getIban2());
+        toUpdate.setIban3(command.getIban3());
+        toUpdate.setDriverLicenseNumber(command.getDriverLicenseNumber());
+        toUpdate.setDriverLicenseExp(command.getDriverLicenseExp());
+        toUpdate.setTaxiLicense(command.getTaxiLicense());
+        toUpdate.setAddress(command.getAddress());
         toUpdate.setComment(command.getComment());
     }
 
