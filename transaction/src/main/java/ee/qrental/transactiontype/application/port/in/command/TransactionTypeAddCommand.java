@@ -1,0 +1,15 @@
+package ee.qrental.transactiontype.application.port.in.command;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+public class TransactionTypeAddCommand {
+    private String typeTr;
+    private String description;
+    private String comment;
+
+}

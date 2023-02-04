@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+ee.qrental.transactiontype.adapter.TransactionTypeAdapterConfig,\
+ee.qrental.transactiontype.application.service.TransactionTypeApplicationConfig
