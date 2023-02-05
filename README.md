@@ -6,12 +6,8 @@ Setup next environment variables:
 SPRING_DATASOURCE_USERNAME and SPRING_DATASOURCE_PASSWORD
 
 ## Running Database schema migration:
-All SQL-migration placed in flyway module.
-To run migration execute next script:
-```shell script
-cd flyway
-./mvnw clean package
-```
+All SQL-migration placed in application module.
+To run migration execute during application start:
 ## Running application:
 
 

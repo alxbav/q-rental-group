@@ -43,7 +43,6 @@
         <module>car</module>
         <module>link</module>
         <module>link</module>
-        <module>flyway</module>
         <module>commonui</module>
     </modules>
 
