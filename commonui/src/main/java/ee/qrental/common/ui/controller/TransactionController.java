@@ -1,13 +1,13 @@
 package ee.qrental.common.ui.controller;
 
 
-import ee.qrental.link.application.port.in.command.TransactionAddCommand;
-import ee.qrental.link.application.port.in.command.TransactionUpdateCommand;
-import ee.qrental.link.application.port.in.usecase.TransactionAddUseCase;
-import ee.qrental.link.application.port.in.usecase.TransactionDeleteUseCase;
-import ee.qrental.link.application.port.in.usecase.TransactionUpdateUseCase;
-import ee.qrental.link.application.port.out.TransactionLoadPort;
-import ee.qrental.link.domain.Transaction;
+import ee.qrental.transaction.application.port.in.command.TransactionAddCommand;
+import ee.qrental.transaction.application.port.in.command.TransactionUpdateCommand;
+import ee.qrental.transaction.application.port.in.usecase.TransactionAddUseCase;
+import ee.qrental.transaction.application.port.in.usecase.TransactionDeleteUseCase;
+import ee.qrental.transaction.application.port.in.usecase.TransactionUpdateUseCase;
+import ee.qrental.transaction.application.port.out.TransactionLoadPort;
+import ee.qrental.transaction.domain.Transaction;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
