@@ -34,7 +34,7 @@
 
         <dependency>
             <groupId>ee.q-rental</groupId>
-            <artifactId>transaction</artifactId>
+            <artifactId>link</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

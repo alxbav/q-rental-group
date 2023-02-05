@@ -1,4 +1,4 @@
-create table if not exists transaction
+create table if not exists link
 (
     id                  serial primary key,
     transaction_type_id integer,
