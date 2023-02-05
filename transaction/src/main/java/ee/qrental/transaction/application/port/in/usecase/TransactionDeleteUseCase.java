@@ -1,7 +1,6 @@
 package ee.qrental.transaction.application.port.in.usecase;
 
 public interface TransactionDeleteUseCase {
-    void delete(Long transactionTypeId);
+    void delete(Long transactionId);
 }
 
-//TODO

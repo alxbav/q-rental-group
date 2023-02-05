@@ -20,41 +20,41 @@ public class TransactionPersistenceAdapterLoadAddUpdateDelete implements
         TransactionUpdatePort,
         TransactionDeletePort {
 
-    private final SpringDataTransactionRepository springDataTransactionTypeRepository;
-    private final TransactionMapper transactionTypeMapper;
+    private final SpringDataTransactionRepository springDataTransactionRepository;
+    private final TransactionMapper transactionMapper;
 
     @Override
-    public List<Transaction> loadAllTransactionTypes() {
-        return springDataTransactionTypeRepository.findAll()
+    public List<Transaction> loadAllTransactions() {
+        return springDataTransactionRepository.findAll()
                 .stream()
-                .map(transactionTypeMapper::mapToDomain)
+                .map(transactionMapper::mapToDomain)
                 .collect(toList());
     }
 
        @Override
-    public Transaction loadTransactionTypeById(Long id) {
-        return transactionTypeMapper.mapToDomain(
-                springDataTransactionTypeRepository.getReferenceById(id));
+    public Transaction loadTransactionById(Long id) {
+        return transactionMapper.mapToDomain(
+                springDataTransactionRepository.getReferenceById(id));
     }
 
     @Override
-    public Transaction addTransactionType(final Transaction transactionType) {
-        return transactionTypeMapper.mapToDomain(
-                springDataTransactionTypeRepository.save(
-                        transactionTypeMapper.mapToEntity(transactionType)
+    public Transaction addTransaction(final Transaction transaction) {
+        return transactionMapper.mapToDomain(
+                springDataTransactionRepository.save(
+                        transactionMapper.mapToEntity(transaction)
                 ));
     }
 
     @Override
-    public Transaction updateTransactionType(final Transaction transactionType) {
-        return transactionTypeMapper.mapToDomain(
-                springDataTransactionTypeRepository.save(
-                        transactionTypeMapper.mapToEntity(transactionType)
+    public Transaction updateTransaction(final Transaction transaction) {
+        return transactionMapper.mapToDomain(
+                springDataTransactionRepository.save(
+                        transactionMapper.mapToEntity(transaction)
                 ));
     }
 
     @Override
-    public void deleteTransactionType(Long id) {
-        springDataTransactionTypeRepository.deleteById(id);
+    public void deleteTransaction(Long id) {
+        springDataTransactionRepository.deleteById(id);
     }
 }

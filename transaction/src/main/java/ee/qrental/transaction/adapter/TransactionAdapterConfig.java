@@ -6,13 +6,13 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import ee.qrental.transaction.adapter.out.persistance.TransactionMapper;
 
-@ComponentScan(basePackages = "ee.qrental.transactiontype.adapter")
-@EnableJpaRepositories("ee.qrental.transactiontype.adapter.out.persistance")
-@EntityScan("ee.qrental.transactiontype.adapter.out.persistance")
+@ComponentScan(basePackages = "ee.qrental.transaction.adapter")
+@EnableJpaRepositories("ee.qrental.transaction.adapter.out.persistance")
+@EntityScan("ee.qrental.transaction.adapter.out.persistance")
 public class TransactionAdapterConfig {
 
     @Bean
-    public TransactionMapper getTransactionTypeMapper(){
+    public TransactionMapper getTransactionMapper(){
         return new TransactionMapper();
     }
 

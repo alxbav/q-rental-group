@@ -10,6 +10,6 @@ import java.util.Optional;
 public interface SpringDataTransactionRepository
         extends JpaRepository<TransactionJpaEntity, Long> {
 
-    Optional<TransactionJpaEntity> getTransactionTypeJpaEntityByTypeTr(String typeTr);
+    Optional<TransactionJpaEntity> getTransactionJpaEntityByDriverId(String driverId);
 }
 

@@ -3,7 +3,6 @@ package ee.qrental.transaction.application.service;
 import ee.qrental.transaction.application.port.in.command.TransactionAddCommand;
 import ee.qrental.transaction.application.port.in.usecase.TransactionAddUseCase;
 import ee.qrental.transaction.application.port.out.TransactionDeletePort;
-import lombok.AllArgsConstructor;
 import ee.qrental.transaction.application.port.in.command.TransactionUpdateCommand;
 import ee.qrental.transaction.application.port.in.usecase.TransactionDeleteUseCase;
 import ee.qrental.transaction.application.port.in.usecase.TransactionUpdateUseCase;
@@ -11,6 +10,7 @@ import ee.qrental.transaction.application.port.out.TransactionAddPort;
 import ee.qrental.transaction.application.port.out.TransactionLoadPort;
 import ee.qrental.transaction.application.port.out.TransactionUpdatePort;
 import ee.qrental.transaction.domain.Transaction;
+import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 class TransactionService implements
@@ -18,45 +18,51 @@ class TransactionService implements
         TransactionUpdateUseCase,
         TransactionDeleteUseCase {
 
-    private final TransactionAddPort transactionTypeAddPort;
+    private final TransactionAddPort transactionAddPort;
 
-    private final TransactionUpdatePort transactionTypeUpdatePort;
+    private final TransactionUpdatePort transactionUpdatePort;
 
-    private final TransactionLoadPort transactionTypeLoadPort;
+    private final TransactionLoadPort transactionLoadPort;
 
-    private final TransactionDeletePort transactionTypeDeletePort;
+    private final TransactionDeletePort transactionDeletePort;
 
     @Override
     public void add(final TransactionAddCommand command) {
-        final var transactionTypeDomain = new Transaction(
+        final var transactionDomain = new Transaction(
                 null,
-                command.getTypeTr(),
-                command.getDescription(),
+                command.getTransactionTypeId(),
+                command.getDriverId(),
+                command.getAmount(),
+                command.getWeekNumber(),
+                command.getDate(),
                 command.getComment());
-        transactionTypeAddPort.addTransactionType(transactionTypeDomain);
+        transactionAddPort.addTransaction(transactionDomain);
     }
 
     @Override
     public void update(final TransactionUpdateCommand command) {
-        final Long transactionTypeId = command.getId();
-        final Transaction domain = transactionTypeLoadPort.loadTransactionTypeById(transactionTypeId);
+        final Long transactionId = command.getId();
+        final Transaction domain = transactionLoadPort.loadTransactionById(transactionId);
         if (domain == null) {
-            throw new RuntimeException("Update of Transaction Type failed. No Transaction Type with id = " + transactionTypeId);
+            throw new RuntimeException("Update of Transaction Type failed. No Transaction Type with id = " + transactionId);
         }
         updateDomain(command, domain);
-        transactionTypeUpdatePort.updateTransactionType(domain);
+        transactionUpdatePort.updateTransaction(domain);
     }
 
     private void updateDomain(
             final TransactionUpdateCommand command,
             final Transaction toUpdate) {
-        toUpdate.setTypeTr(command.getTypeTr());
-        toUpdate.setDescription(command.getDescription());
+        toUpdate.setTransactionTypeId(command.getTransactionTypeId());
+        toUpdate.setDriverId(command.getDriverId());
+        toUpdate.setAmount(command.getAmount());
+        toUpdate.setWeekNumber(command.getWeekNumber());
+        toUpdate.setDate(command.getDate());
         toUpdate.setComment(command.getComment());
     }
 
     @Override
-    public void delete(Long transactionTypeId) {
-        transactionTypeDeletePort.deleteTransactionType(transactionTypeId);
+    public void delete(Long transactionId) {
+        transactionDeletePort.deleteTransaction(transactionId);
     }
 }

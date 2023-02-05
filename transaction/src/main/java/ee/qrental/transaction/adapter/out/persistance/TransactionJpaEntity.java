@@ -8,6 +8,8 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 
+import java.time.LocalDate;
+
 import static javax.persistence.GenerationType.IDENTITY;
 
 
@@ -18,18 +20,28 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Setter
 
 @Entity
-@Table(name = "transaction_type")
+@Table(name = "transaction")
 public class TransactionJpaEntity {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    @Column(name = "type_tr")
-    private String typeTr;
+    @Column(name = "transaction_type_id")
+    private Integer transactionTypeId;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "driver_id")
+    private Integer driverId;
+
+
+    @Column(name = "amount")
+    private Long amount;
+
+    @Column(name = "week_number")
+    private Integer weekNumber;
+
+    @Column(name = "date")
+    private LocalDate date;
 
     @Column(name = "comment")
     private String comment;

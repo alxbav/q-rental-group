@@ -46,7 +46,7 @@ public class TransactionTypeController {
         transactionTypeAddUseCase.add(transactionTypeInfo);
         return "redirect:/transaction-types";
     }
-//TODO
+
 
     @GetMapping(value = "/update-form/{id}")
     public String updateForm(@PathVariable("id") long id, Model model) {

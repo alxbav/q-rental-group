@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="fragments/head.html :: qrental-head">
+</head>
+
+<body class="container">
+<nav th:replace="fragments/navigation.html :: qrental-navigation"></nav>
+
+<div th:fragment="qrental-table-transaction">
+    <h1 class="py-5">Transactions</h1>
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th>
+                <a class="btn btn-sm btn-success"
+                   href="/transactions/add-form"
+                   role="button"
+                   aria-controls="offcanvasExample">
+                    Add transaction
+                </a>
+            </th>
+            <th>Transaction Type</th>
+            <th>Driver</th>
+            <th>Amount</th>
+            <th>Week</th>
+            <th>Date</th>
+            <th>Comment</th>
+        </tr>
+        <tr th:if="${#lists.isEmpty(transactions)}">
+            <td colspan="5">No transaction </td>
+        </tr>
+        <tr th:each="transaction : ${transactions}">
+            <td>
+                <a class="btn btn-sm btn-warning"
+                   th:href="@{/transactions/update-form/{id}(id=${transaction.id})}">Edit</a>
+                <a class="btn btn-sm btn-danger"
+                   th:href="@{/transactions/delete/{id}(id=${transaction.id})}">Delete</a>
+            </td>
+            <td th:text="${transaction.transactionTypeId}"></td>
+            <td th:text="${transaction.driverId}"></td>
+            <td th:text="${transaction.amount}"></td>
+            <td th:text="${transaction.weekNumber}"></td>
+            <td th:text="${transaction.date}"></td>
+            <td th:text="${transaction.comment}"></td>
+        </tr>
+    </table>
+    </div>
+</body>
+</html>
