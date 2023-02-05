@@ -41,7 +41,7 @@
         <module>driverpotential</module>
         <module>driver</module>
         <module>car</module>
-        <module>link</module>
+        <module>transaction</module>
         <module>link</module>
         <module>commonui</module>
     </modules>
