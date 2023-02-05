@@ -59,13 +59,13 @@ public class TransactionTypeController {
     public String updateTransactionTransactionType(
             final TransactionTypeUpdateCommand transactionTypeUpdateCommand) {
         transactionTypeUpdateUseCase.update(transactionTypeUpdateCommand);
-        return "redirect:/";
+        return "redirect:/transaction-types";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteForm(@PathVariable("id") long id) {
         transactionTypeDeleteUseCase.delete(id);
-        return "redirect:/";
+        return "redirect:/transaction-types";
     }
 
     private TransactionTypeUpdateCommand mapToCommand(final TransactionType domain) {
