@@ -16,6 +16,7 @@
                    href="/transactions/add-form"
                    role="button"
                    aria-controls="offcanvasExample">
+                    <span class="bi-plus-circle"></span>
                     Add new Transaction
                 </a>
             </th>
@@ -27,14 +28,18 @@
             <th>Comment</th>
         </tr>
         <tr th:if="${#lists.isEmpty(transactions)}">
-            <td colspan="5">No Transactions </td>
+            <td colspan="5">No Transactions</td>
         </tr>
         <tr th:each="transaction : ${transactions}">
             <td>
                 <a class="btn btn-sm btn-warning"
-                   th:href="@{/transactions/update-form/{id}(id=${transaction.id})}">Edit</a>
+                   th:href="@{/transactions/update-form/{id}(id=${transaction.id})}">
+                    <span class="bi-pencil-square"></span>
+                    Edit</a>
                 <a class="btn btn-sm btn-danger"
-                   th:href="@{/transactions/delete/{id}(id=${transaction.id})}">Delete</a>
+                   th:href="@{/transactions/delete/{id}(id=${transaction.id})}">
+                    <span class="bi-trash"></span>
+                    Delete</a>
             </td>
             <td th:text="${transaction.type.name}"></td>
             <td th:text="${transaction.driverId}"></td>
@@ -44,6 +49,6 @@
             <td th:text="${transaction.comment}"></td>
         </tr>
     </table>
-    </div>
+</div>
 </body>
 </html>
