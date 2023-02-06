@@ -1,6 +1,7 @@
 package ee.qrental.common.ui.controller;
 
 
+import ee.qrental.driver.application.port.out.DriverLoadPort;
 import ee.qrental.transaction.application.port.in.command.TransactionAddCommand;
 import ee.qrental.transaction.application.port.in.command.TransactionUpdateCommand;
 import ee.qrental.transaction.application.port.in.usecase.TransactionAddUseCase;
@@ -26,6 +27,8 @@ public class TransactionController {
     private final TransactionDeleteUseCase transactionDeleteUseCase;
     private final TransactionTypeLoadPort transactionTypeLoadPort;
 
+    private final DriverLoadPort driverLoadPort;
+
     @GetMapping
     public String getTransactionView(final Model model) {
         addTransactionListToModel(model);
@@ -43,10 +46,16 @@ public class TransactionController {
         model.addAttribute("transactionTypes", transactionTypes);
     }
 
+    private void addDriverListToModel(final Model model) {
+        final var drivers = driverLoadPort.loadAllDrivers();
+        model.addAttribute("drivers", drivers);
+    }
+
     @GetMapping(value = "/add-form")
     public String addForm(final Model model) {
         model.addAttribute("transactionAddCommand", new TransactionAddCommand());
         addTransactionTypeListToModel(model);
+        addDriverListToModel(model);
         return "addFormTransaction";
     }
 
@@ -56,17 +65,17 @@ public class TransactionController {
         return "redirect:/transactions";
     }
 
-
     @GetMapping(value = "/update-form/{id}")
     public String updateForm(@PathVariable("id") long id, Model model) {
         final var transactionUpdateCommand = mapToCommand(transactionLoadPort.loadTransactionById(id));
         model.addAttribute("transactionUpdateCommand", transactionUpdateCommand);
+        addTransactionTypeListToModel(model);
+        addDriverListToModel(model);
         return "updateFormTransaction";
     }
 
     @PostMapping("/update")
-    public String updateTransactionTransaction(
-            final TransactionUpdateCommand transactionUpdateCommand) {
+    public String updateTransactionTransaction(final TransactionUpdateCommand transactionUpdateCommand) {
         transactionUpdateUseCase.update(transactionUpdateCommand);
         return "redirect:/transactions";
     }
@@ -88,17 +97,6 @@ public class TransactionController {
         result.setComment(domain.getComment());
         return result;
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

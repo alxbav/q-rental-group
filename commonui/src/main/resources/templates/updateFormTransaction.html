@@ -3,13 +3,13 @@
       xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head.html :: qrental-head">
 </head>
-<body class="container">
+<body class="container bg-light">
 <nav th:replace="fragments/navigation.html :: qrental-navigation"></nav>
 <div class="row">
     <div class="col"></div>
-    <div class="col">
+    <div class="col-6">
         <h3>Update Transaction</h3>
-        <form class="col card p-3 mb-5" method="post"
+        <form method="post"
               th:action="@{/transactions/update}"
               th:object="${transactionUpdateCommand}">
 
@@ -18,52 +18,64 @@
                    type="text"
                    hidden/>
 
-            <div class="form-group">
-                <label for="transactionTypeId">Transaction type</label>
-                <input class="form-control" id="transactionTypeId" placeholder="Enter Transaction type " required
-                       th:field="*{transactionTypeId}"
-                       type="number"/>
+            <div class="mb-3">
+                <label class="form-label" for="driverId">Driver</label>
+                <select id="driverId" class="form-select"
+                        th:field="*{driverId}">
+                    <option th:each="driver : ${drivers}"
+                            th:value="${driver.id}"
+                            th:text="|${driver.firstName} ${driver.lastName}|"></option>
+                </select>
             </div>
-            <div class="form-group">
-                <label for="driverId">Driver</label>
-                <input class="form-control" id="driverId" placeholder="Enter  Driver" required
-                       th:field="*{driverId}"
-                       type="number"/>
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label class="form-label" for="transactionTypeId">Transaction type</label>
+                        <select id="transactionTypeId" class="form-select"
+                                th:field="*{transactionTypeId}">
+                            <option th:each="transactionType : ${transactionTypes}"
+                                    th:value="${transactionType.id}"
+                                    th:text="${transactionType.name}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label class="form-label" for="amountId">Amount</label>
+                        <input class="form-control" id="amountId" placeholder="Enter  amount" required
+                               th:field="*{amount}"
+                               type="number"/>
+                    </div>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="amount">Amount</label>
-                <input class="form-control" id="amount" placeholder="Enter  amount" required
-                       th:field="*{amount}"
-                       type="number"/>
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label class="form-label" for="weekNumberId">Week Number</label>
+                        <input class="form-control" id="weekNumberId" placeholder="Enter week Number" required
+                               th:field="*{weekNumber}"
+                               type="number"/>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label class="form-label" for="dateId">Date</label>
+                        <input class="form-control" id="dateId" placeholder="Enter date" required
+                               th:field="*{date}"
+                               type="date"/>
+                    </div>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="weekNumber">Week Number</label>
-                <input class="form-control" id="weekNumber" placeholder="Enter week Number" required
-                       th:field="*{weekNumber}"
-                       type="number"/>
-            </div>
-
-            <div class="form-group">
-                <label for="date">Date</label>
-                <input class="form-control" id="date" placeholder="Enter date" required
-                       th:field="*{date}"
-                       type="date"/>
-            </div>
-
-
-            <div class="form-group">
-                <label for="comment">Comment</label>
+            <div class="mb-3">
+                <label class="form-label" for="commentId">Comment</label>
                 <textarea class="form-control"
-                          id="comment"
+                          id="commentId"
                           placeholder="Enter Comment"
                           th:field="*{comment}"/>
             </div>
             <input class="btn btn-success"
                    type="submit"
-                   value="Update Transaction"
-                   data-bs-dismiss="modal">
+                   value="Update">
         </form>
     </div>
     <div class="col"></div>

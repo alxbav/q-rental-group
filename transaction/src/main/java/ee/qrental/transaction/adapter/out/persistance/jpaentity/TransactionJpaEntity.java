@@ -26,7 +26,6 @@ public class TransactionJpaEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
-
     @ManyToOne
     @JoinColumn(name="transaction_type_id", nullable=false)
     private TransactionTypeJpaEntity type;
