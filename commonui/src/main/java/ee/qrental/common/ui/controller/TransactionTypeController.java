@@ -71,7 +71,7 @@ public class TransactionTypeController {
     private TransactionTypeUpdateCommand mapToCommand(final TransactionType domain) {
         final var result = new TransactionTypeUpdateCommand();
         result.setId(domain.getId());
-        result.setTypeTr(domain.getName());
+        result.setName(domain.getName());
         result.setDescription(domain.getDescription());
         result.setComment(domain.getComment());
         return result;

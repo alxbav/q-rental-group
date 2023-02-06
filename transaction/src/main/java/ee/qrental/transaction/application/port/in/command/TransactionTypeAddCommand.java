@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class TransactionTypeAddCommand {
-    private String typeTr;
+    private String name;
     private String description;
     private String comment;
 

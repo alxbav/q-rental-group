@@ -30,7 +30,7 @@ class TransactionTypeService implements
     public void add(final TransactionTypeAddCommand command) {
         final var transactionTypeDomain = new TransactionType(
                 null,
-                command.getTypeTr(),
+                command.getName(),
                 command.getDescription(),
                 command.getComment());
         transactionTypeAddPort.addTransactionType(transactionTypeDomain);
@@ -50,7 +50,7 @@ class TransactionTypeService implements
     private void updateDomain(
             final TransactionTypeUpdateCommand command,
             final TransactionType toUpdate) {
-        toUpdate.setName(command.getTypeTr());
+        toUpdate.setName(command.getName());
         toUpdate.setDescription(command.getDescription());
         toUpdate.setComment(command.getComment());
     }

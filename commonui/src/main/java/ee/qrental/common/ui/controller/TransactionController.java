@@ -39,13 +39,14 @@ public class TransactionController {
     }
 
     private void addTransactionTypeListToModel(final Model model) {
-        final var types = transactionTypeLoadPort.loadAllTransactionTypes();
-        model.addAttribute("types", types);
+        final var transactionTypes = transactionTypeLoadPort.loadAllTransactionTypes();
+        model.addAttribute("transactionTypes", transactionTypes);
     }
 
     @GetMapping(value = "/add-form")
     public String addForm(final Model model) {
         model.addAttribute("transactionAddCommand", new TransactionAddCommand());
+        addTransactionTypeListToModel(model);
         return "addFormTransaction";
     }
 

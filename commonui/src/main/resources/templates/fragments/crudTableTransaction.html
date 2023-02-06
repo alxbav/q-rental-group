@@ -7,7 +7,7 @@
 <body class="container">
 <nav th:replace="fragments/navigation.html :: qrental-navigation"></nav>
 
-<div th:fragment="qrental-table-link">
+<div th:fragment="qrental-table-transaction">
     <h1 class="py-5">Transactions</h1>
     <table class="table table-striped table-bordered">
         <tr>
@@ -16,7 +16,7 @@
                    href="/transactions/add-form"
                    role="button"
                    aria-controls="offcanvasExample">
-                    Add link
+                    Add new Transaction
                 </a>
             </th>
             <th>Transaction Type</th>
@@ -27,21 +27,21 @@
             <th>Comment</th>
         </tr>
         <tr th:if="${#lists.isEmpty(transactions)}">
-            <td colspan="5">No link </td>
+            <td colspan="5">No Transactions </td>
         </tr>
-        <tr th:each="link : ${transactions}">
+        <tr th:each="transaction : ${transactions}">
             <td>
                 <a class="btn btn-sm btn-warning"
-                   th:href="@{/transactions/update-form/{id}(id=${link.id})}">Edit</a>
+                   th:href="@{/transactions/update-form/{id}(id=${transaction.id})}">Edit</a>
                 <a class="btn btn-sm btn-danger"
-                   th:href="@{/transactions/delete/{id}(id=${link.id})}">Delete</a>
+                   th:href="@{/transactions/delete/{id}(id=${transaction.id})}">Delete</a>
             </td>
-            <td th:text="${link.transactionTypeId}"></td>
-            <td th:text="${link.driverId}"></td>
-            <td th:text="${link.amount}"></td>
-            <td th:text="${link.weekNumber}"></td>
-            <td th:text="${link.date}"></td>
-            <td th:text="${link.comment}"></td>
+            <td th:text="${transaction.type.name}"></td>
+            <td th:text="${transaction.driverId}"></td>
+            <td th:text="${transaction.amount}"></td>
+            <td th:text="${transaction.weekNumber}"></td>
+            <td th:text="${transaction.date}"></td>
+            <td th:text="${transaction.comment}"></td>
         </tr>
     </table>
     </div>

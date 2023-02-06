@@ -13,10 +13,10 @@
         <tr>
             <th>
                 <a class="btn btn-sm btn-success"
-                   href="/link-types/add-form"
+                   href="/transaction-types/add-form"
                    role="button"
                    aria-controls="offcanvasExample">
-                    Add link-types
+                    Add new Transaction Type
                 </a>
             </th>
             <th>Transaction Type</th>
@@ -24,16 +24,16 @@
             <th>Comment</th>
         </tr>
         <tr th:if="${#lists.isEmpty(transactionTypes)}">
-            <td colspan="5">No link types</td>
+            <td colspan="5">No Transaction Types</td>
         </tr>
         <tr th:each="transactionType : ${transactionTypes}">
             <td>
                 <a class="btn btn-sm btn-warning"
-                   th:href="@{/link-types/update-form/{id}(id=${transactionType.id})}">Edit</a>
+                   th:href="@{/transaction-types/update-form/{id}(id=${transactionType.id})}">Edit</a>
                 <a class="btn btn-sm btn-danger"
-                   th:href="@{/link-types/delete/{id}(id=${transactionType.id})}">Delete</a>
+                   th:href="@{/transaction-types/delete/{id}(id=${transactionType.id})}">Delete</a>
             </td>
-            <td th:text="${transactionType.typeTr}"></td>
+            <td th:text="${transactionType.name}"></td>
             <td th:text="${transactionType.description}"></td>
             <td th:text="${transactionType.comment}"></td>
         </tr>

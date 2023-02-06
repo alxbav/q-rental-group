@@ -16,7 +16,9 @@
             <div class="form-group">
                 <label for="transactionTypeId">Transaction type</label>
                 <select id="transactionTypeId"  th:field="*{transactionTypeId}">
-                    <option th:each="type : ${types}" th:value="${type.id}" th:text="${type.name}"></option>
+                    <option th:each="transactionType : ${transactionTypes}"
+                            th:value="${transactionType.id}"
+                            th:text="${transactionType.name}"></option>
                 </select>
             </div>
             <div class="form-group">

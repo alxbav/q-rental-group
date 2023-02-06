@@ -10,7 +10,7 @@ import lombok.Setter;
 public class TransactionTypeUpdateCommand {
 
     private Long id;
-    private String typeTr;
+    private String name;
     private String description;
     private String comment;
 
