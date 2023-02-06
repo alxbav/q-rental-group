@@ -13,8 +13,8 @@ import java.time.LocalDate;
 public class TransactionUpdateCommand {
 
     private Long id;
-    private Integer transactionTypeId;
-    private Integer driverId;
+    private Long transactionTypeId;
+    private Long driverId;
     private Long amount;
     private Integer weekNumber;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)

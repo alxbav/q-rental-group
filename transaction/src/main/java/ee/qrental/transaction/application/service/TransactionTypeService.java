@@ -1,18 +1,16 @@
-package ee.qrental.transactiontype.application.service;
+package ee.qrental.transaction.application.service;
 
-import ee.qrental.transactiontype.application.port.in.command.TransactionTypeAddCommand;
-import ee.qrental.transactiontype.application.port.in.command.TransactionTypeUpdateCommand;
-import ee.qrental.transactiontype.application.port.in.usecase.TransactionTypeAddUseCase;
-import ee.qrental.transactiontype.application.port.in.usecase.TransactionTypeDeleteUseCase;
-import ee.qrental.transactiontype.application.port.in.usecase.TransactionTypeUpdateUseCase;
-import ee.qrental.transactiontype.application.port.out.TransactionTypeAddPort;
-import ee.qrental.transactiontype.application.port.out.TransactionTypeDeletePort;
-import ee.qrental.transactiontype.application.port.out.TransactionTypeLoadPort;
-import ee.qrental.transactiontype.application.port.out.TransactionTypeUpdatePort;
-import ee.qrental.transactiontype.domain.TransactionType;
+import ee.qrental.transaction.application.port.in.command.TransactionTypeAddCommand;
+import ee.qrental.transaction.application.port.in.command.TransactionTypeUpdateCommand;
+import ee.qrental.transaction.application.port.in.usecase.TransactionTypeAddUseCase;
+import ee.qrental.transaction.application.port.in.usecase.TransactionTypeDeleteUseCase;
+import ee.qrental.transaction.application.port.in.usecase.TransactionTypeUpdateUseCase;
+import ee.qrental.transaction.application.port.out.TransactionTypeAddPort;
+import ee.qrental.transaction.application.port.out.TransactionTypeDeletePort;
+import ee.qrental.transaction.application.port.out.TransactionTypeLoadPort;
+import ee.qrental.transaction.application.port.out.TransactionTypeUpdatePort;
+import ee.qrental.transaction.domain.TransactionType;
 import lombok.AllArgsConstructor;
-
-import static java.lang.Boolean.TRUE;
 
 @AllArgsConstructor
 class TransactionTypeService implements
@@ -52,7 +50,7 @@ class TransactionTypeService implements
     private void updateDomain(
             final TransactionTypeUpdateCommand command,
             final TransactionType toUpdate) {
-        toUpdate.setTypeTr(command.getTypeTr());
+        toUpdate.setName(command.getTypeTr());
         toUpdate.setDescription(command.getDescription());
         toUpdate.setComment(command.getComment());
     }

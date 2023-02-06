@@ -1,6 +1,6 @@
-package ee.qrental.transactiontype.application.port.out;
+package ee.qrental.transaction.application.port.out;
 
-import ee.qrental.transactiontype.domain.TransactionType;
+import ee.qrental.transaction.domain.TransactionType;
 
 public interface TransactionTypeUpdatePort {
     TransactionType updateTransactionType(TransactionType transactionType);

@@ -1,6 +1,7 @@
-package ee.qrental.transactiontype.adapter.out.persistance;
+package ee.qrental.transaction.adapter.out.persistance.mapper;
 
-import ee.qrental.transactiontype.domain.TransactionType;
+import ee.qrental.transaction.adapter.out.persistance.jpaentity.TransactionTypeJpaEntity;
+import ee.qrental.transaction.domain.TransactionType;
 
 public class TransactionTypeMapper {
 
@@ -16,7 +17,7 @@ public class TransactionTypeMapper {
     public TransactionTypeJpaEntity mapToEntity(final TransactionType domain) {
         return TransactionTypeJpaEntity.builder()
                 .id(domain.getId())
-                .typeTr(domain.getTypeTr())
+                .typeTr(domain.getName())
                 .description(domain.getDescription())
                 .comment(domain.getComment())
                 .build();

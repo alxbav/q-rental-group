@@ -1,13 +1,13 @@
 package ee.qrental.common.ui.controller;
 
 
-import ee.qrental.transactiontype.application.port.in.command.TransactionTypeAddCommand;
-import ee.qrental.transactiontype.application.port.in.command.TransactionTypeUpdateCommand;
-import ee.qrental.transactiontype.application.port.in.usecase.TransactionTypeAddUseCase;
-import ee.qrental.transactiontype.application.port.in.usecase.TransactionTypeDeleteUseCase;
-import ee.qrental.transactiontype.application.port.in.usecase.TransactionTypeUpdateUseCase;
-import ee.qrental.transactiontype.application.port.out.TransactionTypeLoadPort;
-import ee.qrental.transactiontype.domain.TransactionType;
+import ee.qrental.transaction.application.port.in.command.TransactionTypeAddCommand;
+import ee.qrental.transaction.application.port.in.command.TransactionTypeUpdateCommand;
+import ee.qrental.transaction.application.port.in.usecase.TransactionTypeAddUseCase;
+import ee.qrental.transaction.application.port.in.usecase.TransactionTypeDeleteUseCase;
+import ee.qrental.transaction.application.port.in.usecase.TransactionTypeUpdateUseCase;
+import ee.qrental.transaction.application.port.out.TransactionTypeLoadPort;
+import ee.qrental.transaction.domain.TransactionType;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,7 +71,7 @@ public class TransactionTypeController {
     private TransactionTypeUpdateCommand mapToCommand(final TransactionType domain) {
         final var result = new TransactionTypeUpdateCommand();
         result.setId(domain.getId());
-        result.setTypeTr(domain.getTypeTr());
+        result.setTypeTr(domain.getName());
         result.setDescription(domain.getDescription());
         result.setComment(domain.getComment());
         return result;

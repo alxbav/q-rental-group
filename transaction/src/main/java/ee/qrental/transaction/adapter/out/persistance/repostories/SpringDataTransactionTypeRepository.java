@@ -1,5 +1,6 @@
-package ee.qrental.transactiontype.adapter.out.persistance;
+package ee.qrental.transaction.adapter.out.persistance.repostories;
 
+import ee.qrental.transaction.adapter.out.persistance.jpaentity.TransactionTypeJpaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +10,5 @@ import java.util.Optional;
 @Repository
 public interface SpringDataTransactionTypeRepository
         extends JpaRepository<TransactionTypeJpaEntity, Long> {
-
-    Optional<TransactionTypeJpaEntity> getTransactionTypeJpaEntityByTypeTr(String typeTr);
 }
 

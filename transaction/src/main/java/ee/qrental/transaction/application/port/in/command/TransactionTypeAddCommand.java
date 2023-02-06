@@ -1,4 +1,4 @@
-package ee.qrental.transactiontype.application.port.in.command;
+package ee.qrental.transaction.application.port.in.command;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

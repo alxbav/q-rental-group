@@ -1,4 +1,4 @@
-package ee.qrental.transactiontype.domain;
+package ee.qrental.transaction.domain;
 
 
 import lombok.Getter;
@@ -11,7 +11,7 @@ public class TransactionType {
 
     private static final Integer COMMENT_MAX_SIZE = 150;
     private Long id;
-    private String typeTr;
+    private String name;
     private String description;
     private String comment;
 
@@ -22,13 +22,13 @@ public class TransactionType {
 
         validateComment(comment);
         this.id = id;
-        this.typeTr = typeTr;
+        this.name = typeTr;
         this.description = description;
         this.comment = comment;
     }
 
-    public void setTypeTr(String typeTr) {
-        this.typeTr = typeTr;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setDescription(String description) {

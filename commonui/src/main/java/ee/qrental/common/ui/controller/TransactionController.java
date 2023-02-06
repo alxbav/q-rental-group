@@ -7,6 +7,7 @@ import ee.qrental.transaction.application.port.in.usecase.TransactionAddUseCase;
 import ee.qrental.transaction.application.port.in.usecase.TransactionDeleteUseCase;
 import ee.qrental.transaction.application.port.in.usecase.TransactionUpdateUseCase;
 import ee.qrental.transaction.application.port.out.TransactionLoadPort;
+import ee.qrental.transaction.application.port.out.TransactionTypeLoadPort;
 import ee.qrental.transaction.domain.Transaction;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -23,16 +24,23 @@ public class TransactionController {
     private final TransactionUpdateUseCase transactionUpdateUseCase;
     private final TransactionLoadPort transactionLoadPort;
     private final TransactionDeleteUseCase transactionDeleteUseCase;
+    private final TransactionTypeLoadPort transactionTypeLoadPort;
 
     @GetMapping
     public String getTransactionView(final Model model) {
         addTransactionListToModel(model);
+        addTransactionTypeListToModel(model);
         return "transactions";
     }
 
     private void addTransactionListToModel(final Model model) {
         final var transactions = transactionLoadPort.loadAllTransactions();
         model.addAttribute("transactions", transactions);
+    }
+
+    private void addTransactionTypeListToModel(final Model model) {
+        final var types = transactionTypeLoadPort.loadAllTransactionTypes();
+        model.addAttribute("types", types);
     }
 
     @GetMapping(value = "/add-form")
@@ -71,7 +79,7 @@ public class TransactionController {
     private TransactionUpdateCommand mapToCommand(final Transaction domain) {
         final var result = new TransactionUpdateCommand();
         result.setId(domain.getId());
-        result.setTransactionTypeId(domain.getTransactionTypeId());
+        result.setTransactionTypeId(domain.getType().getId());
         result.setDriverId(domain.getDriverId());
         result.setAmount(domain.getAmount());
         result.setWeekNumber(domain.getWeekNumber());

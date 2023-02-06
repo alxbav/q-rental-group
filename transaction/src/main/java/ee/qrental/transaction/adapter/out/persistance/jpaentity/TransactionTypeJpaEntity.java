@@ -1,4 +1,4 @@
-package ee.qrental.transactiontype.adapter.out.persistance;
+package ee.qrental.transaction.adapter.out.persistance.jpaentity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +7,8 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+
+import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -33,4 +35,7 @@ public class TransactionTypeJpaEntity {
 
     @Column(name = "comment")
     private String comment;
+
+    @OneToMany(mappedBy="type")
+    private Set<TransactionJpaEntity> transactions;
 }

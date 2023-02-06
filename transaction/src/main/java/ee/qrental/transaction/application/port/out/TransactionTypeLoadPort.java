@@ -1,9 +1,8 @@
-package ee.qrental.transactiontype.application.port.out;
+package ee.qrental.transaction.application.port.out;
 
-import ee.qrental.transactiontype.domain.TransactionType;
+import ee.qrental.transaction.domain.TransactionType;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface TransactionTypeLoadPort {
     List<TransactionType> loadAllTransactionTypes();

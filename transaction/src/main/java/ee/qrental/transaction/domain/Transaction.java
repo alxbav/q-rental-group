@@ -14,16 +14,16 @@ public class Transaction {
 
     private static final Integer COMMENT_MAX_SIZE = 150;
     private Long id;
-    private Integer transactionTypeId;
-    private Integer driverId;
+    private TransactionType type;
+    private Long driverId;
     private Long amount;
     private Integer weekNumber;
     private LocalDate date;
     private String comment;
 
     public Transaction(Long id,
-                       Integer transactionTypeId,
-                       Integer driverId,
+                       TransactionType type,
+                       Long driverId,
                        Long amount,
                        Integer weekNumber,
                        LocalDate date,
@@ -31,7 +31,7 @@ public class Transaction {
 
         validateComment(comment);
         this.id = id;
-        this.transactionTypeId = transactionTypeId;
+        this.type = type;
         this.driverId = driverId;
         this.amount = amount;
         this.weekNumber = weekNumber;
@@ -43,11 +43,7 @@ public class Transaction {
         return id;
     }
 
-    public Integer getTransactionTypeId() {
-        return transactionTypeId;
-    }
-
-    public Integer getDriverId() {
+    public Long getDriverId() {
         return driverId;
     }
 
@@ -71,12 +67,16 @@ public class Transaction {
         this.id = id;
     }
 
-    public void setTransactionTypeId(Integer transactionTypeId) {
-        this.transactionTypeId = transactionTypeId;
+    public void setDriverId(Long driverId) {
+        this.driverId = driverId;
     }
 
-    public void setDriverId(Integer driverId) {
-        this.driverId = driverId;
+    public TransactionType getType() {
+        return type;
+    }
+
+    public void setType(TransactionType type) {
+        this.type = type;
     }
 
     public void setAmount(Long amount) {

@@ -1,12 +1,14 @@
 package ee.qrental.transaction.adapter.out.persistance;
 
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
+import ee.qrental.transaction.adapter.out.persistance.mapper.TransactionMapper;
+import ee.qrental.transaction.adapter.out.persistance.repostories.SpringDataTransactionRepository;
 import ee.qrental.transaction.application.port.out.TransactionAddPort;
 import ee.qrental.transaction.application.port.out.TransactionDeletePort;
 import ee.qrental.transaction.application.port.out.TransactionLoadPort;
 import ee.qrental.transaction.application.port.out.TransactionUpdatePort;
 import ee.qrental.transaction.domain.Transaction;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -31,7 +33,7 @@ public class TransactionPersistenceAdapterLoadAddUpdateDelete implements
                 .collect(toList());
     }
 
-       @Override
+    @Override
     public Transaction loadTransactionById(Long id) {
         return transactionMapper.mapToDomain(
                 springDataTransactionRepository.getReferenceById(id));

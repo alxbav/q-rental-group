@@ -1,4 +1,4 @@
-package ee.qrental.transaction.adapter.out.persistance;
+package ee.qrental.transaction.adapter.out.persistance.jpaentity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,12 +27,12 @@ public class TransactionJpaEntity {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    @Column(name = "transaction_type_id")
-    private Integer transactionTypeId;
+    @ManyToOne
+    @JoinColumn(name="transaction_type_id", nullable=false)
+    private TransactionTypeJpaEntity type;
 
     @Column(name = "driver_id")
-    private Integer driverId;
-
+    private Long driverId;
 
     @Column(name = "amount")
     private Long amount;
