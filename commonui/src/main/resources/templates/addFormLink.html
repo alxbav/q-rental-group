@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head.html :: qrental-head">
+</head>
+<body class="container">
+<nav th:replace="fragments/navigation.html :: qrental-navigation"></nav>
+
+<div class="row">
+    <div class="col"></div>
+    <div class="col">
+        <h3>Add new Link</h3>
+        <form class="col card p-3 mb-5" method="post"
+              th:action="@{/links/add}"
+              th:object="${linkAddCommand}">
+
+            <div class="form-group">
+                <label for="carId">Care</label>
+                <input class="form-control" id="carId" placeholder="Enter Car" required
+                       th:field="*{carId}"
+                       type="number"/>
+            </div>
+            <div class="form-group">
+                <label for="driverId">Driver</label>
+                <input class="form-control" id="driverId" placeholder="Enter Driver" required
+                       th:field="*{driverId}"
+                       type="number"/>
+            </div>
+            <div class="form-group">
+                <label for="linkType">Link Type</label>
+                <input class="form-control" id="linkType" placeholder="Enter Link Type" required
+                       th:field="*{linkType}"
+                       type="text"/>
+            </div>
+
+            <div class="form-group">
+                <label for="dateStart"> Date Start</label>
+                <input class="form-control" id="dateStart" placeholder="Enter Start Date" required
+                       th:field="*{dateStart}"
+                       type="date"/>
+            </div>
+
+            <div class="form-group">
+                <label for="dateEnd"> Date End</label>
+                <input class="form-control" id="dateEnd" placeholder="Enter  Date End"
+                       th:field="*{dateEnd}"
+                       type="date"/>
+            </div>
+
+            <div class="form-group">
+                <label for="comment">Comment</label>
+                <textarea class="form-control"
+                          id="comment"
+                          placeholder="Enter Comment"
+                          th:field="*{comment}"/>
+            </div>
+            <input class="btn btn-success"
+                   type="submit"
+                   value="Add Link"
+                   data-bs-dismiss="modal">
+        </form>
+    </div>
+    <div class="col">
+
+    </div>
+</div>
+
+</body>
+</html>
