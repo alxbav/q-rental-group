@@ -1,9 +1,6 @@
 package ee.qrental.driver.application.service;
 
-import ee.qrental.driver.application.port.out.DriverAddPort;
-import ee.qrental.driver.application.port.out.DriverDeletePort;
-import ee.qrental.driver.application.port.out.DriverLoadPort;
-import ee.qrental.driver.application.port.out.DriverUpdatePort;
+import ee.qrental.driver.application.port.out.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -20,5 +17,11 @@ public class DriverApplicationConfig {
                 driverUpdatePort,
                 driverLoadPort,
                 driverDeletePort);
+    }
+
+    @Bean
+    public CallSignLinkService getCallSignLinkService(
+            final CallSignLinkAddPort addPort){
+        return new CallSignLinkService(addPort);
     }
 }

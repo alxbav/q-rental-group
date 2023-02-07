@@ -15,7 +15,7 @@ import static java.util.stream.Collectors.toList;
 
 @Component
 @AllArgsConstructor
-public class DriverPersistenceAdapterLoadAddUpdateDelete implements
+class DriverPersistenceAdapter implements
         DriverLoadPort,
         DriverAddPort,
         DriverUpdatePort,

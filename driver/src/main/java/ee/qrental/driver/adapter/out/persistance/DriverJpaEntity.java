@@ -48,18 +48,14 @@ public class DriverJpaEntity {
     @Column(name = "iban1")
     private String iban1;
 
-
     @Column(name = "iban2")
     private String iban2;
-
 
     @Column(name = "iban3")
     private String iban3;
 
-
     @Column(name = "driver_license_number")
     private String driverLicenseNumber;
-
 
     @Column(name = "driver_license_exp")
     private LocalDate driverLicenseExp;
