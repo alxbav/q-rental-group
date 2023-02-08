@@ -8,45 +8,73 @@
 
 <div class="row">
     <div class="col"></div>
-    <div class="col">
-        <h3>Add new Potential Driver</h3>
-        <form class="col card p-3 mb-5" method="post"
-              th:action="@{/drivers-potential/add}" th:object="${driverAddCommand}">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
 
-            <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input class="form-control" id="firstName" placeholder="Enter First Name" required
-                       th:field="*{firstName}"
-                       type="text"/>
-            </div>
-            <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <input class="form-control" id="lastName" placeholder="Enter Last Name" required
-                       th:field="*{lastName}"
-                       type="text"/>
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone</label>
-                <input class="form-control" id="phone" placeholder="Enter Phone" required
-                       th:field="*{phone}"
-                       type="text"/>
-            </div>
+                <h4>Add NEW Potential Driver</h4>
 
-            <div class="form-group">
-                <label for="comment">Comment</label>
-                <textarea class="form-control"
-                          id="comment"
-                          placeholder="Enter Comment"
-                          th:field="*{comment}"/>
+                <form method="post"
+                      th:action="@{/drivers-potential/add}"
+                      th:object="${driverAddCommand}">
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="firstName">First Name</label>
+                                <input class="form-control" id="firstName" placeholder="Enter First Name" required
+                                       th:field="*{firstName}"
+                                       type="text"/>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="lastName">Last Name</label>
+                                <input class="form-control" id="lastName" placeholder="Enter Last Name" required
+                                       th:field="*{lastName}"
+                                       type="text"/>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="phone">Phone</label>
+                                <input class="form-control" id="phone" placeholder="Enter Phone" required
+                                       th:field="*{phone}"
+                                       type="text"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="mb-3">
+                                <label for="comment">Comment</label>
+                                <textarea class="form-control"
+                                          id="comment"
+                                          placeholder="Enter Comment"
+                                          th:field="*{comment}"/>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-4">
+                                <input class="btn btn-success"
+                                       type="submit"
+                                       value="Add Potential Driver">
+                            </div>
+                            <div class="col-4">
+                                <a class="btn btn-secondary"
+                                   href="/">
+                                    Cancel
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
             </div>
-            <input class="btn btn-success"
-                   type="submit"
-                   value="Add Potential Driver">
-        </form>
+        </div>
     </div>
-    <div class="col">
-
-    </div>
+    <div class="col"></div>
 </div>
 
 </body>

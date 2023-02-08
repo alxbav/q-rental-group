@@ -8,41 +8,62 @@
 
 <div class="row">
     <div class="col"></div>
-    <div class="col">
-        <h3>Add new Transaction Type</h3>
-        <form class="col card p-3 mb-5" method="post"
-              th:action="@{/transaction-types/add}"
-              th:object="${transactionTypeAddCommand}">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
 
-            <div class="form-group">
-                <label for="transactionType">Transaction type name</label>
-                <input class="form-control" id="transactionType" placeholder="Enter Transaction type " required
-                       th:field="*{name}"
-                       type="text"/>
-            </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <input class="form-control" id="description" placeholder="Enter  Description" required
-                       th:field="*{description}"
-                       type="text"/>
-            </div>
+                <h4>Add New Transaction Type</h4>
 
-           <div class="form-group">
-                <label for="comment">Comment</label>
-                <textarea class="form-control"
-                          id="comment"
-                          placeholder="Enter Comment"
-                          th:field="*{comment}"/>
+                <form method="post"
+                      th:action="@{/transaction-types/add}"
+                      th:object="${transactionTypeAddCommand}">
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="transactionType">Transaction type name</label>
+                                <input class="form-control" id="transactionType" placeholder="Enter Transaction type "
+                                       required
+                                       th:field="*{name}"
+                                       type="text"/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="description">Description</label>
+                                <input class="form-control" id="description" placeholder="Enter  Description" required
+                                       th:field="*{description}"
+                                       type="text"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comment">Comment</label>
+                        <textarea class="form-control"
+                                  id="comment"
+                                  placeholder="Enter Comment"
+                                  th:field="*{comment}"/>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-2">
+                            <input class="btn btn-success"
+                                   type="submit"
+                                   value="Add">
+                        </div>
+                        <div class="col-2">
+                            <a class="btn btn-secondary"
+                               href="/transactions">
+                                Cancel
+                            </a>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <input class="btn btn-success"
-                   type="submit"
-                   value="Add Transaction Type"
-                   data-bs-dismiss="modal">
-        </form>
+        </div>
     </div>
-    <div class="col">
-
-    </div>
+    <div class="col"></div>
 </div>
 
 </body>
