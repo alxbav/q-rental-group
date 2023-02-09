@@ -1,6 +1,7 @@
 package ee.qrental.transaction.application.service;
 
 import ee.qrental.transaction.application.port.in.command.TransactionAddCommand;
+import ee.qrental.transaction.application.port.in.command.TransactionDeleteCommand;
 import ee.qrental.transaction.application.port.in.command.TransactionUpdateCommand;
 import ee.qrental.transaction.application.port.in.usecase.TransactionAddUseCase;
 import ee.qrental.transaction.application.port.in.usecase.TransactionDeleteUseCase;
@@ -61,7 +62,7 @@ class TransactionService implements TransactionAddUseCase, TransactionUpdateUseC
     }
 
     @Override
-    public void delete(Long transactionId) {
-        transactionDeletePort.deleteTransaction(transactionId);
+    public void delete(TransactionDeleteCommand deleteCommand) {
+        transactionDeletePort.deleteTransaction(deleteCommand.getId());
     }
 }

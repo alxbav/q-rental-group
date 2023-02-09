@@ -1,6 +1,8 @@
 package ee.qrental.transaction.application.port.in.usecase;
 
+import ee.qrental.transaction.application.port.in.command.TransactionDeleteCommand;
+
 public interface TransactionDeleteUseCase {
-    void delete(Long transactionId);
+    void delete(TransactionDeleteCommand deleteCommand);
 }
 

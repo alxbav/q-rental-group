@@ -3,6 +3,7 @@ package ee.qrental.common.ui.controller;
 
 import ee.qrental.driver.application.port.out.DriverLoadPort;
 import ee.qrental.transaction.application.port.in.command.TransactionAddCommand;
+import ee.qrental.transaction.application.port.in.command.TransactionDeleteCommand;
 import ee.qrental.transaction.application.port.in.command.TransactionUpdateCommand;
 import ee.qrental.transaction.application.port.in.usecase.TransactionAddUseCase;
 import ee.qrental.transaction.application.port.in.usecase.TransactionDeleteUseCase;
@@ -15,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import static java.lang.String.format;
+
 @AllArgsConstructor
 
 @Controller
@@ -26,7 +29,6 @@ public class TransactionController {
     private final TransactionLoadPort transactionLoadPort;
     private final TransactionDeleteUseCase transactionDeleteUseCase;
     private final TransactionTypeLoadPort transactionTypeLoadPort;
-
     private final DriverLoadPort driverLoadPort;
 
     @GetMapping
@@ -80,9 +82,35 @@ public class TransactionController {
         return "redirect:/transactions";
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteForm(@PathVariable("id") long id) {
-        transactionDeleteUseCase.delete(id);
+    @GetMapping(value = "/delete-form/{id}")
+    public String deleteForm(@PathVariable("id") long id, Model model) {
+        final var transaction = transactionLoadPort.loadTransactionById(id);
+        final var transactionDeleteCommand = new TransactionDeleteCommand();
+        transactionDeleteCommand.setId(transaction.getId());
+        transactionDeleteCommand.setObjectInfo(getObjectInfo(transaction));
+        model.addAttribute("transactionDeleteCommand", transactionDeleteCommand);
+        return "deleteFormTransaction";
+    }
+
+    private String getObjectInfo(final Transaction transaction) {
+        final var driver = driverLoadPort.loadDriverById(transaction.getDriverId());
+        final var transactionType = transaction.getType().getName();
+        final var transactionAmount = transaction.getAmount();
+        final var transactionDate = transaction.getDate().toString();
+        final var transactionWeek = transaction.getWeekNumber();
+        final var transactionDriver = driver.getFirstName() + " " + driver.getLastName();
+
+        return format("Transaction: %s - %d EURO, week: %d (%s), for driver: %s",
+                transactionType,
+                transactionAmount,
+                transactionWeek,
+                transactionDate,
+                transactionDriver);
+    }
+
+    @PostMapping("/delete")
+    public String deleteForm(final TransactionDeleteCommand transactionDeleteCommand) {
+        transactionDeleteUseCase.delete(transactionDeleteCommand);
         return "redirect:/transactions";
     }
 

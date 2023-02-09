@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head.html :: qrental-head">
+</head>
+<body class="container bg-light">
+<nav th:replace="fragments/navigation.html :: qrental-navigation"></nav>
+<div class="row">
+    <div class="col"></div>
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <form method="post"
+                      th:action="@{/transactions/delete}"
+                      th:object="${transactionDeleteCommand}">
+                    <input id="transactionId" required
+                           th:field="*{id}"
+                           type="text"
+                           hidden/>
+                    <div class="mb-3">
+                        <p class="fs-4 ">Please confirm that you want to delete next data:</p>
+                        <p class="fs-6 text-center"
+                           th:text=${transactionDeleteCommand.objectInfo}>Transaction info</p>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-2">
+                            <input class="btn btn-danger"
+                                   type="submit"
+                                   value="Confirm">
+                        </div>
+                        <div class="col-2">
+                            <a class="btn btn-secondary"
+                               href="/transactions">
+                                Cancel
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col"></div>
+</div>
+</body>
+</html>
