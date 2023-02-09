@@ -18,7 +18,7 @@ public class LinkAddCommand {
     private Long driverId;
     private String linkType;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate dateStart;
+    private LocalDate dateStart = LocalDate.now();;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateEnd;
     private String comment;

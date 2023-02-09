@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -14,7 +15,7 @@ public class CallSignAddCommand {
     private Integer callSign;
     private Long driverId;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate dateStart;
+    private LocalDate dateStart = LocalDate.now();
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateEnd;
     private String comment;

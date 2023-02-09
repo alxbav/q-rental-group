@@ -18,7 +18,7 @@ public class TransactionAddCommand {
     private Long amount;
     private Integer weekNumber;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate date;
+    private LocalDate date = LocalDate.now();
     private String comment;
 
 }
