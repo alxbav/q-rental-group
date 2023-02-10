@@ -1,5 +1,6 @@
 package ee.qrental.transaction.application.service;
 
+import ee.qrental.driver.application.port.out.DriverLoadPort;
 import ee.qrental.transaction.application.port.out.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,13 +14,15 @@ public class TransactionApplicationConfig {
             final TransactionUpdatePort transactionUpdatePort,
             final TransactionLoadPort transactionLoadPort,
             final TransactionDeletePort transactionDeletePort,
-            final TransactionTypeLoadPort transactionTypeLoadPort) {
+            final TransactionTypeLoadPort transactionTypeLoadPort,
+            final DriverLoadPort driverLoadPort) {
         return new TransactionService(
                 transactionAddPort,
                 transactionUpdatePort,
                 transactionLoadPort,
                 transactionDeletePort,
-                transactionTypeLoadPort);
+                transactionTypeLoadPort,
+                driverLoadPort);
     }
 
     @Bean

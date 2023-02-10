@@ -1,6 +1,7 @@
 package ee.qrental.common.ui.controller;
 
 
+import ee.qrental.car.application.port.out.CarLoadPort;
 import ee.qrental.driver.application.port.out.DriverLoadPort;
 import ee.qrental.link.application.port.in.command.LinkAddCommand;
 import ee.qrental.link.application.port.in.command.LinkUpdateCommand;
@@ -24,11 +25,15 @@ public class LinkController {
     private final LinkUpdateUseCase linkUpdateUseCase;
     private final LinkLoadPort linkLoadPort;
     private final LinkDeleteUseCase linkDeleteUseCase;
+    private final DriverLoadPort driverLoadPort;
+    private final CarLoadPort carLoadPort;
 
 
     @GetMapping
     public String getLinkView(final Model model) {
         addLinkListToModel(model);
+        addCarListToModel(model);
+        addDriverListToModel(model);
         return "links";
     }
 
@@ -37,10 +42,21 @@ public class LinkController {
         model.addAttribute("links", links);
     }
 
+    private void addCarListToModel(final Model model){
+        final var cars = carLoadPort.loadAllCars();
+        model.addAttribute("cars",cars);
+    }
+
+    private void addDriverListToModel(final Model model) {
+        final var drivers = driverLoadPort.loadAllDrivers();
+        model.addAttribute("drivers", drivers);
+    }
 
     @GetMapping(value = "/add-form")
     public String addForm(final Model model) {
         model.addAttribute("linkAddCommand", new LinkAddCommand());
+        addCarListToModel(model);
+        addDriverListToModel(model);
         return "addFormLink";
     }
 
@@ -54,6 +70,8 @@ public class LinkController {
     public String updateForm(@PathVariable("id") long id, Model model) {
         final var linkUpdateCommand = mapToCommand(linkLoadPort.loadLinkById(id));
         model.addAttribute("linkUpdateCommand", linkUpdateCommand);
+        addCarListToModel(model);
+        addDriverListToModel(model);
         return "updateFormLink";
     }
 

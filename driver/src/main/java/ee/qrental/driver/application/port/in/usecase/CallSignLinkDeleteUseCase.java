@@ -1,4 +1,4 @@
-package ee.qrental.callsignlink.application.port.in.usecase;
+package ee.qrental.driver.application.port.in.usecase;
 
 public interface CallSignLinkDeleteUseCase {
     void delete(Long callSignLinkId);

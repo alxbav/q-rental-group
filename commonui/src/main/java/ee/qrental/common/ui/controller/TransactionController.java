@@ -35,6 +35,7 @@ public class TransactionController {
     public String getTransactionView(final Model model) {
         addTransactionListToModel(model);
         addTransactionTypeListToModel(model);
+        addDriverListToModel(model);
         return "transactions";
     }
 

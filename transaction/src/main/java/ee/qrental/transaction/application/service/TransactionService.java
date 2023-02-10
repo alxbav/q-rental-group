@@ -1,5 +1,6 @@
 package ee.qrental.transaction.application.service;
 
+import ee.qrental.driver.application.port.out.DriverLoadPort;
 import ee.qrental.transaction.application.port.in.command.TransactionAddCommand;
 import ee.qrental.transaction.application.port.in.command.TransactionDeleteCommand;
 import ee.qrental.transaction.application.port.in.command.TransactionUpdateCommand;
@@ -11,9 +12,12 @@ import ee.qrental.transaction.domain.Transaction;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-class TransactionService implements TransactionAddUseCase, TransactionUpdateUseCase, TransactionDeleteUseCase {
+class TransactionService implements
+        TransactionAddUseCase,
+        TransactionUpdateUseCase,
+        TransactionDeleteUseCase {
 
-   ;
+    ;
 
     private final TransactionAddPort transactionAddPort;
 
@@ -23,9 +27,14 @@ class TransactionService implements TransactionAddUseCase, TransactionUpdateUseC
 
     private final TransactionDeletePort transactionDeletePort;
     private final TransactionTypeLoadPort transactionTypeLoadPort;
+    private final DriverLoadPort driverLoadPort;
+
+    //TODO
+
     @Override
     public void add(final TransactionAddCommand command) {
         final var transactionType = transactionTypeLoadPort.loadTransactionTypeById(command.getTransactionTypeId());
+        final var driverName = driverLoadPort.loadDriverById(command.getDriverId());
 
         final var transactionDomain = new Transaction(
                 null,

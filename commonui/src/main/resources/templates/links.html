@@ -1,22 +1,3 @@
 <!doctype html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
-
-<head th:replace="fragments/headFragment.html :: qrental-head">
-</head>
-
-<body class="container">
-<nav th:replace="fragments/navigationFragment.html :: qrental-navigation"></nav>
-
-<th>
-    <a class="btn btn-sm btn-outline-secondary"
-       href="/links"
-       aria-controls="offcanvasExample">
-        <span class="bi-layers-half"></span>
-        Links
-    </a>
-</th>
-
-<div th:replace="fragments/crudTableLink.html :: qrental-table-link"></div>
-
-</body>
+<html th:replace="fragments/basePageFragment.html :: qrentalPage(~{fragments/linkPageFragment.html :: linkPage})">
 </html>

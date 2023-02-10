@@ -3,10 +3,7 @@ package ee.qrental.common.ui.controller;
 import ee.qrental.driver.application.port.in.command.CallSignAddCommand;
 import ee.qrental.driver.application.port.in.command.DriverAddCommand;
 import ee.qrental.driver.application.port.in.command.DriverUpdateCommand;
-import ee.qrental.driver.application.port.in.usecase.CallSignLinkAddUseCase;
-import ee.qrental.driver.application.port.in.usecase.DriverAddUseCase;
-import ee.qrental.driver.application.port.in.usecase.DriverDeleteUseCase;
-import ee.qrental.driver.application.port.in.usecase.DriverUpdateUseCase;
+import ee.qrental.driver.application.port.in.usecase.*;
 import ee.qrental.driver.application.port.out.CallSignLinkLoadPort;
 import ee.qrental.driver.application.port.out.DriverLoadPort;
 import ee.qrental.driver.domain.Driver;
@@ -24,6 +21,7 @@ public class CallSignLinkController {
     private final CallSignLinkLoadPort callSignLinkLoadPort;
     private final CallSignLinkAddUseCase callSignLinkAddUseCase;
     private final DriverLoadPort driverLoadPort;
+   //private final CallSignLinkDeleteUseCase callSignLinkDeleteUseCase;
 
     @GetMapping
     public String getCallSignLinkView(final Model model) {
@@ -70,8 +68,8 @@ public class CallSignLinkController {
 
     @GetMapping("/delete/{id}")
     public String deleteForm(@PathVariable("id") long id) {
-        driverDeleteUseCase.delete(id);
-        return "redirect:/drivers";
+        callSignLinkDeleteUseCase.delete(id);
+        return "redirect:/call-sign-links";
     }*/
 
     private DriverUpdateCommand mapToCommand(final Driver domain) {
