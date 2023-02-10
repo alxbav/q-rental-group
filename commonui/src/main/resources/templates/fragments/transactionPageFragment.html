@@ -1,13 +1,13 @@
-<!doctype html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
-
-<head th:replace="fragments/head.html :: qrental-head">
-</head>
-
-<body class="container">
-<nav th:replace="fragments/navigation.html :: qrental-navigation"></nav>
-
-<div th:fragment="qrental-table-transaction">
+<div th:fragment="transactionPage">
+    <nav th:replace="fragments/navigationFragment.html :: qrental-navigation"></nav>
+    <th>
+        <a class="btn btn-sm btn-outline-secondary"
+           href="/transaction-types"
+           aria-controls="offcanvasExample">
+            <span class="bi-layers-half"></span>
+            Transaction types
+        </a>
+    </th>
     <h1 class="py-5">Transactions</h1>
     <table class="table table-striped table-bordered">
         <tr>
@@ -50,5 +50,3 @@
         </tr>
     </table>
 </div>
-</body>
-</html>

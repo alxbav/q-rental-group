@@ -58,7 +58,7 @@ public class TransactionController {
         model.addAttribute("transactionAddCommand", new TransactionAddCommand());
         addTransactionTypeListToModel(model);
         addDriverListToModel(model);
-        return "addFormTransaction";
+        return "forms/addTransaction";
     }
 
     @PostMapping(value = "/add")
@@ -73,7 +73,7 @@ public class TransactionController {
         model.addAttribute("transactionUpdateCommand", transactionUpdateCommand);
         addTransactionTypeListToModel(model);
         addDriverListToModel(model);
-        return "updateFormTransaction";
+        return "forms/updateTransaction";
     }
 
     @PostMapping("/update")
@@ -89,7 +89,7 @@ public class TransactionController {
         transactionDeleteCommand.setId(transaction.getId());
         transactionDeleteCommand.setObjectInfo(getObjectInfo(transaction));
         model.addAttribute("transactionDeleteCommand", transactionDeleteCommand);
-        return "deleteFormTransaction";
+        return "forms/deleteTransaction";
     }
 
     private String getObjectInfo(final Transaction transaction) {

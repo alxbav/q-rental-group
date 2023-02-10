@@ -1,0 +1,79 @@
+<div th:fragment="assembledForm">
+    <div th:replace="fragments/commonFormFragment.html :: commonForm(
+            title='Update a Transaction',
+            ref='/transactions',
+            content=~{fragments/transactionUpdateFormFragment.html :: updateForm}
+        )">
+    </div>
+</div>
+<form th:fragment="updateForm"
+      th:action="@{/transactions/update}"
+      th:object="${transactionUpdateCommand}"
+      method="post">
+    <input id="transactionId" required
+           th:field="*{id}"
+           type="text"
+           hidden/>
+
+    <div class="mb-3">
+        <label class="form-label text-muted text-muted" for="driverId">Driver</label>
+        <select id="driverId" class="form-select"
+                th:field="*{driverId}">
+            <option th:each="driver : ${drivers}"
+                    th:value="${driver.id}"
+                    th:text="|${driver.firstName} ${driver.lastName} - ${driver.isikukood}|"></option>
+        </select>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="mb-3">
+                <label class="form-label text-muted text-muted" for="transactionTypeId">Transaction
+                    type</label>
+                <select id="transactionTypeId" class="form-select"
+                        th:field="*{transactionTypeId}">
+                    <option th:each="transactionType : ${transactionTypes}"
+                            th:value="${transactionType.id}"
+                            th:text="${transactionType.name}"></option>
+                </select>
+            </div>
+        </div>
+        <div class="col">
+            <div class="mb-3">
+                <label class="form-label text-muted" for="amountId">Amount</label>
+                <input class="form-control" id="amountId" placeholder="Enter  amount" required
+                       th:field="*{amount}"
+                       type="number"/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="mb-3">
+                <label class="form-label text-muted" for="weekNumberId">Week Number</label>
+                <input class="form-control" id="weekNumberId" placeholder="Enter week Number"
+                       th:field="*{weekNumber}"
+                       type="number"/>
+            </div>
+        </div>
+        <div class="col">
+            <div class="mb-3">
+                <label class="form-label text-muted" for="dateId">Date</label>
+                <input class="form-control" id="dateId" placeholder="Enter date" required
+                       th:field="*{date}"
+                       type="date"/>
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label text-muted" for="commentId">Comment</label>
+        <textarea class="form-control"
+                  id="commentId"
+                  placeholder="Enter Comment"
+                  th:field="*{comment}"/>
+    </div>
+    <div th:replace="fragments/addUpdateFormButtonsFragment.html :: addUpdateButtons(
+            submitValue='Update',
+            cancelHref='/transactions'
+        )">
+    </div>
+</form>

@@ -1,22 +1,3 @@
 <!doctype html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
-
-<head th:replace="fragments/head.html :: qrental-head">
-</head>
-
-<body class="container">
-<nav th:replace="fragments/navigation.html :: qrental-navigation"></nav>
-
-<th>
-    <a class="btn btn-sm btn-outline-secondary"
-       href="/transaction-types"
-       aria-controls="offcanvasExample">
-        <span class="bi-layers-half"></span>
-        Transaction types
-    </a>
-</th>
-
-<div th:replace="fragments/crudTableTransaction.html :: qrental-table-transaction"></div>
-
-</body>
+<html th:replace="fragments/basePageFragment.html :: qrentalPage(~{fragments/transactionPageFragment.html :: transactionPage})">
 </html>
