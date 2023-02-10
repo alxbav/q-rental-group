@@ -1,4 +1,4 @@
-<div th:fragment="commonForm(title, ref, content)" class="row mt-5">
+<div th:fragment="commonForm(title, closeRef, content)" class="row mt-5">
     <div class="col"></div>
     <div class="col-6">
         <div class="card">
@@ -6,12 +6,12 @@
                 <h4 class="card-title" th:text="${title}">Title</h4>
                 <a class="btn-close position-absolute top-0 end-0 m-2"
                    aria-label="Close"
-                   th:href="${ref}"
+                   th:href="${closeRef}"
                    href="/">
                 </a>
-                <form th:insert="${content}"></form>
+                <div th:insert="${content}"></div>
             </div>
         </div>
-        <div class="col"></div>
     </div>
+    <div class="col"></div>
 </div>
