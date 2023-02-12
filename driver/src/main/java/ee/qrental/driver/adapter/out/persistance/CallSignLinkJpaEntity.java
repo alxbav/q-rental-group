@@ -29,9 +29,8 @@ public class CallSignLinkJpaEntity {
     @Column(name = "call_sign")
     private Integer callSign;
 
-
     @Column(name = "driver_id")
-    private Long driver;
+    private Long driverId;
 
     @Column(name = "date_start")
     private LocalDate dateStart;

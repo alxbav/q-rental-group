@@ -8,7 +8,7 @@ public class CallSignLinkMapper {
         return new CallSignLink(
                 jpaEntity.getId(),
                 jpaEntity.getCallSign(),
-                jpaEntity.getDriver(),
+                jpaEntity.getDriverId(),
                 jpaEntity.getDateStart(),
                 jpaEntity.getDateEnd(),
                 jpaEntity.getComment()
@@ -19,6 +19,7 @@ public class CallSignLinkMapper {
         return CallSignLinkJpaEntity.builder()
                 .id(domain.getId())
                 .callSign(domain.getCallSign())
+                .driverId(domain.getDriverId())
                 .dateStart(domain.getDateStart())
                 .dateEnd(domain.getDateEnd())
                 .comment(domain.getComment())

@@ -1,11 +1,14 @@
 package ee.qrental.common.ui.controller;
 
-import ee.qrental.driver.application.port.in.command.*;
-import ee.qrental.driver.application.port.in.usecase.*;
+import ee.qrental.driver.application.port.in.command.CallSignLinkAddCommand;
+import ee.qrental.driver.application.port.in.command.CallSignLinkDeleteCommand;
+import ee.qrental.driver.application.port.in.command.CallSignLinkUpdateCommand;
+import ee.qrental.driver.application.port.in.usecase.CallSignLinkAddUseCase;
+import ee.qrental.driver.application.port.in.usecase.CallSignLinkDeleteUseCase;
+import ee.qrental.driver.application.port.in.usecase.CallSignLinkUpdateUseCase;
 import ee.qrental.driver.application.port.out.CallSignLinkLoadPort;
 import ee.qrental.driver.application.port.out.DriverLoadPort;
 import ee.qrental.driver.domain.CallSignLink;
-import ee.qrental.driver.domain.Driver;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,7 +53,6 @@ public class CallSignLinkController {
     }
 
 
-
     @PostMapping(value = "/add")
     public String addCallSignLink(@ModelAttribute final CallSignLinkAddCommand addCommand) {
         callSignLinkAddUseCase.add(addCommand);
@@ -83,23 +85,22 @@ public class CallSignLinkController {
     }
 
     private String getObjectInfo(final CallSignLink callSignLink) {
-//      final var driverFirstName = driver.getFirstName();
-//      final var driverLastName = driver.getLastName();
+        final var driver = driverLoadPort.loadDriverById(
+                callSignLink.getDriverId());
+        final var driverFirstName = driver.getFirstName();
+        final var driverLastName = driver.getLastName();
         final var callSignNumber = callSignLink.getCallSign();
-        return format(" Call Sign  :  %s ",
-                //               driverLastName,
-                //               driverFirstName
-                callSignNumber);
-
+        return format(" Call Sign '%d' for driver: %s %s",
+                callSignNumber,
+                driverLastName,
+                driverFirstName);
     }
-
 
     @PostMapping("/delete")
     public String deleteForm(final CallSignLinkDeleteCommand callSignLinkDeleteCommand) {
         callSignLinkDeleteUseCase.delete(callSignLinkDeleteCommand);
         return "redirect:/call-sign-links";
     }
-
 
     private CallSignLinkUpdateCommand mapToCommand(final CallSignLink domain) {
         final var result = new CallSignLinkUpdateCommand();
