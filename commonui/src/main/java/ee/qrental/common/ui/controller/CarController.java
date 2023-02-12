@@ -1,16 +1,20 @@
 package ee.qrental.common.ui.controller;
 
 import ee.qrental.car.application.port.in.command.CarAddCommand;
+import ee.qrental.car.application.port.in.command.CarDeleteCommand;
 import ee.qrental.car.application.port.in.command.CarUpdateCommand;
 import ee.qrental.car.application.port.in.usecase.CarAddUseCase;
 import ee.qrental.car.application.port.in.usecase.CarDeleteUseCase;
 import ee.qrental.car.application.port.in.usecase.CarUpdateUseCase;
 import ee.qrental.car.application.port.out.CarLoadPort;
 import ee.qrental.car.domain.Car;
+import ee.qrental.transaction.application.port.in.command.TransactionDeleteCommand;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import static java.lang.String.format;
 
 
 @AllArgsConstructor
@@ -38,7 +42,7 @@ public class CarController {
     @GetMapping(value = "/add-form")
     public String addForm(final Model model) {
         model.addAttribute("carAddCommand", new CarAddCommand());
-        return "addFormCar";
+        return "forms/addCar";
     }
 
     @PostMapping(value = "/add")
@@ -51,7 +55,7 @@ public class CarController {
     public String updateForm(@PathVariable("id") long id, Model model) {
         final var carUpdateCommand = mapToCommand(carLoadPort.loadCarById(id));
         model.addAttribute("carUpdateCommand", carUpdateCommand);
-        return "updateFormCar";
+        return "forms/updateCar";
     }
 
     @PostMapping("/update")
@@ -61,9 +65,26 @@ public class CarController {
         return "redirect:/cars";
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteForm(@PathVariable("id") long id) {
-        carDeleteUseCase.delete(id);
+    @GetMapping(value = "/delete-form/{id}")
+    public String deleteForm(@PathVariable("id") long id, Model model) {
+        final var car = carLoadPort.loadCarById(id);
+        final var carDeleteCommand = new CarDeleteCommand();
+        carDeleteCommand.setId(car.getId());
+        carDeleteCommand.setObjectInfo(getObjectInfo(car));
+        model.addAttribute("carDeleteCommand", carDeleteCommand);
+        return "forms/deleteCar";
+    }
+
+    private String getObjectInfo(final Car car) {
+        final var carRegNumber = car.getRegNumber();
+        return format(" Car Reg Number : %s, ",
+                carRegNumber);
+
+    }
+
+    @PostMapping("/delete")
+    public String deleteForm(final CarDeleteCommand carDeleteCommand) {
+        carDeleteUseCase.delete(carDeleteCommand);
         return "redirect:/cars";
     }
 

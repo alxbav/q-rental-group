@@ -1,12 +1,3 @@
 <!doctype html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
-
-<head th:replace="fragments/headFragment.html :: qrental-head">
-</head>
-
-<body class="container">
-<nav th:replace="fragments/navigationFragment.html :: qrental-navigation"></nav>
-<div th:replace="fragments/crudTableCallSignLink.html :: qrental-table-call-sign-link">
-</div>
-</body>
+<html th:replace="fragments/basePageFragment.html :: qrentalPage(~{fragments/callSignLinkPageFragment.html :: callSignLinkPage})">
 </html>

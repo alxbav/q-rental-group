@@ -59,7 +59,8 @@ class TransactionService implements
         transactionUpdatePort.updateTransaction(domain);
     }
 
-    private void updateDomain(final TransactionUpdateCommand command, final Transaction toUpdate) {
+    private void updateDomain(final TransactionUpdateCommand command,
+                              final Transaction toUpdate) {
 
         final var type = transactionTypeLoadPort.loadTransactionTypeById(command.getTransactionTypeId());
         toUpdate.setType(type);

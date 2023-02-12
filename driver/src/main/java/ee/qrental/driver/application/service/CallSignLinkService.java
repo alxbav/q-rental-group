@@ -1,27 +1,30 @@
 package ee.qrental.driver.application.service;
 
-import ee.qrental.driver.application.port.in.command.CallSignAddCommand;
-import ee.qrental.driver.application.port.in.command.DriverAddCommand;
-import ee.qrental.driver.application.port.in.command.DriverUpdateCommand;
+import ee.qrental.driver.application.port.in.command.CallSignLinkAddCommand;
+import ee.qrental.driver.application.port.in.command.CallSignLinkDeleteCommand;
+import ee.qrental.driver.application.port.in.command.CallSignLinkUpdateCommand;
 import ee.qrental.driver.application.port.in.usecase.CallSignLinkAddUseCase;
-import ee.qrental.driver.application.port.in.usecase.DriverAddUseCase;
-import ee.qrental.driver.application.port.in.usecase.DriverDeleteUseCase;
-import ee.qrental.driver.application.port.in.usecase.DriverUpdateUseCase;
+import ee.qrental.driver.application.port.in.usecase.CallSignLinkUpdateUseCase;
+import ee.qrental.driver.application.port.in.usecase.CallSignLinkDeleteUseCase;
 import ee.qrental.driver.application.port.out.*;
 import ee.qrental.driver.domain.CallSignLink;
-import ee.qrental.driver.domain.Driver;
 import lombok.AllArgsConstructor;
-
-import static java.lang.Boolean.TRUE;
 
 @AllArgsConstructor
 class CallSignLinkService implements
-        CallSignLinkAddUseCase {
+        CallSignLinkAddUseCase,
+        CallSignLinkUpdateUseCase,
+        CallSignLinkDeleteUseCase {
 
     private final CallSignLinkAddPort callSignLinkAddPort;
 
+    private final CallSignLinkUpdatePort callSignLinkUpdatePort;
+    private final CallSignLinkLoadPort callSignLinkLoadPort;
+    private final CallSignLinkDeletePort callSignLinkDeletePort;
+
+
     @Override
-    public void add(final CallSignAddCommand command) {
+    public void add(final CallSignLinkAddCommand command) {
         final var domain = new CallSignLink(
                 null,
                 command.getCallSign(),
@@ -32,37 +35,30 @@ class CallSignLinkService implements
         callSignLinkAddPort.addCallSignLink(domain);
     }
 
-  /*  @Override
-    public void update(final DriverUpdateCommand command) {
-        final Long driverId = command.getId();
-        final Driver domain = driverLoadPort.loadDriverById(driverId);
+    @Override
+    public void update(final CallSignLinkUpdateCommand command) {
+        final Long callSignLinkId = command.getId();
+        final CallSignLink domain = callSignLinkLoadPort.loadCallSignLinkById(callSignLinkId);
         if (domain == null) {
-            throw new RuntimeException("Update of Driver failed. No Driver with id = " + driverId);
+            throw new RuntimeException("Update of Call Sign Link failed. No Call Sign Link with id = " + callSignLinkId);
         }
         updateDomain(command, domain);
-        driverUpdatePort.updateDriver(domain);
-    }*/
+        callSignLinkUpdatePort.updateCallSignLink(domain);
+    }
 
     private void updateDomain(
-            final DriverUpdateCommand command,
-            final Driver toUpdate) {
-        toUpdate.setFirstName(command.getFirstName());
-        toUpdate.setLastName(command.getLastName());
-        toUpdate.setIsikukood(command.getIsikukood());
-        toUpdate.setPhone(command.getPhone());
-        toUpdate.setEmail(command.getEmail());
-        toUpdate.setIban1(command.getIban1());
-        toUpdate.setIban2(command.getIban2());
-        toUpdate.setIban3(command.getIban3());
-        toUpdate.setDriverLicenseNumber(command.getDriverLicenseNumber());
-        toUpdate.setDriverLicenseExp(command.getDriverLicenseExp());
-        toUpdate.setTaxiLicense(command.getTaxiLicense());
-        toUpdate.setAddress(command.getAddress());
+            final CallSignLinkUpdateCommand command,
+            final CallSignLink toUpdate) {
+        toUpdate.setDriverId(command.getDriverId());
+        toUpdate.setCallSign(command.getCallSign());
+        toUpdate.setDateStart(command.getDateStart());
+        toUpdate.setDateEnd(command.getDateEnd());
         toUpdate.setComment(command.getComment());
     }
 
-/*    @Override
-    public void delete(Long driverId) {
-        driverDeletePort.deleteDriver(driverId);
-    }*/
+    @Override
+    public void delete(CallSignLinkDeleteCommand deleteCommand) {
+
+        callSignLinkDeletePort.deleteCallSignLink(deleteCommand.getId());
+    }
 }

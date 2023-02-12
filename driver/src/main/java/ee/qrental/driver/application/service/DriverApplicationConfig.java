@@ -12,7 +12,7 @@ public class DriverApplicationConfig {
             final DriverAddPort driverAddPort,
             final DriverUpdatePort driverUpdatePort,
             final DriverLoadPort driverLoadPort,
-            final DriverDeletePort driverDeletePort){
+            final DriverDeletePort driverDeletePort) {
         return new DriverService(driverAddPort,
                 driverUpdatePort,
                 driverLoadPort,
@@ -21,7 +21,13 @@ public class DriverApplicationConfig {
 
     @Bean
     public CallSignLinkService getCallSignLinkService(
-            final CallSignLinkAddPort addPort){
-        return new CallSignLinkService(addPort);
+            final CallSignLinkAddPort callSignLinkAddPort,
+            final CallSignLinkUpdatePort callSignLinkUpdatePort,
+            final CallSignLinkLoadPort callSignLinkLoadPort,
+            final CallSignLinkDeletePort callSignLinkDeletePort) {
+        return new CallSignLinkService(callSignLinkAddPort,
+                callSignLinkUpdatePort,
+                callSignLinkLoadPort,
+                callSignLinkDeletePort);
     }
 }

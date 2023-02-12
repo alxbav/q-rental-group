@@ -1,15 +1,3 @@
 <!doctype html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
-
-<head th:replace="fragments/headFragment.html :: qrental-head">
-</head>
-
-<body class="container">
-<nav th:replace="fragments/navigationFragment.html :: qrental-navigation"></nav>
-<h1>2</h1>
-
-<div th:replace="fragments/crudTableCar.html :: qrental-table-car">
-
-</div>
-</body>
+<html th:replace="fragments/basePageFragment.html :: qrentalPage(~{fragments/carPageFragment.html :: carPage})">
 </html>

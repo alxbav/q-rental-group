@@ -1,6 +1,7 @@
 package ee.qrental.car.application.service;
 
 import ee.qrental.car.application.port.in.command.CarAddCommand;
+import ee.qrental.car.application.port.in.command.CarDeleteCommand;
 import ee.qrental.car.application.port.in.command.CarUpdateCommand;
 import ee.qrental.car.application.port.in.usecase.CarAddUseCase;
 import ee.qrental.car.application.port.in.usecase.CarDeleteUseCase;
@@ -93,7 +94,7 @@ class CarService implements
     }
 
     @Override
-    public void delete(Long carId) {
-        carDeletePort.deleteCar(carId);
+    public void delete(CarDeleteCommand deleteCommand) {
+        carDeletePort.deleteCar(deleteCommand.getId());
     }
 }

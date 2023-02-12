@@ -31,7 +31,7 @@ public class LinkPersistenceAdapterLoadAddUpdateDelete implements
                 .collect(toList());
     }
 
-       @Override
+    @Override
     public Link loadLinkById(Long id) {
         return linkMapper.mapToDomain(
                 springDataLinkRepository.getReferenceById(id));

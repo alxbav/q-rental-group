@@ -29,9 +29,9 @@ public class CallSignLinkJpaEntity {
     @Column(name = "call_sign")
     private Integer callSign;
 
-    @ManyToOne
-    @JoinColumn(name = "driver_id", nullable = false)
-    private DriverJpaEntity driver;
+
+    @Column(name = "driver_id")
+    private Long driver;
 
     @Column(name = "date_start")
     private LocalDate dateStart;

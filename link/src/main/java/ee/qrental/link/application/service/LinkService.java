@@ -1,6 +1,7 @@
 package ee.qrental.link.application.service;
 
 import ee.qrental.link.application.port.in.command.LinkAddCommand;
+import ee.qrental.link.application.port.in.command.LinkDeleteCommand;
 import ee.qrental.link.application.port.in.usecase.LinkAddUseCase;
 import ee.qrental.link.application.port.out.LinkDeletePort;
 import ee.qrental.link.application.port.in.command.LinkUpdateCommand;
@@ -25,6 +26,7 @@ class LinkService implements
     private final LinkLoadPort linkLoadPort;
 
     private final LinkDeletePort linkDeletePort;
+
 
     @Override
     public void add(final LinkAddCommand command) {
@@ -62,7 +64,7 @@ class LinkService implements
     }
 
     @Override
-    public void delete(Long linkId) {
-        linkDeletePort.deleteLink(linkId);
+    public void delete(LinkDeleteCommand deleteCommand) {
+        linkDeletePort.deleteLink(deleteCommand.getId());
     }
 }

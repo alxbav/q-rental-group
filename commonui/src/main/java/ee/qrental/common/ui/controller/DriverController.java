@@ -1,6 +1,9 @@
 package ee.qrental.common.ui.controller;
 
+import ee.qrental.car.application.port.in.command.CarDeleteCommand;
+import ee.qrental.car.domain.Car;
 import ee.qrental.driver.application.port.in.command.DriverAddCommand;
+import ee.qrental.driver.application.port.in.command.DriverDeleteCommand;
 import ee.qrental.driver.application.port.in.command.DriverUpdateCommand;
 import ee.qrental.driver.application.port.in.usecase.DriverAddUseCase;
 import ee.qrental.driver.application.port.in.usecase.DriverDeleteUseCase;
@@ -11,6 +14,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import static java.lang.String.format;
 
 @AllArgsConstructor
 
@@ -37,7 +42,7 @@ public class DriverController {
     @GetMapping(value = "/add-form")
     public String addForm(final Model model) {
         model.addAttribute("driverAddCommand", new DriverAddCommand());
-        return "addFormDriver";
+        return "forms/addDriver";
     }
 
     @PostMapping(value = "/add")
@@ -50,7 +55,7 @@ public class DriverController {
     public String updateForm(@PathVariable("id") long id, Model model) {
         final var driverUpdateCommand = mapToCommand(driverLoadPort.loadDriverById(id));
         model.addAttribute("driverUpdateCommand", driverUpdateCommand);
-        return "updateFormDriver";
+        return "forms/updateDriver";
     }
 
     @PostMapping("/update")
@@ -60,9 +65,28 @@ public class DriverController {
         return "redirect:/drivers";
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteForm(@PathVariable("id") long id) {
-        driverDeleteUseCase.delete(id);
+    @GetMapping(value = "/delete-form/{id}")
+    public String deleteForm(@PathVariable("id") long id, Model model) {
+        final var driver = driverLoadPort.loadDriverById(id);
+        final var driverDeleteCommand = new DriverDeleteCommand();
+        driverDeleteCommand.setId(driver.getId());
+        driverDeleteCommand.setObjectInfo(getObjectInfo(driver));
+        model.addAttribute("driverDeleteCommand", driverDeleteCommand);
+        return "forms/deleteDriver";
+    }
+
+    private String getObjectInfo(final Driver driver) {
+        final var driverFirstName = driver.getFirstName();
+        final var driverLastName = driver.getLastName();
+        return format(" Driver : %s, %s ",
+                driverLastName,
+                driverFirstName);
+
+    }
+
+    @PostMapping("/delete")
+    public String deleteForm(final DriverDeleteCommand driverDeleteCommand) {
+        driverDeleteUseCase.delete(driverDeleteCommand);
         return "redirect:/drivers";
     }
 

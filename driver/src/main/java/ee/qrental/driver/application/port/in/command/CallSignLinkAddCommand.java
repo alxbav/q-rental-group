@@ -6,12 +6,11 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class CallSignAddCommand {
+public class CallSignLinkAddCommand {
     private Integer callSign;
     private Long driverId;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)

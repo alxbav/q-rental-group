@@ -1,12 +1,6 @@
 <!doctype html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html>
 
-<head th:replace="fragments/headFragment.html :: qrental-head">
-</head>
-
-<body class="container">
-<nav th:replace="fragments/navigationFragment.html :: qrental-navigation"></nav>
-<div th:replace="fragments/crudTableDriverPotential.html :: qrental-table-driver-potential"></div>
-<div th:replace="fragments/crudTableDriver.html :: qrental-table-driver"></div>
-</body>
+<div th:replace="fragments/basePageFragment.html :: qrentalPage(~{fragments/driverPotentialPageFragment.html :: driverPotentialPage})"></div>
+<div th:replace="fragments/basePageFragment.html :: qrentalPage(~{fragments/driverPageFragment.html :: driverPage})"></div>
 </html>

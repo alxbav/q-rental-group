@@ -14,7 +14,6 @@ public class Link {
 
     private static final Integer COMMENT_MAX_SIZE = 150;
     private Long id;
-
     private Long carId;
     private Long driverId;
     private String linkType;

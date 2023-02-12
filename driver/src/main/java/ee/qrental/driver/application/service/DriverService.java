@@ -1,6 +1,7 @@
 package ee.qrental.driver.application.service;
 
 import ee.qrental.driver.application.port.in.command.DriverAddCommand;
+import ee.qrental.driver.application.port.in.command.DriverDeleteCommand;
 import ee.qrental.driver.application.port.in.command.DriverUpdateCommand;
 import ee.qrental.driver.application.port.in.usecase.DriverAddUseCase;
 import ee.qrental.driver.application.port.in.usecase.DriverDeleteUseCase;
@@ -79,7 +80,8 @@ class DriverService implements
     }
 
     @Override
-    public void delete(Long driverId) {
-        driverDeletePort.deleteDriver(driverId);
+    public void delete(DriverDeleteCommand deleteCommand) {
+
+        driverDeletePort.deleteDriver(deleteCommand.getId());
     }
 }

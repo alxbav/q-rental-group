@@ -1,6 +1,7 @@
 package ee.qrental.driverpotential.application.service;
 
 import ee.qrental.driverpotential.application.port.in.command.DriverPotentialAddCommand;
+import ee.qrental.driverpotential.application.port.in.command.DriverPotentialDeleteCommand;
 import ee.qrental.driverpotential.application.port.in.command.DriverPotentialUpdateCommand;
 import ee.qrental.driverpotential.application.port.in.usecase.DriverPotentialAddUseCase;
 import ee.qrental.driverpotential.application.port.in.usecase.DriverPotentialDeleteUseCase;
@@ -26,18 +27,18 @@ class DriverPotentialService implements
 
     private final DriverPotentialLoadPort driverPotentialLoadPort;
 
-    private final DriverPotentialDeletePort driverPotentialDeletPort;
+    private final DriverPotentialDeletePort driverPotentialDeletePort;
 
     @Override
     public void add(final DriverPotentialAddCommand command) {
-        final var driverDomain = new DriverPotential(
+        final var driverPotentialDomain = new DriverPotential(
                 null,
                 command.getFirstName(),
                 command.getLastName(),
                 command.getPhone(),
                 TRUE,
                 command.getComment());
-        driverPotentialAddPort.addDriverPotential(driverDomain);
+        driverPotentialAddPort.addDriverPotential(driverPotentialDomain);
     }
 
     @Override
@@ -61,7 +62,7 @@ class DriverPotentialService implements
     }
 
     @Override
-    public void delete(Long driverId) {
-        driverPotentialDeletPort.deleteDriverPotential(driverId);
+    public void delete(DriverPotentialDeleteCommand deleteCommand) {
+        driverPotentialDeletePort.deleteDriverPotential(deleteCommand.getId());
     }
 }
