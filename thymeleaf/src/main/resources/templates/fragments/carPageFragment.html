@@ -33,9 +33,13 @@
         <tr th:each="car : ${cars}">
             <td>
                 <a class="btn btn-sm btn-warning"
-                   th:href="@{/cars/update-form/{id}(id=${car.id})}">Edit</a>
+                   th:href="@{/cars/update-form/{id}(id=${car.id})}">
+                    <span class="bi-pencil-square"></span>
+                    Edit</a>
                 <a class="btn btn-sm btn-danger"
-                   th:href="@{/cars/delete-form/{id}(id=${car.id})}">Delete</a>
+                   th:href="@{/cars/delete-form/{id}(id=${car.id})}">
+                    <span class="bi-trash"></span>
+                    Delete</a>
             </td>
             <td th:text="${car.regNumber}"></td>
             <td th:text="${car.fuelType}"></td>

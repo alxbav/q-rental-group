@@ -33,9 +33,13 @@
         <tr th:each="driver : ${drivers}">
             <td>
                 <a class="btn btn-sm btn-warning"
-                   th:href="@{/drivers/update-form/{id}(id=${driver.id})}">Edit</a>
+                   th:href="@{/drivers/update-form/{id}(id=${driver.id})}">
+                    <span class="bi-pencil-square"></span>
+                    Edit</a>
                 <a class="btn btn-sm btn-danger"
-                   th:href="@{/drivers/delete-form/{id}(id=${driver.id})}">Delete</a>
+                   th:href="@{/drivers/delete-form/{id}(id=${driver.id})}">
+                    <span class="bi-trash"></span>
+                    Delete</a>
             </td>
             <td th:text="${driver.firstName}"></td>
             <td th:text="${driver.lastName}"></td>
