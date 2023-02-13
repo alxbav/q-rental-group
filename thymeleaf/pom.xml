@@ -10,7 +10,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>commonui</artifactId>
+    <artifactId>thymeleaf</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <dependencies>

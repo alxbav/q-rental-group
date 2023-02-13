@@ -25,7 +25,6 @@
                     <option th:each="car: ${cars}"
                             th:value="${car.id}"
                             th:text="|${car.regNumber}|"></option>
-
                 </select>
             </div>
         </div>
@@ -43,11 +42,10 @@
         </div>
     </div>
 
-
     <div class="row">
         <div class="col">
             <div class="mb-3">
-                <label for="dateStart"> Date Start</label>
+                <label class="form-label text-muted" for="dateStart"> Date Start</label>
                 <input class="form-control" id="dateStart" placeholder="Enter Start Date" required
                        th:field="*{dateStart}"
                        type="date"/>
@@ -56,7 +54,7 @@
 
         <div class="col">
             <div class="mb-3">
-                <label for="dateEnd"> Date End</label>
+                <label class="form-label text-muted" for="dateEnd"> Date End</label>
                 <input class="form-control" id="dateEnd" placeholder="Enter  Date End"
                        th:field="*{dateEnd}"
                        type="date"/>
@@ -64,17 +62,15 @@
         </div>
     </div>
 
-    <div class="col">
-        <div class="mb-3">
-            <label for="linkType">Link Type</label>
-            <input class="form-control" id="linkType" placeholder="Enter Link Type"
-                   th:field="*{linkType}"
-                   type="text"/>
-        </div>
+    <div class="mb-3">
+        <label class="form-label text-muted" for="linkType">Link Type</label>
+        <input class="form-control" id="linkType" placeholder="Enter Link Type"
+               th:field="*{linkType}"
+               type="text"/>
     </div>
 
-    <div class="form-group">
-        <label for="comment">Comment</label>
+    <div class="mb-3">
+        <label class="form-label text-muted" for="comment">Comment</label>
         <textarea class="form-control"
                   id="comment"
                   placeholder="Enter Comment"

@@ -2,13 +2,13 @@ package ee.qrental.common.ui.controller;
 
 
 import ee.qrental.car.application.port.out.CarLoadPort;
-import ee.qrental.link.application.port.in.command.LinkDeleteCommand;
+import ee.qrental.driver.application.port.out.DriverLoadPort;
 import ee.qrental.link.application.port.in.command.LinkAddCommand;
+import ee.qrental.link.application.port.in.command.LinkDeleteCommand;
 import ee.qrental.link.application.port.in.command.LinkUpdateCommand;
 import ee.qrental.link.application.port.in.usecase.LinkAddUseCase;
 import ee.qrental.link.application.port.in.usecase.LinkDeleteUseCase;
 import ee.qrental.link.application.port.in.usecase.LinkUpdateUseCase;
-import ee.qrental.driver.application.port.out.DriverLoadPort;
 import ee.qrental.link.application.port.out.LinkLoadPort;
 import ee.qrental.link.domain.Link;
 import lombok.AllArgsConstructor;
@@ -30,7 +30,6 @@ public class LinkController {
     private final LinkLoadPort linkLoadPort;
     private final DriverLoadPort driverLoadPort;
     private final CarLoadPort carLoadPort;
-
 
     @GetMapping
     public String getLinkView(final Model model) {
@@ -87,9 +86,9 @@ public class LinkController {
     @GetMapping(value = "/delete-form/{id}")
     public String deleteForm(@PathVariable("id") long id, Model model) {
         final var link = linkLoadPort.loadLinkById(id);
-        final var linkDeleteCommand = new LinkDeleteCommand();
-        linkDeleteCommand.setId(link.getId());
-        linkDeleteCommand.setObjectInfo(getObjectInfo(link));
+        final var linkDeleteCommand = LinkDeleteCommand.builder()
+                .id(link.getId())
+                .objectInfo(getObjectInfo(link));
         model.addAttribute("linkDeleteCommand", linkDeleteCommand);
         return "forms/deleteLink";
     }
@@ -109,10 +108,7 @@ public class LinkController {
                 linkDriver,
                 linkDateStart,
                 linkDateEnd);
-
-
     }
-
 
     @PostMapping("/delete")
     public String deleteForm(final LinkDeleteCommand linkDeleteCommand) {
@@ -120,18 +116,15 @@ public class LinkController {
         return "redirect:/links";
     }
 
-
     private LinkUpdateCommand mapToCommand(final Link domain) {
-        final var result = new LinkUpdateCommand();
-        result.setId(domain.getId());
-        result.setCarId(domain.getCarId());
-        result.setDriverId(domain.getDriverId());
-        result.setLinkType(domain.getLinkType());
-        result.setDateStart(domain.getDateStart());
-        result.setDateEnd(domain.getDateEnd());
-        result.setComment(domain.getComment());
-        return result;
+        return LinkUpdateCommand.builder()
+                .id(domain.getId())
+                .carId(domain.getCarId())
+                .driverId(domain.getDriverId())
+                .linkType(domain.getLinkType())
+                .dateStart(domain.getDateStart())
+                .dateEnd(domain.getDateEnd())
+                .comment(domain.getComment())
+                .build();
     }
-
-
 }

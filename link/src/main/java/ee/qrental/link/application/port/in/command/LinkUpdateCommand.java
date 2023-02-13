@@ -1,18 +1,19 @@
 package ee.qrental.link.application.port.in.command;
 
+import ee.qrental.common.core.api.AbstractUpdateCommand;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
 @Getter
 @Setter
+@SuperBuilder
 @NoArgsConstructor
-public class LinkUpdateCommand {
-
-    private Long id;
+public class LinkUpdateCommand extends AbstractUpdateCommand {
     private Long carId;
     private Long driverId;
     private String linkType;

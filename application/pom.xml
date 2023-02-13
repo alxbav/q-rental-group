@@ -17,10 +17,9 @@
     <dependencies>
         <dependency>
             <groupId>ee.q-rental</groupId>
-            <artifactId>commonui</artifactId>
+            <artifactId>thymeleaf</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
 
         <dependency>
             <groupId>org.postgresql</groupId>
