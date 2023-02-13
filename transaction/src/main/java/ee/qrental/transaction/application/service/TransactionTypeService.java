@@ -1,6 +1,8 @@
 package ee.qrental.transaction.application.service;
 
+import ee.qrental.transaction.application.port.in.command.TransactionDeleteCommand;
 import ee.qrental.transaction.application.port.in.command.TransactionTypeAddCommand;
+import ee.qrental.transaction.application.port.in.command.TransactionTypeDeleteCommand;
 import ee.qrental.transaction.application.port.in.command.TransactionTypeUpdateCommand;
 import ee.qrental.transaction.application.port.in.usecase.TransactionTypeAddUseCase;
 import ee.qrental.transaction.application.port.in.usecase.TransactionTypeDeleteUseCase;
@@ -32,6 +34,7 @@ class TransactionTypeService implements
                 null,
                 command.getName(),
                 command.getDescription(),
+                command.getNegative(),
                 command.getComment());
         transactionTypeAddPort.addTransactionType(transactionTypeDomain);
     }
@@ -52,11 +55,13 @@ class TransactionTypeService implements
             final TransactionType toUpdate) {
         toUpdate.setName(command.getName());
         toUpdate.setDescription(command.getDescription());
+        toUpdate.setNegative(command.getNegative());
         toUpdate.setComment(command.getComment());
     }
 
     @Override
-    public void delete(Long transactionTypeId) {
-        transactionTypeDeletePort.deleteTransactionType(transactionTypeId);
+    public void delete(TransactionTypeDeleteCommand deleteCommand) {
+        transactionTypeDeletePort.deleteTransactionType(deleteCommand.getId());
     }
+
 }

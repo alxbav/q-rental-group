@@ -22,6 +22,8 @@
             </th>
             <th>Transaction Type</th>
             <th>Description</th>
+            <th>Negative</th>
+
             <th>Comment</th>
         </tr>
         <tr th:if="${#lists.isEmpty(transactionTypes)}">
@@ -30,12 +32,17 @@
         <tr th:each="transactionType : ${transactionTypes}">
             <td>
                 <a class="btn btn-sm btn-warning"
-                   th:href="@{/transaction-types/update-form/{id}(id=${transactionType.id})}">Edit</a>
+                   th:href="@{/transaction-types/update-form/{id}(id=${transactionType.id})}">
+                    <span class="bi-pencil-square"></span>
+                    Edit</a>
                 <a class="btn btn-sm btn-danger"
-                   th:href="@{/transaction-types/delete/{id}(id=${transactionType.id})}">Delete</a>
+                   th:href="@{/transaction-types/delete-form/{id}(id=${transactionType.id})}">
+                    <span class="bi-trash"></span>
+                    Delete</a>
             </td>
             <td th:text="${transactionType.name}"></td>
             <td th:text="${transactionType.description}"></td>
+            <td></td>
             <td th:text="${transactionType.comment}"></td>
         </tr>
     </table>

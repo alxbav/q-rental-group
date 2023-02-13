@@ -13,17 +13,21 @@ public class TransactionType {
     private Long id;
     private String name;
     private String description;
+
+    private Boolean negative;
     private String comment;
 
     public TransactionType(Long id,
                            String typeTr,
                            String description,
+                           Boolean negative,
                            String comment) {
 
         validateComment(comment);
         this.id = id;
         this.name = typeTr;
         this.description = description;
+        this.negative = negative;
         this.comment = comment;
     }
 
@@ -33,6 +37,10 @@ public class TransactionType {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setNegative(Boolean negative) {
+        this.negative = negative;
     }
 
     public void setComment(String comment) {

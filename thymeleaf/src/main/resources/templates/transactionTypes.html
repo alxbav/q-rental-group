@@ -1,14 +1,4 @@
 <!doctype html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
-
-<head th:replace="fragments/headFragment.html :: qrental-head">
-</head>
-
-<body class="container">
-<nav th:replace="fragments/navigationFragment.html :: qrental-navigation"></nav>
-
-<div th:replace="fragments/crudTableTransactionType.html :: qrental-table-link-types">
-
-</div>
-</body>
+<html th:replace="fragments/basePageFragment.html :: qrentalPage(
+~{fragments/transactionTypePageFragment.html :: transactionTypePage})">
 </html>

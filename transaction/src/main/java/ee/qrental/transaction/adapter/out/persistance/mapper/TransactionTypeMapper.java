@@ -10,6 +10,7 @@ public class TransactionTypeMapper {
                 jpaEntity.getId(),
                 jpaEntity.getTypeTr(),
                 jpaEntity.getDescription(),
+                jpaEntity.getNegative(),
                 jpaEntity.getComment()
         );
     }
@@ -19,6 +20,7 @@ public class TransactionTypeMapper {
                 .id(domain.getId())
                 .typeTr(domain.getName())
                 .description(domain.getDescription())
+                .negative(domain.getNegative())
                 .comment(domain.getComment())
                 .build();
     }

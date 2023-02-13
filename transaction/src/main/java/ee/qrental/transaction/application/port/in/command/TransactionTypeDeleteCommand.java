@@ -7,10 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class TransactionTypeAddCommand {
-    private String name;
-    private String description;
-    private Boolean negative;
-    private String comment;
-
+public class TransactionTypeDeleteCommand {
+    private Long id;
+    private String objectInfo;
 }

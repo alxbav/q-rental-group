@@ -12,6 +12,7 @@ public class TransactionTypeUpdateCommand {
     private Long id;
     private String name;
     private String description;
+    private Boolean negative;
     private String comment;
 
 }

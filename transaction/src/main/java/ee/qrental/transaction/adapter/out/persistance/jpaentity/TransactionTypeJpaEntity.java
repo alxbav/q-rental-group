@@ -32,10 +32,12 @@ public class TransactionTypeJpaEntity {
 
     @Column(name = "description")
     private String description;
+    @Column(name = "negative")
+    private Boolean negative;
 
     @Column(name = "comment")
     private String comment;
 
-    @OneToMany(mappedBy="type")
+    @OneToMany(mappedBy = "type")
     private Set<TransactionJpaEntity> transactions;
 }
