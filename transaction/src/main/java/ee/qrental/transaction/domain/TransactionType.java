@@ -13,7 +13,6 @@ public class TransactionType {
     private Long id;
     private String name;
     private String description;
-
     private Boolean negative;
     private String comment;
 
@@ -22,8 +21,8 @@ public class TransactionType {
                            String description,
                            Boolean negative,
                            String comment) {
-
         validateComment(comment);
+        validateNegative(negative);
         this.id = id;
         this.name = typeTr;
         this.description = description;
@@ -40,6 +39,7 @@ public class TransactionType {
     }
 
     public void setNegative(Boolean negative) {
+        validateNegative(negative);
         this.negative = negative;
     }
 
@@ -55,4 +55,10 @@ public class TransactionType {
                     length, COMMENT_MAX_SIZE));
         }
     }
+    private void validateNegative(final Boolean negative) {
+        if (negative == null) {
+            throw new RuntimeException("Transaction Type property 'negative' must not be NULL. Value must be TRUE or FALSE");
+        }
+    }
+
 }

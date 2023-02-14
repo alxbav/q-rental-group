@@ -1,6 +1,5 @@
 package ee.qrental.transaction.application.port.out.dto;
 
-import ee.qrental.transaction.domain.TransactionType;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;

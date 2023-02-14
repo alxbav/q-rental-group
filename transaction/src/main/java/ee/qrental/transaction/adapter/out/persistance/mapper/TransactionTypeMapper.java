@@ -8,7 +8,7 @@ public class TransactionTypeMapper {
     public TransactionType mapToDomain(final TransactionTypeJpaEntity jpaEntity) {
         return new TransactionType(
                 jpaEntity.getId(),
-                jpaEntity.getTypeTr(),
+                jpaEntity.getName(),
                 jpaEntity.getDescription(),
                 jpaEntity.getNegative(),
                 jpaEntity.getComment()
@@ -18,7 +18,7 @@ public class TransactionTypeMapper {
     public TransactionTypeJpaEntity mapToEntity(final TransactionType domain) {
         return TransactionTypeJpaEntity.builder()
                 .id(domain.getId())
-                .typeTr(domain.getName())
+                .name(domain.getName())
                 .description(domain.getDescription())
                 .negative(domain.getNegative())
                 .comment(domain.getComment())

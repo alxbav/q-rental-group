@@ -17,7 +17,6 @@ class TransactionService implements
         TransactionUpdateUseCase,
         TransactionDeleteUseCase {
 
-    ;
 
     private final TransactionAddPort transactionAddPort;
 

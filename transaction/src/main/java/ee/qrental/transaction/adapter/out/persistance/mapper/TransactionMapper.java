@@ -11,7 +11,7 @@ public class TransactionMapper {
         final var jpaEntityTransactionType = jpaEntity.getType();
         final var type = new TransactionType(
                 jpaEntityTransactionType.getId(),
-                jpaEntityTransactionType.getTypeTr(),
+                jpaEntityTransactionType.getName(),
                 jpaEntityTransactionType.getDescription(),
                 jpaEntityTransactionType.getNegative(),
                 jpaEntity.getComment());
@@ -28,7 +28,7 @@ public class TransactionMapper {
     public TransactionJpaEntity mapToEntity(final Transaction domain) {
         final var transactionTypeJpaEntity = TransactionTypeJpaEntity.builder()
                 .id(domain.getType().getId())
-                .typeTr(domain.getType().getName())
+                .name(domain.getType().getName())
                 .description(domain.getType().getDescription())
                 .negative(domain.getType().getNegative())
                 .comment(domain.getType().getComment())

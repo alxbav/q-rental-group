@@ -11,8 +11,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
 @Component
 @AllArgsConstructor
@@ -37,6 +40,14 @@ public class TransactionPersistenceAdapterLoadAddUpdateDelete implements
     public Transaction loadTransactionById(Long id) {
         return transactionMapper.mapToDomain(
                 springDataTransactionRepository.getReferenceById(id));
+    }
+
+    @Override
+    public Set<Transaction> loadTransactionByDriverId(Long driverId) {
+        return springDataTransactionRepository.findByDriverId(driverId)
+                .stream()
+                .map(transactionMapper::mapToDomain)
+                .collect(toSet());
     }
 
     @Override

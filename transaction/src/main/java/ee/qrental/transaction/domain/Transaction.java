@@ -39,36 +39,56 @@ public class Transaction {
         this.comment = comment;
     }
 
+    public Long getRealAmount() {
+        return type.getNegative() ? -amount : amount;
+    }
+
     public Long getId() {
         return id;
-    }
-
-    public Long getDriverId() {
-        return driverId;
-    }
-
-    public Long getAmount() {
-        return amount;
-    }
-
-    public Integer getWeekNumber() {
-        return weekNumber;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public String getComment() {
-        return comment;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
+    public Long getDriverId() {
+        return driverId;
+    }
+
     public void setDriverId(Long driverId) {
         this.driverId = driverId;
+    }
+
+    public Long getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Long amount) {
+        this.amount = amount;
+    }
+
+    public Integer getWeekNumber() {
+        return weekNumber;
+    }
+
+    public void setWeekNumber(Integer weekNumber) {
+        this.weekNumber = weekNumber;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public TransactionType getType() {
@@ -77,22 +97,6 @@ public class Transaction {
 
     public void setType(TransactionType type) {
         this.type = type;
-    }
-
-    public void setAmount(Long amount) {
-        this.amount = amount;
-    }
-
-    public void setWeekNumber(Integer weekNumber) {
-        this.weekNumber = weekNumber;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
     }
 
     private void validateComment(final String comment) {
