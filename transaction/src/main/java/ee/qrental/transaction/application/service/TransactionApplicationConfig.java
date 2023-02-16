@@ -36,4 +36,18 @@ public class TransactionApplicationConfig {
                 transactionTypeLoadPort,
                 transactionTypeDeletePort);
     }
+
+    @Bean ConstantService getConstantService (
+            final ConstantAddPort constantAddPort,
+            final ConstantUpdatePort constantUpdatePort,
+            final ConstantLoadPort constantLoadPort,
+            final  ConstantDeletePort constantDeletePort) {
+     return  new ConstantService( constantAddPort,
+             constantUpdatePort,
+             constantLoadPort,
+             constantDeletePort);
+    }
+
+
+
 }
