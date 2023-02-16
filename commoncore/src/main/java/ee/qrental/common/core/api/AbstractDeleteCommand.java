@@ -1,17 +1,18 @@
 package ee.qrental.common.core.api;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.experimental.SuperBuilder;
 
-@Getter
-@Setter
-@SuperBuilder
-@NoArgsConstructor
-public abstract class AbstractDeleteCommand {
+import javax.validation.constraints.NotNull;
+
+
+public abstract class AbstractDeleteCommand<T> extends SelfValidating<T> {
+
+    @NotNull
+    @Getter
     private Long id;
 
-    private String objectInfo;
-
+    public AbstractDeleteCommand(Long id) {
+        this.id = id;
+        super.validateSelf();
+    }
 }

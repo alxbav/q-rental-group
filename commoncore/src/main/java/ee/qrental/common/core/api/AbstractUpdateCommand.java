@@ -1,14 +1,17 @@
 package ee.qrental.common.core.api;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.experimental.SuperBuilder;
 
-@Getter
-@Setter
-@SuperBuilder
-@NoArgsConstructor
-public abstract class AbstractUpdateCommand {
+import javax.validation.constraints.NotNull;
+
+
+public abstract class AbstractUpdateCommand<T> extends SelfValidating<T>  {
+    @NotNull
+    @Getter
     private Long id;
+
+    public AbstractUpdateCommand(Long id) {
+        this.id = id;
+        super.validateSelf();
+    }
 }

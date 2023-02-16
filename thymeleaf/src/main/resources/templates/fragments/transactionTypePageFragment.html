@@ -41,9 +41,9 @@
             </td>
             <td th:text="${transactionType.name}"></td>
             <td th:if="${transactionType.negative}"
-                class = "text-danger bg-danger bg-opacity-10 border border-danger border-opacity-10 rounded-2">Negative</td>
+                class = "text-center text-danger bg-danger bg-opacity-10 border border-danger border-opacity-10 rounded-2">Negative</td>
             <td th:unless="${transactionType.negative}"
-                class = "text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Positive</td>
+                class = "text-center text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Positive</td>
             <td th:text="${transactionType.description}"></td>
             <td th:text="${transactionType.comment}"></td>
         </tr>

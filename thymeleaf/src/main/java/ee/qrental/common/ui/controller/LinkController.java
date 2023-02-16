@@ -86,10 +86,9 @@ public class LinkController {
     @GetMapping(value = "/delete-form/{id}")
     public String deleteForm(@PathVariable("id") long id, Model model) {
         final var link = linkLoadPort.loadLinkById(id);
-        final var linkDeleteCommand = LinkDeleteCommand.builder()
-                .id(link.getId())
-                .objectInfo(getObjectInfo(link));
+        final var linkDeleteCommand = new LinkDeleteCommand(id);
         model.addAttribute("linkDeleteCommand", linkDeleteCommand);
+        model.addAttribute("objectInfo", getObjectInfo(link));
         return "forms/deleteLink";
     }
 
@@ -117,14 +116,13 @@ public class LinkController {
     }
 
     private LinkUpdateCommand mapToCommand(final Link domain) {
-        return LinkUpdateCommand.builder()
-                .id(domain.getId())
-                .carId(domain.getCarId())
-                .driverId(domain.getDriverId())
-                .linkType(domain.getLinkType())
-                .dateStart(domain.getDateStart())
-                .dateEnd(domain.getDateEnd())
-                .comment(domain.getComment())
-                .build();
+        return new LinkUpdateCommand(
+                domain.getId(),
+                domain.getCarId(),
+                domain.getDriverId(),
+                domain.getLinkType(),
+                domain.getDateStart(),
+                domain.getDateEnd(),
+                domain.getComment());
     }
 }

@@ -84,12 +84,11 @@ public class TransactionController {
     }
 
     @GetMapping(value = "/delete-form/{id}")
-    public String deleteForm(@PathVariable("id") long id, Model model) {
+    public String deleteForm(@PathVariable("id") Long id, Model model) {
         final var transaction = transactionLoadPort.loadTransactionById(id);
-        final var transactionDeleteCommand = new TransactionDeleteCommand();
-        transactionDeleteCommand.setId(transaction.getId());
-        transactionDeleteCommand.setObjectInfo(getObjectInfo(transaction));
+        final var transactionDeleteCommand = new TransactionDeleteCommand(id);
         model.addAttribute("transactionDeleteCommand", transactionDeleteCommand);
+        model.addAttribute("objectInfo", getObjectInfo(transaction));
         return "forms/deleteTransaction";
     }
 

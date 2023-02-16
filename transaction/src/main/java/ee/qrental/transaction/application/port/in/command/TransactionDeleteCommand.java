@@ -1,13 +1,10 @@
 package ee.qrental.transaction.application.port.in.command;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import ee.qrental.common.core.api.AbstractDeleteCommand;
 
-@Getter
-@Setter
-@NoArgsConstructor
-public class TransactionDeleteCommand {
-    private Long id;
-    private String objectInfo;
+
+public class TransactionDeleteCommand extends AbstractDeleteCommand<TransactionDeleteCommand> {
+    public TransactionDeleteCommand(Long id) {
+        super(id);
+    }
 }

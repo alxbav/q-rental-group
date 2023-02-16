@@ -5,7 +5,9 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 
-@SuperBuilder
-@NoArgsConstructor
+
 public class LinkDeleteCommand extends AbstractDeleteCommand {
+    public LinkDeleteCommand(Long id) {
+        super(id);
+    }
 }
