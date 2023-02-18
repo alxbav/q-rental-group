@@ -5,7 +5,7 @@ import ee.qrental.transaction.domain.TransactionType;
 import java.util.List;
 
 public interface TransactionTypeLoadPort {
-    List<TransactionType> loadAllTransactionTypes();
+    List<TransactionType> loadAll();
 
-    TransactionType loadTransactionTypeById(Long id);
+    TransactionType loadById(Long id);
 }

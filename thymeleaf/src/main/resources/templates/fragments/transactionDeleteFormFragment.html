@@ -9,7 +9,7 @@
 
 <form th:fragment="deleteForm"
       th:action="@{/transactions/delete}"
-      th:object="${transactionDeleteCommand}"
+      th:object="${deleteRequest}"
       method="post">
     <input id="transactionId" required
            th:field="*{id}"

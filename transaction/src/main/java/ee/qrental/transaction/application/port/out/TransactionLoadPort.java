@@ -2,12 +2,14 @@ package ee.qrental.transaction.application.port.out;
 
 import ee.qrental.transaction.domain.Transaction;
 
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 public interface TransactionLoadPort {
-    List<Transaction> loadAllTransactions();
+    Transaction loadById(Long id);
+    List<Transaction> loadAll();
 
-    Transaction loadTransactionById(Long id);
-    Set<Transaction> loadTransactionByDriverId(Long driverId);
+    List<Transaction> loadAllByDriverId(Long driverId);
+    List<Transaction> loadAllBetweenDays(
+            LocalDate dateStart, LocalDate dateEnd);
 }

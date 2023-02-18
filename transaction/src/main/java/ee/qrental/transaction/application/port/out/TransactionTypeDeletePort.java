@@ -1,5 +1,7 @@
 package ee.qrental.transaction.application.port.out;
 
-public interface TransactionTypeDeletePort {
-    void deleteTransactionType(Long id);
+import ee.qrental.common.core.api.port.DeletePort;
+
+public interface TransactionTypeDeletePort
+        extends DeletePort {
 }

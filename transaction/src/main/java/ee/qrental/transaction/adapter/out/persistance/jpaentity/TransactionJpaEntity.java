@@ -36,9 +36,6 @@ public class TransactionJpaEntity {
     @Column(name = "amount")
     private Long amount;
 
-    @Column(name = "week_number")
-    private Integer weekNumber;
-
     @Column(name = "date")
     private LocalDate date;
 

@@ -10,7 +10,7 @@
 <div th:fragment="addForm">
     <form method="post"
           th:action="@{/transaction-types/add}"
-          th:object="${transactionTypeAddCommand}">
+          th:object="${addRequest}">
 
         <div class="row">
             <div class="col">

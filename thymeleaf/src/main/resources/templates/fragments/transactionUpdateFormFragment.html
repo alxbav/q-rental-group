@@ -8,7 +8,7 @@
 </div>
 <form th:fragment="updateForm"
       th:action="@{/transactions/update}"
-      th:object="${transactionUpdateCommand}"
+      th:object="${updateRequest}"
       method="post">
     <input id="transactionId" required
            th:field="*{id}"
@@ -46,24 +46,14 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            <div class="mb-3">
-                <label class="form-label text-muted" for="weekNumberId">Week Number</label>
-                <input class="form-control" id="weekNumberId" placeholder="Enter week Number"
-                       th:field="*{weekNumber}"
-                       type="number"/>
-            </div>
-        </div>
-        <div class="col">
-            <div class="mb-3">
-                <label class="form-label text-muted" for="dateId">Date</label>
-                <input class="form-control" id="dateId" placeholder="Enter date" required
-                       th:field="*{date}"
-                       type="date"/>
-            </div>
-        </div>
+
+    <div class="mb-3">
+        <label class="form-label text-muted" for="dateId">Date</label>
+        <input class="form-control" id="dateId" placeholder="Enter date" required
+               th:field="*{date}"
+               type="date"/>
     </div>
+
     <div class="mb-3">
         <label class="form-label text-muted" for="commentId">Comment</label>
         <textarea class="form-control"

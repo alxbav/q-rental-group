@@ -1,13 +1,13 @@
 package ee.qrental.link.application.port.in.command;
 
-import ee.qrental.common.core.api.AbstractDeleteCommand;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
+import javax.validation.constraints.NotNull;
 
-
-public class LinkDeleteCommand extends AbstractDeleteCommand {
-    public LinkDeleteCommand(Long id) {
-        super(id);
-    }
+@AllArgsConstructor
+public class LinkDeleteCommand {
+    @NotNull
+    @Getter
+    private Long id;
 }

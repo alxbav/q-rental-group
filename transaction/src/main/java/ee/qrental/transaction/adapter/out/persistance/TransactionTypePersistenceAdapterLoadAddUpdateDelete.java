@@ -26,7 +26,7 @@ public class TransactionTypePersistenceAdapterLoadAddUpdateDelete implements
     private final TransactionTypeMapper transactionTypeMapper;
 
     @Override
-    public List<TransactionType> loadAllTransactionTypes() {
+    public List<TransactionType> loadAll() {
         return springDataTransactionTypeRepository.findAll()
                 .stream()
                 .map(transactionTypeMapper::mapToDomain)
@@ -34,13 +34,13 @@ public class TransactionTypePersistenceAdapterLoadAddUpdateDelete implements
     }
 
     @Override
-    public TransactionType loadTransactionTypeById(Long id) {
+    public TransactionType loadById(Long id) {
         return transactionTypeMapper.mapToDomain(
                 springDataTransactionTypeRepository.getReferenceById(id));
     }
 
     @Override
-    public TransactionType addTransactionType(final TransactionType transactionType) {
+    public TransactionType add(final TransactionType transactionType) {
         return transactionTypeMapper.mapToDomain(
                 springDataTransactionTypeRepository.save(
                         transactionTypeMapper.mapToEntity(transactionType)
@@ -48,7 +48,7 @@ public class TransactionTypePersistenceAdapterLoadAddUpdateDelete implements
     }
 
     @Override
-    public TransactionType updateTransactionType(final TransactionType transactionType) {
+    public TransactionType update(final TransactionType transactionType) {
         return transactionTypeMapper.mapToDomain(
                 springDataTransactionTypeRepository.save(
                         transactionTypeMapper.mapToEntity(transactionType)
@@ -56,7 +56,7 @@ public class TransactionTypePersistenceAdapterLoadAddUpdateDelete implements
     }
 
     @Override
-    public void deleteTransactionType(Long id) {
+    public void delete(Long id) {
         springDataTransactionTypeRepository.deleteById(id);
     }
 }

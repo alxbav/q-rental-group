@@ -10,7 +10,7 @@
 <form th:fragment="updateForm"
       method="post"
       th:action="@{/transaction-types/update}"
-      th:object="${transactionTypeUpdateCommand}">
+      th:object="${updateRequest}">
 
     <input id="transactionTypeId" required
            th:field="*{id}"

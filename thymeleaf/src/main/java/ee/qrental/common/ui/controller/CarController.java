@@ -8,7 +8,6 @@ import ee.qrental.car.application.port.in.usecase.CarDeleteUseCase;
 import ee.qrental.car.application.port.in.usecase.CarUpdateUseCase;
 import ee.qrental.car.application.port.out.CarLoadPort;
 import ee.qrental.car.domain.Car;
-import ee.qrental.transaction.application.port.in.command.TransactionDeleteCommand;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

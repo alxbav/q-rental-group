@@ -20,7 +20,6 @@ public class TransactionMapper {
                 type,
                 jpaEntity.getDriverId(),
                 jpaEntity.getAmount(),
-                jpaEntity.getWeekNumber(),
                 jpaEntity.getDate(),
                 jpaEntity.getComment());
     }
@@ -39,7 +38,6 @@ public class TransactionMapper {
                 .type(transactionTypeJpaEntity)
                 .driverId(domain.getDriverId())
                 .amount(domain.getAmount())
-                .weekNumber(domain.getWeekNumber())
                 .date(domain.getDate())
                 .comment(domain.getComment())
                 .build();
