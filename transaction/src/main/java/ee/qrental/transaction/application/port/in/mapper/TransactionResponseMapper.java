@@ -2,8 +2,8 @@ package ee.qrental.transaction.application.port.in.mapper;
 
 import ee.qrental.common.core.api.mapper.ResponseMapper;
 import ee.qrental.driver.application.port.out.DriverLoadPort;
-import ee.qrental.transaction.application.port.in.request.TransactionUpdateRequest;
-import ee.qrental.transaction.application.port.in.response.TransactionResponse;
+import ee.qrental.transaction.application.port.in.request.transactiontype.TransactionUpdateRequest;
+import ee.qrental.transaction.application.port.in.response.transaction.TransactionResponse;
 import ee.qrental.transaction.domain.Transaction;
 import lombok.AllArgsConstructor;
 

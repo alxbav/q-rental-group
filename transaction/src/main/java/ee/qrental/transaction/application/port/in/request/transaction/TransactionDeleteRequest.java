@@ -1,7 +1,6 @@
-package ee.qrental.transaction.application.port.in.request;
+package ee.qrental.transaction.application.port.in.request.transaction;
 
 import ee.qrental.common.core.api.request.AbstractDeleteRequest;
-import lombok.AllArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 

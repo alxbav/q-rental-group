@@ -1,4 +1,4 @@
-package ee.qrental.transaction.application.port.in.request;
+package ee.qrental.transaction.application.port.in.request.transaction;
 
 import ee.qrental.transaction.application.port.in.utils.Week;
 import lombok.Getter;
@@ -9,7 +9,6 @@ import lombok.Setter;
 public class TransactionFilterRequest {
 
     private Integer year;
-
     private Week week;
 
 }

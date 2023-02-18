@@ -1,4 +1,4 @@
-package ee.qrental.transaction.application.port.in.response;
+package ee.qrental.transaction.application.port.in.response.transaction;
 
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;

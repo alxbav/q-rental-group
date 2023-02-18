@@ -1,7 +1,8 @@
 package ee.qrental.transaction.application.port.in.usecase.transaction;
 
-import ee.qrental.transaction.application.port.in.request.TransactionAddRequest;
+import ee.qrental.common.core.api.usecase.AddUseCase;
+import ee.qrental.transaction.application.port.in.request.transaction.TransactionAddRequest;
 
-public interface TransactionAddUseCase {
-    void add(TransactionAddRequest transaction);
+public interface TransactionAddUseCase
+        extends AddUseCase<TransactionAddRequest> {
 }

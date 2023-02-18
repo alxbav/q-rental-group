@@ -1,4 +1,4 @@
-package ee.qrental.transaction.application.port.in.response;
+package ee.qrental.transaction.application.port.in.response.transaction;
 
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
@@ -8,6 +8,7 @@ import java.time.LocalDate;
 @Getter
 @SuperBuilder
 public class TransactionResponse {
+    public Boolean negative;
     private Long id;
     private String type;
     private String driverInfo;
@@ -15,6 +16,4 @@ public class TransactionResponse {
     private Integer weekNumber;
     private LocalDate date;
     private String comment;
-
-    public Boolean negative;
 }

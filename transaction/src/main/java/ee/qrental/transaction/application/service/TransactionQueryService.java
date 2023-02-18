@@ -2,9 +2,9 @@ package ee.qrental.transaction.application.service;
 
 import ee.qrental.common.core.api.mapper.ResponseMapper;
 import ee.qrental.transaction.application.port.in.query.GetTransactionQuery;
-import ee.qrental.transaction.application.port.in.request.TransactionFilterRequest;
-import ee.qrental.transaction.application.port.in.request.TransactionUpdateRequest;
-import ee.qrental.transaction.application.port.in.response.TransactionResponse;
+import ee.qrental.transaction.application.port.in.request.transaction.TransactionFilterRequest;
+import ee.qrental.transaction.application.port.in.request.transactiontype.TransactionUpdateRequest;
+import ee.qrental.transaction.application.port.in.response.transaction.TransactionResponse;
 import ee.qrental.transaction.application.port.out.TransactionLoadPort;
 import ee.qrental.transaction.domain.Transaction;
 import lombok.AllArgsConstructor;

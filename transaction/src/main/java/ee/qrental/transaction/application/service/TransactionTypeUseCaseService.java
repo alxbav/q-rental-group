@@ -1,8 +1,8 @@
 package ee.qrental.transaction.application.service;
 
-import ee.qrental.transaction.application.port.in.request.TransactionTypeAddRequest;
-import ee.qrental.transaction.application.port.in.request.TransactionTypeDeleteRequest;
-import ee.qrental.transaction.application.port.in.request.TransactionTypeUpdateRequest;
+import ee.qrental.transaction.application.port.in.request.transactiontype.TransactionTypeAddRequest;
+import ee.qrental.transaction.application.port.in.request.transactiontype.TransactionTypeDeleteRequest;
+import ee.qrental.transaction.application.port.in.request.transactiontype.TransactionTypeUpdateRequest;
 import ee.qrental.transaction.application.port.in.usecase.transactiontype.TransactionTypeAddUseCase;
 import ee.qrental.transaction.application.port.in.usecase.transactiontype.TransactionTypeDeleteUseCase;
 import ee.qrental.transaction.application.port.in.usecase.transactiontype.TransactionTypeUpdateUseCase;
@@ -20,32 +20,30 @@ class TransactionTypeUseCaseService implements
         TransactionTypeDeleteUseCase {
 
     private final TransactionTypeAddPort transactionTypeAddPort;
-
     private final TransactionTypeUpdatePort transactionTypeUpdatePort;
-
     private final TransactionTypeLoadPort transactionTypeLoadPort;
-
     private final TransactionTypeDeletePort transactionTypeDeletePort;
 
     @Override
-    public void add(final TransactionTypeAddRequest command) {
+    public void add(final TransactionTypeAddRequest request) {
         final var transactionTypeDomain = new TransactionType(
                 null,
-                command.getName(),
-                command.getDescription(),
-                command.getNegative(),
-                command.getComment());
+                request.getName(),
+                request.getDescription(),
+                request.getNegative(),
+                request.getComment());
         transactionTypeAddPort.add(transactionTypeDomain);
     }
 
     @Override
-    public void update(final TransactionTypeUpdateRequest command) {
-        final Long transactionTypeId = command.getId();
-        final TransactionType domain = transactionTypeLoadPort.loadById(transactionTypeId);
+    public void update(final TransactionTypeUpdateRequest request) {
+        final var transactionTypeId = request.getId();
+        final var domain = transactionTypeLoadPort.loadById(transactionTypeId);
         if (domain == null) {
-            throw new RuntimeException("Update of Transaction Type failed. No Transaction Type with id = " + transactionTypeId);
+            throw new RuntimeException("Update of Transaction Type failed. No Transaction Type with id = "
+                    + transactionTypeId);
         }
-        updateDomain(command, domain);
+        updateDomain(request, domain);
         transactionTypeUpdatePort.update(domain);
     }
 
@@ -59,8 +57,7 @@ class TransactionTypeUseCaseService implements
     }
 
     @Override
-    public void delete(TransactionTypeDeleteRequest deleteCommand) {
-        transactionTypeDeletePort.delete(deleteCommand.getId());
+    public void delete(final TransactionTypeDeleteRequest request) {
+        transactionTypeDeletePort.delete(request.getId());
     }
-
 }

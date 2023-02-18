@@ -2,9 +2,9 @@ package ee.qrental.common.ui.controller.transaction;
 
 
 import ee.qrental.transaction.application.port.in.query.GetTransactionTypeQuery;
-import ee.qrental.transaction.application.port.in.request.TransactionTypeAddRequest;
-import ee.qrental.transaction.application.port.in.request.TransactionTypeDeleteRequest;
-import ee.qrental.transaction.application.port.in.request.TransactionTypeUpdateRequest;
+import ee.qrental.transaction.application.port.in.request.transactiontype.TransactionTypeAddRequest;
+import ee.qrental.transaction.application.port.in.request.transactiontype.TransactionTypeDeleteRequest;
+import ee.qrental.transaction.application.port.in.request.transactiontype.TransactionTypeUpdateRequest;
 import ee.qrental.transaction.application.port.in.usecase.transactiontype.TransactionTypeAddUseCase;
 import ee.qrental.transaction.application.port.in.usecase.transactiontype.TransactionTypeDeleteUseCase;
 import ee.qrental.transaction.application.port.in.usecase.transactiontype.TransactionTypeUpdateUseCase;

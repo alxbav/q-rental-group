@@ -1,7 +1,6 @@
-package ee.qrental.transaction.application.port.in.request;
+package ee.qrental.transaction.application.port.in.request.transaction;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
