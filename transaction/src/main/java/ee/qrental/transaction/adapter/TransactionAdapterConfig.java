@@ -1,5 +1,6 @@
 package ee.qrental.transaction.adapter;
 
+import ee.qrental.transaction.adapter.out.persistance.mapper.ConstantMapper;
 import ee.qrental.transaction.adapter.out.persistance.mapper.TransactionTypeMapper;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
@@ -21,5 +22,7 @@ public class TransactionAdapterConfig {
     public TransactionTypeMapper getTransactionTypeMapper(){
         return new TransactionTypeMapper();
     }
+    @Bean
+    ConstantMapper getConstantMapper(){ return new ConstantMapper();}
 
 }
