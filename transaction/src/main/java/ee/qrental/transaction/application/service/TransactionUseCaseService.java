@@ -1,5 +1,6 @@
 package ee.qrental.transaction.application.service;
 
+import ee.qrental.driver.application.port.out.DriverLoadPort;
 import ee.qrental.transaction.application.port.in.request.transaction.TransactionAddRequest;
 import ee.qrental.transaction.application.port.in.request.transaction.TransactionDeleteRequest;
 import ee.qrental.transaction.application.port.in.request.transactiontype.TransactionUpdateRequest;
@@ -22,6 +23,7 @@ class TransactionUseCaseService implements
     private final TransactionDeletePort transactionDeletePort;
     private final TransactionTypeLoadPort transactionTypeLoadPort;
 
+    private final DriverLoadPort driverLoadPort;
     @Override
     public void add(final TransactionAddRequest request) {
         final var transactionType = transactionTypeLoadPort.loadById(request.getTransactionTypeId());
