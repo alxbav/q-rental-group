@@ -9,14 +9,12 @@ import ee.qrental.transaction.application.port.in.query.GetBalanceQuery;
 import ee.qrental.transaction.application.port.in.query.GetTransactionQuery;
 import ee.qrental.transaction.application.port.in.query.GetTransactionTypeQuery;
 import ee.qrental.transaction.application.port.in.request.firm.FirmUpdateRequest;
-import ee.qrental.transaction.application.port.in.request.transactiontype.TransactionTypeUpdateRequest;
 import ee.qrental.transaction.application.port.in.request.transaction.TransactionUpdateRequest;
-import ee.qrental.transaction.application.port.in.request.transactiontype.TransactionUpdateRequest;
+import ee.qrental.transaction.application.port.in.request.transactiontype.TransactionTypeUpdateRequest;
 import ee.qrental.transaction.application.port.in.response.firm.FirmResponse;
 import ee.qrental.transaction.application.port.in.response.transaction.TransactionResponse;
 import ee.qrental.transaction.application.port.in.response.transactiontype.TransactionTypeResponse;
 import ee.qrental.transaction.application.port.out.*;
-import ee.qrental.transaction.application.port.out.TransactionLoadPort;
 import ee.qrental.transaction.domain.Firm;
 import ee.qrental.transaction.domain.Transaction;
 import ee.qrental.transaction.domain.TransactionType;
@@ -55,28 +53,30 @@ public class TransactionApplicationConfig {
                 transactionTypeDeletePort);
     }
 
-    @Bean ConstantService getConstantService (
+    @Bean
+    ConstantService getConstantService(
             final ConstantAddPort constantAddPort,
             final ConstantUpdatePort constantUpdatePort,
             final ConstantLoadPort constantLoadPort,
-            final  ConstantDeletePort constantDeletePort) {
-     return  new ConstantService( constantAddPort,
-             constantUpdatePort,
-             constantLoadPort,
-             constantDeletePort);
+            final ConstantDeletePort constantDeletePort) {
+        return new ConstantService(constantAddPort,
+                constantUpdatePort,
+                constantLoadPort,
+                constantDeletePort);
     }
 
-
-    @Bean FirmUseCaseService getFirmService (
+    @Bean
+    FirmUseCaseService getFirmService(
             final FirmAddPort firmAddPort,
             final FirmUpdatePort firmUpdatePort,
             final FirmLoadPort firmLoadPort,
             final FirmDeletePort firmDeletePort) {
-        return new FirmUseCaseService( firmAddPort,
+        return new FirmUseCaseService(firmAddPort,
                 firmUpdatePort,
                 firmLoadPort,
                 firmDeletePort);
     }
+
     @Bean
     public ResponseMapper<TransactionUpdateRequest, TransactionResponse, Transaction> getTransactionResponseMapper(
             final DriverLoadPort driverLoadPort) {
@@ -91,7 +91,7 @@ public class TransactionApplicationConfig {
     }
 
     @Bean
-    public ResponseMapper<TransactionTypeUpdateRequest, TransactionTypeResponse, TransactionType> getTransactionTypeResponseMapper(){
+    public ResponseMapper<TransactionTypeUpdateRequest, TransactionTypeResponse, TransactionType> getTransactionTypeResponseMapper() {
         return new TransactionTypeResponseMapper();
     }
 
@@ -103,14 +103,14 @@ public class TransactionApplicationConfig {
     }
 
     @Bean
-    public ResponseMapper<FirmUpdateRequest, FirmResponse, Firm> getFirmResponseMapper(){
+    public ResponseMapper<FirmUpdateRequest, FirmResponse, Firm> getFirmResponseMapper() {
         return new FirmResponseMapper();
     }
 
     @Bean
     public FirmQueryService getFirmQueryService(
             FirmLoadPort firmLoadPort,
-            ResponseMapper<FirmUpdateRequest, FirmResponse, Firm> mapper){
+            ResponseMapper<FirmUpdateRequest, FirmResponse, Firm> mapper) {
         return new FirmQueryService(firmLoadPort, mapper);
     }
 
