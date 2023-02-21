@@ -2,7 +2,7 @@ package ee.qrental.transaction.application.service;
 
 import ee.qrental.common.core.api.mapper.ResponseMapper;
 import ee.qrental.transaction.application.port.in.query.GetTransactionQuery;
-import ee.qrental.transaction.application.port.in.request.transaction.TransactionWeekFilterRequest;
+import ee.qrental.transaction.application.port.in.request.transaction.TransactionFilterRequest;
 import ee.qrental.transaction.application.port.in.request.transaction.TransactionUpdateRequest;
 import ee.qrental.transaction.application.port.in.response.transaction.TransactionResponse;
 import ee.qrental.transaction.application.port.out.TransactionLoadPort;
@@ -18,6 +18,7 @@ import static java.time.DayOfWeek.SUNDAY;
 import static java.time.Month.JUNE;
 import static java.time.temporal.IsoFields.WEEK_OF_WEEK_BASED_YEAR;
 import static java.time.temporal.TemporalAdjusters.previousOrSame;
+import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
 
 @AllArgsConstructor
@@ -28,10 +29,7 @@ class TransactionQueryService implements GetTransactionQuery {
 
     @Override
     public List<TransactionResponse> getAll() {
-        return transactionLoadPort.loadAll()
-                .stream()
-                .map(mapper::toResponse)
-                .collect(toList());
+        return mapToTransactionResponseList(transactionLoadPort.loadAll());
     }
 
     @Override
@@ -46,25 +44,25 @@ class TransactionQueryService implements GetTransactionQuery {
 
     @Override
     public List<TransactionResponse> getAllByDriverId(final Long driverId) {
-        return transactionLoadPort.loadAllByDriverId(driverId)
-                .stream()
-                .map(mapper::toResponse)
-                .collect(toList());
+        return mapToTransactionResponseList(
+                transactionLoadPort.loadAllByDriverId(driverId));
     }
 
     @Override
-    public List<TransactionResponse> getAllByRequest(
-            final TransactionWeekFilterRequest request) {
+    public List<TransactionResponse> getAllByFilterRequest(
+            final TransactionFilterRequest request) {
         final var year = request.getYear();
         final var weekNumber = request.getWeek().getNumber();
-
         final var startWeekDay = getDayByYearAndWeekNumberAndDayOfWeek(year, weekNumber, MONDAY);
         final var endWeekDay = getDayByYearAndWeekNumberAndDayOfWeek(year, weekNumber, SUNDAY);
+        final var driverId = request.getDriverId();
+        if (driverId == null) {
+            return mapToTransactionResponseList(
+                    transactionLoadPort.loadAllBetweenDays(startWeekDay, endWeekDay));
+        }
+        return mapToTransactionResponseList(
+                transactionLoadPort.loadAllByDriverIdAndBetweenDays(driverId, startWeekDay, endWeekDay));
 
-        return transactionLoadPort.loadAllBetweenDays(startWeekDay, endWeekDay)
-                .stream()
-                .map(mapper::toResponse)
-                .collect(toList());
     }
 
     @Override
@@ -80,5 +78,12 @@ class TransactionQueryService implements GetTransactionQuery {
         return LocalDate.of(year, JUNE, 1)
                 .with(previousOrSame(dayOfWeek))
                 .with(WEEK_OF_WEEK_BASED_YEAR, weekNumber);
+    }
+
+    private List<TransactionResponse> mapToTransactionResponseList(final List<Transaction> transactions) {
+        return transactions.stream()
+                .map(mapper::toResponse)
+                .sorted(comparing(TransactionResponse::getDate))
+                .collect(toList());
     }
 }

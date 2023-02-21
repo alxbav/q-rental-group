@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class TransactionWeekAndDriverFilterRequest {
+public class TransactionFilterRequest {
     private Integer year;
     private Week week;
     private Long driverId;
