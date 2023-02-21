@@ -8,7 +8,6 @@ import java.time.LocalDate;
 @Getter
 @SuperBuilder
 public class TransactionResponse {
-    public Boolean negative;
     private Long id;
     private String type;
     private String driverInfo;

@@ -2,8 +2,8 @@ package ee.qrental.transaction.application.service;
 
 import ee.qrental.common.core.api.mapper.ResponseMapper;
 import ee.qrental.transaction.application.port.in.query.GetTransactionQuery;
-import ee.qrental.transaction.application.port.in.request.transaction.TransactionFilterRequest;
-import ee.qrental.transaction.application.port.in.request.transactiontype.TransactionUpdateRequest;
+import ee.qrental.transaction.application.port.in.request.transaction.TransactionWeekFilterRequest;
+import ee.qrental.transaction.application.port.in.request.transaction.TransactionUpdateRequest;
 import ee.qrental.transaction.application.port.in.response.transaction.TransactionResponse;
 import ee.qrental.transaction.application.port.out.TransactionLoadPort;
 import ee.qrental.transaction.domain.Transaction;
@@ -54,7 +54,7 @@ class TransactionQueryService implements GetTransactionQuery {
 
     @Override
     public List<TransactionResponse> getAllByRequest(
-            final TransactionFilterRequest request) {
+            final TransactionWeekFilterRequest request) {
         final var year = request.getYear();
         final var weekNumber = request.getWeek().getNumber();
 

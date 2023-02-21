@@ -50,7 +50,7 @@ public class LinkController {
     }
 
     private void addDriverListToModel(final Model model) {
-        final var drivers = driverLoadPort.loadAllDrivers();
+        final var drivers = driverLoadPort.loadAll();
         model.addAttribute("drivers", drivers);
     }
 
@@ -93,7 +93,7 @@ public class LinkController {
     }
 
     private String getObjectInfo(final Link link) {
-        final var driver = driverLoadPort.loadDriverById(link.getDriverId());
+        final var driver = driverLoadPort.loadById(link.getDriverId());
         final var car = carLoadPort.loadCarById(link.getCarId());
         final var linkType = link.getLinkType();
         final var linkDateStart = link.getDateStart().toString();

@@ -3,7 +3,7 @@ package ee.qrental.transaction.application.service;
 import ee.qrental.driver.application.port.out.DriverLoadPort;
 import ee.qrental.transaction.application.port.in.request.transaction.TransactionAddRequest;
 import ee.qrental.transaction.application.port.in.request.transaction.TransactionDeleteRequest;
-import ee.qrental.transaction.application.port.in.request.transactiontype.TransactionUpdateRequest;
+import ee.qrental.transaction.application.port.in.request.transaction.TransactionUpdateRequest;
 import ee.qrental.transaction.application.port.in.usecase.transaction.TransactionAddUseCase;
 import ee.qrental.transaction.application.port.in.usecase.transaction.TransactionDeleteUseCase;
 import ee.qrental.transaction.application.port.in.usecase.transaction.TransactionUpdateUseCase;

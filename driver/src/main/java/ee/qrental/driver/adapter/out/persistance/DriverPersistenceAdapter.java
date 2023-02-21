@@ -9,7 +9,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -25,7 +24,7 @@ class DriverPersistenceAdapter implements
     private final DriverMapper driverMapper;
 
     @Override
-    public List<Driver> loadAllDrivers() {
+    public List<Driver> loadAll() {
         return springDataDriverRepository.findAll()
                 .stream()
                 .map(driverMapper::mapToDomain)
@@ -33,14 +32,7 @@ class DriverPersistenceAdapter implements
     }
 
     @Override
-    public Optional<Driver> loadDriverByPhone(String phone) {
-        return springDataDriverRepository
-                .getDriverJpaEntityByPhone(phone)
-                .map(entity -> driverMapper.mapToDomain(entity));
-    }
-
-    @Override
-    public Driver loadDriverById(Long id) {
+    public Driver loadById(Long id) {
         return driverMapper.mapToDomain(
                 springDataDriverRepository.getReferenceById(id));
     }

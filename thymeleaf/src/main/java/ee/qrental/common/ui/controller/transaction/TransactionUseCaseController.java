@@ -6,7 +6,7 @@ import ee.qrental.transaction.application.port.in.query.GetTransactionQuery;
 import ee.qrental.transaction.application.port.in.query.GetTransactionTypeQuery;
 import ee.qrental.transaction.application.port.in.request.transaction.TransactionAddRequest;
 import ee.qrental.transaction.application.port.in.request.transaction.TransactionDeleteRequest;
-import ee.qrental.transaction.application.port.in.request.transactiontype.TransactionUpdateRequest;
+import ee.qrental.transaction.application.port.in.request.transaction.TransactionUpdateRequest;
 import ee.qrental.transaction.application.port.in.usecase.transaction.TransactionAddUseCase;
 import ee.qrental.transaction.application.port.in.usecase.transaction.TransactionDeleteUseCase;
 import ee.qrental.transaction.application.port.in.usecase.transaction.TransactionUpdateUseCase;
@@ -35,7 +35,7 @@ public class TransactionUseCaseController {
     public String addForm(final Model model) {
         model.addAttribute("addRequest", new TransactionAddRequest());
         model.addAttribute("transactionTypes", transactionTypeQuery.getAll());
-        model.addAttribute("drivers", driverLoadPort.loadAllDrivers());
+        model.addAttribute("drivers", driverLoadPort.loadAll());
 
         return "forms/addTransaction";
     }
@@ -51,7 +51,7 @@ public class TransactionUseCaseController {
     public String updateForm(@PathVariable("id") long id, Model model) {
         model.addAttribute("updateRequest", transactionQuery.getUpdateRequestById(id));
         model.addAttribute("transactionTypes", transactionTypeQuery.getAll());
-        model.addAttribute("drivers", driverLoadPort.loadAllDrivers());
+        model.addAttribute("drivers", driverLoadPort.loadAll());
 
         return "forms/updateTransaction";
     }

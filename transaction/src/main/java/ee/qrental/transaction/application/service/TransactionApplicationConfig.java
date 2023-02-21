@@ -5,8 +5,12 @@ import ee.qrental.driver.application.port.out.DriverLoadPort;
 import ee.qrental.transaction.application.port.in.mapper.FirmResponseMapper;
 import ee.qrental.transaction.application.port.in.mapper.TransactionResponseMapper;
 import ee.qrental.transaction.application.port.in.mapper.TransactionTypeResponseMapper;
+import ee.qrental.transaction.application.port.in.query.GetBalanceQuery;
+import ee.qrental.transaction.application.port.in.query.GetTransactionQuery;
+import ee.qrental.transaction.application.port.in.query.GetTransactionTypeQuery;
 import ee.qrental.transaction.application.port.in.request.firm.FirmUpdateRequest;
 import ee.qrental.transaction.application.port.in.request.transactiontype.TransactionTypeUpdateRequest;
+import ee.qrental.transaction.application.port.in.request.transaction.TransactionUpdateRequest;
 import ee.qrental.transaction.application.port.in.request.transactiontype.TransactionUpdateRequest;
 import ee.qrental.transaction.application.port.in.response.firm.FirmResponse;
 import ee.qrental.transaction.application.port.in.response.transaction.TransactionResponse;
@@ -73,20 +77,16 @@ public class TransactionApplicationConfig {
                 firmLoadPort,
                 firmDeletePort);
     }
-
-
-
-
     @Bean
     public ResponseMapper<TransactionUpdateRequest, TransactionResponse, Transaction> getTransactionResponseMapper(
-            DriverLoadPort driverLoadPort){
+            final DriverLoadPort driverLoadPort) {
         return new TransactionResponseMapper(driverLoadPort);
     }
 
     @Bean
-    public TransactionQueryService getTransactionQueryService(
-            TransactionLoadPort transactionLoadPort,
-            ResponseMapper<TransactionUpdateRequest, TransactionResponse, Transaction> mapper){
+    public GetTransactionQuery getGetTransactionQuery(
+            final TransactionLoadPort transactionLoadPort,
+            final ResponseMapper<TransactionUpdateRequest, TransactionResponse, Transaction> mapper) {
         return new TransactionQueryService(transactionLoadPort, mapper);
     }
 
@@ -96,9 +96,9 @@ public class TransactionApplicationConfig {
     }
 
     @Bean
-    public TransactionTypeQueryService getTransactionTypeQueryService(
-            TransactionTypeLoadPort transactionTypeLoadPort,
-            ResponseMapper<TransactionTypeUpdateRequest, TransactionTypeResponse, TransactionType> mapper){
+    public GetTransactionTypeQuery getGetTransactionTypeQuery(
+            final TransactionTypeLoadPort transactionTypeLoadPort,
+            final ResponseMapper<TransactionTypeUpdateRequest, TransactionTypeResponse, TransactionType> mapper) {
         return new TransactionTypeQueryService(transactionTypeLoadPort, mapper);
     }
 
@@ -114,7 +114,11 @@ public class TransactionApplicationConfig {
         return new FirmQueryService(firmLoadPort, mapper);
     }
 
-
-
-
+    @Bean
+    public GetBalanceQuery getGetBalanceQuery(
+            final TransactionLoadPort transactionLoadPort,
+            final DriverLoadPort driverLoadPort,
+            final ResponseMapper<TransactionUpdateRequest, TransactionResponse, Transaction> mapper) {
+        return new BalancesQueryService(transactionLoadPort, driverLoadPort, mapper);
+    }
 }

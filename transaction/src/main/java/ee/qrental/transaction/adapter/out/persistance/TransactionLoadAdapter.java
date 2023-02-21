@@ -7,13 +7,9 @@ import ee.qrental.transaction.domain.Transaction;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 
-import static java.time.Month.JUNE;
-import static java.time.temporal.IsoFields.WEEK_OF_WEEK_BASED_YEAR;
-import static java.time.temporal.TemporalAdjusters.previousOrSame;
 import static java.util.stream.Collectors.toList;
 
 @AllArgsConstructor
@@ -24,7 +20,7 @@ public class TransactionLoadAdapter implements TransactionLoadPort {
     private final TransactionMapper mapper;
 
     @Override
-    public Transaction loadById(Long id) {
+    public Transaction loadById(final Long id) {
         return mapper.mapToDomain(springDataTransactionRepository.getReferenceById(id));
     }
 
@@ -48,6 +44,16 @@ public class TransactionLoadAdapter implements TransactionLoadPort {
     public List<Transaction> loadAllBetweenDays(
             final LocalDate dateStart, final LocalDate dateEnd) {
         return springDataTransactionRepository.findAllByDateBetween(dateStart, dateEnd)
+                .stream()
+                .map(mapper::mapToDomain)
+                .collect(toList());
+    }
+
+    @Override
+    public List<Transaction> loadAllByDriverIdAndBetweenDays(
+            final Long driverId, final LocalDate dateStart, final LocalDate dateEnd) {
+        return springDataTransactionRepository
+                .findAllByDateBetweenAndDriverId(dateStart, dateEnd, driverId)
                 .stream()
                 .map(mapper::mapToDomain)
                 .collect(toList());

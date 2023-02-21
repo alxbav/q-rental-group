@@ -41,7 +41,7 @@ public class CallSignLinkController {
     }
 
     private void addDriverListToModel(final Model model) {
-        final var drivers = driverLoadPort.loadAllDrivers();
+        final var drivers = driverLoadPort.loadAll();
         model.addAttribute("drivers", drivers);
     }
 
@@ -85,7 +85,7 @@ public class CallSignLinkController {
     }
 
     private String getObjectInfo(final CallSignLink callSignLink) {
-        final var driver = driverLoadPort.loadDriverById(
+        final var driver = driverLoadPort.loadById(
                 callSignLink.getDriverId());
         final var driverFirstName = driver.getFirstName();
         final var driverLastName = driver.getLastName();

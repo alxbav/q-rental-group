@@ -30,7 +30,7 @@ public class IndexController {
         model.addAttribute("driversPotential", drivers);
     }
     private void addDriverListToModel(final Model model) {
-        final var drivers = driverLoadPort.loadAllDrivers();
+        final var drivers = driverLoadPort.loadAll();
         model.addAttribute("drivers", drivers);
     }
 }

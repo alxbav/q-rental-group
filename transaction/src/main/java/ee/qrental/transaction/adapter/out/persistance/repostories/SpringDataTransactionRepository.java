@@ -16,5 +16,8 @@ public interface SpringDataTransactionRepository
 
     List<TransactionJpaEntity> findAllByDateBetween(
             LocalDate dateStart, LocalDate dateEnd);
+
+    List<TransactionJpaEntity> findAllByDateBetweenAndDriverId(
+            LocalDate dateStart, LocalDate dateEnd, Long driverId);
 }
 

@@ -1,4 +1,4 @@
-package ee.qrental.transaction.application.port.in.request.transactiontype;
+package ee.qrental.transaction.application.port.in.request.transaction;
 
 import ee.qrental.common.core.api.request.AbstractUpdateRequest;
 import lombok.Getter;
@@ -16,5 +16,4 @@ public class TransactionUpdateRequest extends AbstractUpdateRequest {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate date;
     private String comment;
-
 }

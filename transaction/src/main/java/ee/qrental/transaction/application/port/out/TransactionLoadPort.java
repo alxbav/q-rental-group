@@ -6,10 +6,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface TransactionLoadPort {
-    Transaction loadById(Long id);
+    Transaction loadById(final Long id);
     List<Transaction> loadAll();
 
-    List<Transaction> loadAllByDriverId(Long driverId);
+    List<Transaction> loadAllByDriverId(final Long driverId);
     List<Transaction> loadAllBetweenDays(
-            LocalDate dateStart, LocalDate dateEnd);
+            final LocalDate dateStart, final LocalDate dateEnd);
+
+    List<Transaction> loadAllByDriverIdAndBetweenDays(
+            final Long driverId, final LocalDate dateStart, final LocalDate dateEnd);
 }

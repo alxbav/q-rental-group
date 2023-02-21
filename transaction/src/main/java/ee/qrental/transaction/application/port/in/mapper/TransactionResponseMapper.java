@@ -2,7 +2,7 @@ package ee.qrental.transaction.application.port.in.mapper;
 
 import ee.qrental.common.core.api.mapper.ResponseMapper;
 import ee.qrental.driver.application.port.out.DriverLoadPort;
-import ee.qrental.transaction.application.port.in.request.transactiontype.TransactionUpdateRequest;
+import ee.qrental.transaction.application.port.in.request.transaction.TransactionUpdateRequest;
 import ee.qrental.transaction.application.port.in.response.transaction.TransactionResponse;
 import ee.qrental.transaction.domain.Transaction;
 import lombok.AllArgsConstructor;
@@ -17,7 +17,7 @@ public class TransactionResponseMapper
 
     @Override
     public TransactionResponse toResponse(final Transaction domain) {
-        var driver = driverLoadPort.loadDriverById(domain.getDriverId());
+        var driver = driverLoadPort.loadById(domain.getDriverId());
         var driverInfo = driver.getFirstName() + " " + driver.getLastName();
         return TransactionResponse.builder()
                 .id(domain.getId())
@@ -26,14 +26,13 @@ public class TransactionResponseMapper
                 .driverInfo(driverInfo)
                 .date(domain.getDate())
                 .weekNumber(domain.getWeekNumber())
-                .negative(domain.getType().getNegative())
                 .comment(domain.getComment())
                 .build();
     }
 
     @Override
     public String toObjectInfo(Transaction domain) {
-        final var driver = driverLoadPort.loadDriverById(domain.getDriverId());
+        final var driver = driverLoadPort.loadById(domain.getDriverId());
         final var type = domain.getType().getName();
         final var realAmount = domain.getRealAmount();
         final var date = domain.getDate().toString();

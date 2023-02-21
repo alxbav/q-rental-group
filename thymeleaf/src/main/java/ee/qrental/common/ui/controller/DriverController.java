@@ -1,7 +1,5 @@
 package ee.qrental.common.ui.controller;
 
-import ee.qrental.car.application.port.in.command.CarDeleteCommand;
-import ee.qrental.car.domain.Car;
 import ee.qrental.driver.application.port.in.command.DriverAddCommand;
 import ee.qrental.driver.application.port.in.command.DriverDeleteCommand;
 import ee.qrental.driver.application.port.in.command.DriverUpdateCommand;
@@ -35,7 +33,7 @@ public class DriverController {
     }
 
     private void addDriverListToModel(final Model model) {
-        final var drivers = driverLoadPort.loadAllDrivers();
+        final var drivers = driverLoadPort.loadAll();
         model.addAttribute("drivers", drivers);
     }
 
@@ -53,7 +51,7 @@ public class DriverController {
 
     @GetMapping(value = "/update-form/{id}")
     public String updateForm(@PathVariable("id") long id, Model model) {
-        final var driverUpdateCommand = mapToCommand(driverLoadPort.loadDriverById(id));
+        final var driverUpdateCommand = mapToCommand(driverLoadPort.loadById(id));
         model.addAttribute("driverUpdateCommand", driverUpdateCommand);
         return "forms/updateDriver";
     }
@@ -67,7 +65,7 @@ public class DriverController {
 
     @GetMapping(value = "/delete-form/{id}")
     public String deleteForm(@PathVariable("id") long id, Model model) {
-        final var driver = driverLoadPort.loadDriverById(id);
+        final var driver = driverLoadPort.loadById(id);
         final var driverDeleteCommand = new DriverDeleteCommand();
         driverDeleteCommand.setId(driver.getId());
         driverDeleteCommand.setObjectInfo(getObjectInfo(driver));

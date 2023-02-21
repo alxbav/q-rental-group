@@ -53,7 +53,7 @@ class DriverService implements
     @Override
     public void update(final DriverUpdateCommand command) {
         final Long driverId = command.getId();
-        final Driver domain = driverLoadPort.loadDriverById(driverId);
+        final Driver domain = driverLoadPort.loadById(driverId);
         if (domain == null) {
             throw new RuntimeException("Update of Driver failed. No Driver with id = " + driverId);
         }
