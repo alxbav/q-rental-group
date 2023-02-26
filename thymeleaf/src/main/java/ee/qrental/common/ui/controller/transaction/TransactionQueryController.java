@@ -3,8 +3,7 @@ package ee.qrental.common.ui.controller.transaction;
 
 import ee.qrental.transaction.application.port.in.query.GetTransactionQuery;
 import ee.qrental.transaction.application.port.in.request.transaction.TransactionFilterRequest;
-import ee.qrental.transaction.application.port.in.request.transaction.TransactionWeekFilterRequest;
-import ee.qrental.transaction.application.port.in.utils.Week;
+import ee.qrental.transaction.application.port.in.response.transaction.TransactionResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+import static ee.qrental.common.ui.controller.transaction.TransactionFilterRequestUtils.addCleanFilterRequestToModel;
+import static ee.qrental.common.ui.controller.transaction.TransactionFilterRequestUtils.addFilterOptionsToModel;
+
 @AllArgsConstructor
 @Controller
 @RequestMapping("/transactions")
@@ -23,10 +25,9 @@ public class TransactionQueryController {
 
     @GetMapping
     public String getPageWithAllTransactions(final Model model) {
-        model.addAttribute("searchRequest", new TransactionWeekFilterRequest());
-        model.addAttribute("years", List.of(2023));
-        model.addAttribute("weeks", Week.values());
-        model.addAttribute("transactions", transactionQuery.getAll());
+        addCleanFilterRequestToModel(model);
+        addFilterOptionsToModel(model);
+        addTransactionDataToModel(transactionQuery.getAll(), model);
 
         return "transactions";
     }
@@ -35,11 +36,13 @@ public class TransactionQueryController {
     public String getPageWithFilteredTransactions(
             @ModelAttribute final TransactionFilterRequest filterRequest,
             final Model model) {
-        model.addAttribute("transactions", transactionQuery.getAllByFilterRequest(filterRequest));
-        model.addAttribute("searchRequest", new TransactionWeekFilterRequest());
-        model.addAttribute("years", List.of(2023));
-        model.addAttribute("weeks", Week.values());
+        addFilterOptionsToModel(model);
+        addTransactionDataToModel(transactionQuery.getAllByFilterRequest(filterRequest), model);
 
         return "transactions";
+    }
+
+    private void addTransactionDataToModel(final List<TransactionResponse> transactions, final Model model) {
+        model.addAttribute("transactions", transactions);
     }
 }

@@ -1,6 +1,6 @@
 <form th:fragment="searchForm"
       th:action="@{/balances/driver/{id}(id=${driverId})}"
-      th:object="${filterRequest}"
+      th:object="${transactionFilterRequest}"
       method="post">
 
     <input id="driverId" required

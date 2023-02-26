@@ -17,7 +17,7 @@ import static java.time.DayOfWeek.MONDAY;
 import static java.time.DayOfWeek.SUNDAY;
 import static java.time.Month.JUNE;
 import static java.time.temporal.IsoFields.WEEK_OF_WEEK_BASED_YEAR;
-import static java.time.temporal.TemporalAdjusters.previousOrSame;
+import static java.time.temporal.TemporalAdjusters.*;
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
 
@@ -51,24 +51,50 @@ class TransactionQueryService implements GetTransactionQuery {
     @Override
     public List<TransactionResponse> getAllByFilterRequest(
             final TransactionFilterRequest request) {
-        final var year = request.getYear();
-        final var weekNumber = request.getWeek().getNumber();
-        final var startWeekDay = getDayByYearAndWeekNumberAndDayOfWeek(year, weekNumber, MONDAY);
-        final var endWeekDay = getDayByYearAndWeekNumberAndDayOfWeek(year, weekNumber, SUNDAY);
+        final var startDay = getStartDate(request);
+        final var endDay = getEndDate(request);
         final var driverId = request.getDriverId();
         if (driverId == null) {
             return mapToTransactionResponseList(
-                    transactionLoadPort.loadAllBetweenDays(startWeekDay, endWeekDay));
+                    transactionLoadPort.loadAllBetweenDays(startDay, endDay));
         }
         return mapToTransactionResponseList(
-                transactionLoadPort.loadAllByDriverIdAndBetweenDays(driverId, startWeekDay, endWeekDay));
-
+                transactionLoadPort.loadAllByDriverIdAndBetweenDays(driverId, startDay, endDay));
     }
+
+
+    private LocalDate getStartDate(TransactionFilterRequest request) {
+        final var year = request.getYear();
+        final var weekNumber = request.getWeek().getNumber();
+        if (weekNumber == 0) {
+            return getFirstDayInYear(year);
+        }
+
+        return getDayByYearAndWeekNumberAndDayOfWeek(year, weekNumber, MONDAY);
+    }
+
+    private LocalDate getEndDate(TransactionFilterRequest request) {
+        final var year = request.getYear();
+        final var weekNumber = request.getWeek().getNumber();
+        if (weekNumber == 0) {
+            return getLastDayInYear(year);
+        }
+
+        return getDayByYearAndWeekNumberAndDayOfWeek(year, weekNumber, SUNDAY);
+    }
+
 
     @Override
     public TransactionUpdateRequest getUpdateRequestById(Long id) {
         return mapper.toUpdateRequest(transactionLoadPort.loadById(id));
+    }
 
+    private LocalDate getFirstDayInYear(final Integer year) {
+        return LocalDate.of(year, 1, 1).with(firstDayOfYear());
+    }
+
+    private LocalDate getLastDayInYear(final Integer year) {
+        return LocalDate.of(year, 1, 1).with(lastDayOfYear());
     }
 
     private LocalDate getDayByYearAndWeekNumberAndDayOfWeek(
