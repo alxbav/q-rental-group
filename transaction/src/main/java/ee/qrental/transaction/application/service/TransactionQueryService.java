@@ -6,18 +6,12 @@ import ee.qrental.transaction.application.port.in.request.transaction.Transactio
 import ee.qrental.transaction.application.port.in.request.transaction.TransactionUpdateRequest;
 import ee.qrental.transaction.application.port.in.response.transaction.TransactionResponse;
 import ee.qrental.transaction.application.port.out.TransactionLoadPort;
+import ee.qrental.transaction.application.service.strategy.TransactionLoadStrategy;
 import ee.qrental.transaction.domain.Transaction;
 import lombok.AllArgsConstructor;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.util.List;
 
-import static java.time.DayOfWeek.MONDAY;
-import static java.time.DayOfWeek.SUNDAY;
-import static java.time.Month.JUNE;
-import static java.time.temporal.IsoFields.WEEK_OF_WEEK_BASED_YEAR;
-import static java.time.temporal.TemporalAdjusters.*;
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
 
@@ -25,6 +19,7 @@ import static java.util.stream.Collectors.toList;
 class TransactionQueryService implements GetTransactionQuery {
 
     private final TransactionLoadPort transactionLoadPort;
+    private final List<TransactionLoadStrategy> loadStrategies;
     private final ResponseMapper<TransactionUpdateRequest, TransactionResponse, Transaction> mapper;
 
     @Override
@@ -44,72 +39,25 @@ class TransactionQueryService implements GetTransactionQuery {
 
     @Override
     public List<TransactionResponse> getAllByDriverId(final Long driverId) {
-        return mapToTransactionResponseList(
-                transactionLoadPort.loadAllByDriverId(driverId));
+        return mapToTransactionResponseList(transactionLoadPort.loadAllByDriverId(driverId));
     }
 
     @Override
-    public List<TransactionResponse> getAllByFilterRequest(
-            final TransactionFilterRequest request) {
-        final var startDay = getStartDate(request);
-        final var endDay = getEndDate(request);
-        final var driverId = request.getDriverId();
-        if (driverId == null) {
-            return mapToTransactionResponseList(
-                    transactionLoadPort.loadAllBetweenDays(startDay, endDay));
-        }
+    public List<TransactionResponse> getAllByFilterRequest(final TransactionFilterRequest request) {
         return mapToTransactionResponseList(
-                transactionLoadPort.loadAllByDriverIdAndBetweenDays(driverId, startDay, endDay));
+                loadStrategies.stream()
+                        .filter(strategy -> strategy.canApply(request))
+                        .findFirst()
+                        .orElseThrow(() -> new RuntimeException("No Load Strategy was found for the request: " + request))
+                        .load(request));
     }
-
-
-    private LocalDate getStartDate(TransactionFilterRequest request) {
-        final var year = request.getYear();
-        final var weekNumber = request.getWeek().getNumber();
-        if (weekNumber == 0) {
-            return getFirstDayInYear(year);
-        }
-
-        return getDayByYearAndWeekNumberAndDayOfWeek(year, weekNumber, MONDAY);
-    }
-
-    private LocalDate getEndDate(TransactionFilterRequest request) {
-        final var year = request.getYear();
-        final var weekNumber = request.getWeek().getNumber();
-        if (weekNumber == 0) {
-            return getLastDayInYear(year);
-        }
-
-        return getDayByYearAndWeekNumberAndDayOfWeek(year, weekNumber, SUNDAY);
-    }
-
 
     @Override
     public TransactionUpdateRequest getUpdateRequestById(Long id) {
         return mapper.toUpdateRequest(transactionLoadPort.loadById(id));
     }
 
-    private LocalDate getFirstDayInYear(final Integer year) {
-        return LocalDate.of(year, 1, 1).with(firstDayOfYear());
-    }
-
-    private LocalDate getLastDayInYear(final Integer year) {
-        return LocalDate.of(year, 1, 1).with(lastDayOfYear());
-    }
-
-    private LocalDate getDayByYearAndWeekNumberAndDayOfWeek(
-            final Integer year,
-            final Integer weekNumber,
-            final DayOfWeek dayOfWeek) {
-        return LocalDate.of(year, JUNE, 1)
-                .with(previousOrSame(dayOfWeek))
-                .with(WEEK_OF_WEEK_BASED_YEAR, weekNumber);
-    }
-
     private List<TransactionResponse> mapToTransactionResponseList(final List<Transaction> transactions) {
-        return transactions.stream()
-                .map(mapper::toResponse)
-                .sorted(comparing(TransactionResponse::getDate))
-                .collect(toList());
+        return transactions.stream().map(mapper::toResponse).sorted(comparing(TransactionResponse::getDate)).collect(toList());
     }
 }

@@ -1,12 +1,9 @@
 package ee.qrental.transaction.application.service;
 
-import ee.qrental.common.core.api.mapper.ResponseMapper;
 import ee.qrental.driver.application.port.out.DriverLoadPort;
 import ee.qrental.driver.domain.Driver;
 import ee.qrental.transaction.application.port.in.query.GetBalanceQuery;
-import ee.qrental.transaction.application.port.in.request.transaction.TransactionUpdateRequest;
 import ee.qrental.transaction.application.port.in.response.balance.BalanceResponse;
-import ee.qrental.transaction.application.port.in.response.transaction.TransactionResponse;
 import ee.qrental.transaction.application.port.out.TransactionLoadPort;
 import ee.qrental.transaction.domain.Transaction;
 import lombok.AllArgsConstructor;
@@ -20,8 +17,6 @@ public class BalancesQueryService implements GetBalanceQuery {
 
     private final TransactionLoadPort transactionLoadPort;
     private final DriverLoadPort driverLoadPort;
-
-    private final ResponseMapper<TransactionUpdateRequest, TransactionResponse, Transaction> mapper;
 
     @Override
     public List<BalanceResponse> getAll() {

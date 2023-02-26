@@ -15,13 +15,18 @@ import ee.qrental.transaction.application.port.in.response.firm.FirmResponse;
 import ee.qrental.transaction.application.port.in.response.transaction.TransactionResponse;
 import ee.qrental.transaction.application.port.in.response.transactiontype.TransactionTypeResponse;
 import ee.qrental.transaction.application.port.out.*;
+import ee.qrental.transaction.application.service.strategy.TransactionLoadStrategy;
 import ee.qrental.transaction.domain.Firm;
 import ee.qrental.transaction.domain.Transaction;
 import ee.qrental.transaction.domain.TransactionType;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.List;
+
 @Configuration
+@ComponentScan(value = "ee.qrental.transaction.application.service.strategy")
 public class TransactionApplicationConfig {
 
     @Bean
@@ -86,8 +91,9 @@ public class TransactionApplicationConfig {
     @Bean
     public GetTransactionQuery getGetTransactionQuery(
             final TransactionLoadPort transactionLoadPort,
-            final ResponseMapper<TransactionUpdateRequest, TransactionResponse, Transaction> mapper) {
-        return new TransactionQueryService(transactionLoadPort, mapper);
+            final ResponseMapper<TransactionUpdateRequest, TransactionResponse, Transaction> mapper,
+            final List<TransactionLoadStrategy> loadStrategies) {
+        return new TransactionQueryService(transactionLoadPort, loadStrategies, mapper);
     }
 
     @Bean
@@ -117,8 +123,7 @@ public class TransactionApplicationConfig {
     @Bean
     public GetBalanceQuery getGetBalanceQuery(
             final TransactionLoadPort transactionLoadPort,
-            final DriverLoadPort driverLoadPort,
-            final ResponseMapper<TransactionUpdateRequest, TransactionResponse, Transaction> mapper) {
-        return new BalancesQueryService(transactionLoadPort, driverLoadPort, mapper);
+            final DriverLoadPort driverLoadPort) {
+        return new BalancesQueryService(transactionLoadPort, driverLoadPort);
     }
 }
