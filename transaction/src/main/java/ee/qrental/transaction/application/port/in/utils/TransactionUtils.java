@@ -7,9 +7,10 @@ import java.util.List;
 
 @UtilityClass
 public class TransactionUtils {
-    public static final Long getSum(final List<TransactionResponse> transactionResponses){
-        return transactionResponses.stream()
-                .mapToLong(transactionResponse-> transactionResponse.getRealAmount())
+    public static Long getSum(final List<TransactionResponse> transactionResponses){
+        return transactionResponses
+                .stream()
+                .mapToLong(TransactionResponse::getRealAmount)
                 .sum();
     }
 }

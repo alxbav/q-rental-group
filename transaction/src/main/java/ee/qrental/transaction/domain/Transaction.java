@@ -5,10 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoField;
 import java.time.temporal.WeekFields;
 
-import static java.lang.String.format;
+import static java.util.Locale.getDefault;
 
 
 @Getter
@@ -45,6 +44,6 @@ public class Transaction {
         return type.getNegative() ? -amount : amount;
     }
     public Integer getWeekNumber() {
-        return date.get(ChronoField.ALIGNED_WEEK_OF_YEAR);
+        return date.get(WeekFields.of(getDefault()).weekOfWeekBasedYear());
     }
 }

@@ -14,23 +14,24 @@ import static java.time.temporal.TemporalAdjusters.*;
 
 @UtilityClass
 public class TransactionLoadUtils {
-    public static LocalDate getFirstDayOfYear(final Integer year){
-       return of(year, 1, 1).with(firstDayOfYear());
+    public static LocalDate getFirstDayOfYear(final Integer year) {
+        return of(year, 1, 1).with(firstDayOfYear());
     }
 
-    public static LocalDate getLastDayOfYear(final Integer year){
+    public static LocalDate getLastDayOfYear(final Integer year) {
         return of(year, 1, 1).with(lastDayOfYear());
     }
 
     public static LocalDate getFirstDayOfWeekInYear(final Integer year,
-                                                    final Integer weekNumber){
-        return  getDayByYearAndWeekNumberAndDayOfWeek(year, weekNumber, MONDAY);
+                                                    final Integer weekNumber) {
+        return getDayByYearAndWeekNumberAndDayOfWeek(year, weekNumber, MONDAY);
     }
 
     public static LocalDate getLastDayOfWeekInYear(final Integer year,
-                                                    final Integer weekNumber){
-        return  getDayByYearAndWeekNumberAndDayOfWeek(year, weekNumber, SUNDAY);
+                                                   final Integer weekNumber) {
+        return getDayByYearAndWeekNumberAndDayOfWeek(year, weekNumber, SUNDAY);
     }
+
     private static LocalDate getDayByYearAndWeekNumberAndDayOfWeek(
             final Integer year,
             final Integer weekNumber,
