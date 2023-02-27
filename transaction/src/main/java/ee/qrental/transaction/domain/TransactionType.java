@@ -2,11 +2,13 @@ package ee.qrental.transaction.domain;
 
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import static java.lang.String.format;
 
 
 @Getter
+@NoArgsConstructor
 public class TransactionType {
 
     private static final Integer COMMENT_MAX_SIZE = 150;
@@ -28,6 +30,10 @@ public class TransactionType {
         this.description = description;
         this.negative = negative;
         this.comment = comment;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setName(String name) {

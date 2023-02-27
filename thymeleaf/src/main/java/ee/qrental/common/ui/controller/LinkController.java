@@ -3,20 +3,18 @@ package ee.qrental.common.ui.controller;
 
 import ee.qrental.car.application.port.out.CarLoadPort;
 import ee.qrental.driver.application.port.out.DriverLoadPort;
-import ee.qrental.link.application.port.in.command.LinkAddCommand;
-import ee.qrental.link.application.port.in.command.LinkDeleteCommand;
-import ee.qrental.link.application.port.in.command.LinkUpdateCommand;
+import ee.qrental.link.application.port.in.query.GetLinkQuery;
+import ee.qrental.link.application.port.in.request.LinkAddRequest;
+import ee.qrental.link.application.port.in.request.LinkDeleteRequest;
+import ee.qrental.link.application.port.in.request.LinkUpdateRequest;
 import ee.qrental.link.application.port.in.usecase.LinkAddUseCase;
 import ee.qrental.link.application.port.in.usecase.LinkDeleteUseCase;
 import ee.qrental.link.application.port.in.usecase.LinkUpdateUseCase;
 import ee.qrental.link.application.port.out.LinkLoadPort;
-import ee.qrental.link.domain.Link;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import static java.lang.String.format;
 
 @AllArgsConstructor
 
@@ -30,6 +28,7 @@ public class LinkController {
     private final LinkLoadPort linkLoadPort;
     private final DriverLoadPort driverLoadPort;
     private final CarLoadPort carLoadPort;
+    private final GetLinkQuery linkQuery;
 
     @GetMapping
     public String getLinkView(final Model model) {
@@ -40,7 +39,7 @@ public class LinkController {
     }
 
     private void addLinkListToModel(final Model model) {
-        final var links = linkLoadPort.loadAllLinks();
+        final var links = linkLoadPort.loadAll();
         model.addAttribute("links", links);
     }
 
@@ -56,21 +55,21 @@ public class LinkController {
 
     @GetMapping(value = "/add-form")
     public String addForm(final Model model) {
-        model.addAttribute("linkAddCommand", new LinkAddCommand());
+        model.addAttribute("linkAddCommand", new LinkAddRequest());
         addCarListToModel(model);
         addDriverListToModel(model);
         return "forms/addLink";
     }
 
     @PostMapping(value = "/add")
-    public String addLinkLink(@ModelAttribute final LinkAddCommand linkInfo) {
+    public String addLinkLink(@ModelAttribute final LinkAddRequest linkInfo) {
         linkAddUseCase.add(linkInfo);
         return "redirect:/links";
     }
 
     @GetMapping(value = "/update-form/{id}")
     public String updateForm(@PathVariable("id") long id, Model model) {
-        final var linkUpdateCommand = mapToCommand(linkLoadPort.loadLinkById(id));
+        final var linkUpdateCommand = linkQuery.getUpdateRequestById(id);
         model.addAttribute("linkUpdateCommand", linkUpdateCommand);
         addCarListToModel(model);
         addDriverListToModel(model);
@@ -78,48 +77,22 @@ public class LinkController {
     }
 
     @PostMapping("/update")
-    public String updateLinkLink(final LinkUpdateCommand linkUpdateCommand) {
+    public String updateLinkLink(final LinkUpdateRequest linkUpdateCommand) {
         linkUpdateUseCase.update(linkUpdateCommand);
         return "redirect:/links";
     }
 
     @GetMapping(value = "/delete-form/{id}")
     public String deleteForm(@PathVariable("id") long id, Model model) {
-        final var link = linkLoadPort.loadLinkById(id);
-        final var linkDeleteCommand = new LinkDeleteCommand(id);
-        model.addAttribute("linkDeleteCommand", linkDeleteCommand);
-        model.addAttribute("objectInfo", getObjectInfo(link));
+        final var request = new LinkDeleteRequest(id);
+        model.addAttribute("linkDeleteCommand", request);
+        model.addAttribute("objectInfo", linkQuery.getObjectInfo(id));
         return "forms/deleteLink";
     }
 
-    private String getObjectInfo(final Link link) {
-        final var driver = driverLoadPort.loadById(link.getDriverId());
-        final var car = carLoadPort.loadCarById(link.getCarId());
-        final var linkDateStart = link.getDateStart().toString();
-        final var linkDateEnd = link.getDateEnd().toString();
-        final var linkDriver = driver.getFirstName() + " " + driver.getLastName();
-        final var linkCar = car.getRegNumber();
-
-        return format("Link: %s for Car: %s  and Driver: from: %s - to: %s",
-                linkCar,
-                linkDriver,
-                linkDateStart,
-                linkDateEnd);
-    }
-
     @PostMapping("/delete")
-    public String deleteForm(final LinkDeleteCommand linkDeleteCommand) {
-        linkDeleteUseCase.delete(linkDeleteCommand);
+    public String deleteForm(final LinkDeleteRequest request) {
+        linkDeleteUseCase.delete(request);
         return "redirect:/links";
-    }
-
-    private LinkUpdateCommand mapToCommand(final Link domain) {
-        return new LinkUpdateCommand(
-                domain.getId(),
-                domain.getCarId(),
-                domain.getDriverId(),
-                domain.getDateStart(),
-                domain.getDateEnd(),
-                domain.getComment());
     }
 }

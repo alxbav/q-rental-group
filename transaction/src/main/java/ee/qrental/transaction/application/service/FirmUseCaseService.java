@@ -6,10 +6,15 @@ import ee.qrental.transaction.application.port.in.request.firm.FirmUpdateRequest
 import ee.qrental.transaction.application.port.in.usecase.firm.FirmAddUseCase;
 import ee.qrental.transaction.application.port.in.usecase.firm.FirmDeleteUseCase;
 import ee.qrental.transaction.application.port.in.usecase.firm.FirmUpdateUseCase;
-import ee.qrental.transaction.application.port.out.*;
+import ee.qrental.transaction.application.port.out.FirmAddPort;
+import ee.qrental.transaction.application.port.out.FirmDeletePort;
+import ee.qrental.transaction.application.port.out.FirmLoadPort;
+import ee.qrental.transaction.application.port.out.FirmUpdatePort;
 import ee.qrental.transaction.domain.Firm;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
 @AllArgsConstructor
 class FirmUseCaseService implements
         FirmAddUseCase,
@@ -17,11 +22,8 @@ class FirmUseCaseService implements
         FirmDeleteUseCase {
 
     private final FirmAddPort firmAddPort;
-
     private final FirmUpdatePort firmUpdatePort;
-
     private final FirmLoadPort firmLoadPort;
-
     private final FirmDeletePort firmDeletePort;
 
     @Override

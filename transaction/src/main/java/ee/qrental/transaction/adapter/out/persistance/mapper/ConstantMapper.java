@@ -2,7 +2,9 @@ package ee.qrental.transaction.adapter.out.persistance.mapper;
 
 import ee.qrental.transaction.adapter.out.persistance.jpaentity.ConstantJpaEntity;
 import ee.qrental.transaction.domain.Constant;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ConstantMapper {
 
     public Constant mapToDomain(final ConstantJpaEntity jpaEntity) {

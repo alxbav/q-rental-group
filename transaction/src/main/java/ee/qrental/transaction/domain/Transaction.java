@@ -2,6 +2,7 @@ package ee.qrental.transaction.domain;
 
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
@@ -9,7 +10,7 @@ import java.time.temporal.WeekFields;
 
 import static java.util.Locale.getDefault;
 
-
+@NoArgsConstructor
 @Getter
 @Setter
 public class Transaction {

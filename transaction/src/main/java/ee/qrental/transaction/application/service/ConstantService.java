@@ -6,7 +6,9 @@ import ee.qrental.transaction.application.port.out.*;
 import ee.qrental.transaction.domain.Constant;
 
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
 @AllArgsConstructor
 class ConstantService implements
         ConstantAddUseCase,
@@ -14,15 +16,13 @@ class ConstantService implements
         ConstantDeleteUseCase {
 
     private final ConstantAddPort constantAddPort;
-
     private final ConstantUpdatePort constantUpdatePort;
-
     private final ConstantLoadPort constantLoadPort;
-
     private final ConstantDeletePort constantDeletePort;
 
     @Override
     public void add(final ConstantAddCommand command) {
+        //TODO add mapper
         final var constantDomain = new Constant(
                 null,
                 command.getName(),
@@ -39,6 +39,7 @@ class ConstantService implements
         if (domain == null) {
             throw new RuntimeException("Update of Constant failed. No Constant with id = " + constantId);
         }
+        //TODO update mapper
         updateDomain(command, domain);
         constantUpdatePort.updateConstant(domain);
     }

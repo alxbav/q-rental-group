@@ -16,28 +16,28 @@ public class TransactionPersistenceAdapter implements
         TransactionUpdatePort,
         TransactionDeletePort {
 
-    private final SpringDataTransactionRepository springDataTransactionRepository;
-    private final TransactionMapper transactionMapper;
+    private final SpringDataTransactionRepository springRepository;
+    private final TransactionMapper mapper;
 
     @Override
     public Transaction add(final Transaction transaction) {
-        return transactionMapper.mapToDomain(
-                springDataTransactionRepository.save(
-                        transactionMapper.mapToEntity(transaction)
+        return mapper.mapToDomain(
+                springRepository.save(
+                        mapper.mapToEntity(transaction)
                 ));
     }
 
     @Override
     public Transaction update(final Transaction transaction) {
-        return transactionMapper.mapToDomain(
-                springDataTransactionRepository.save(
-                        transactionMapper.mapToEntity(transaction)
+        return mapper.mapToDomain(
+                springRepository.save(
+                        mapper.mapToEntity(transaction)
                 ));
     }
 
     @Override
     public void delete(Long id) {
-        springDataTransactionRepository.deleteById(id);
+        springRepository.deleteById(id);
     }
 
 

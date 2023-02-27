@@ -1,7 +1,8 @@
 package ee.qrental.link.application.port.in.usecase;
 
-import ee.qrental.link.application.port.in.command.LinkAddCommand;
+import ee.qrental.common.core.api.usecase.AddUseCase;
+import ee.qrental.link.application.port.in.request.LinkAddRequest;
 
-public interface LinkAddUseCase {
-    void add(LinkAddCommand link);
+public interface LinkAddUseCase
+        extends AddUseCase<LinkAddRequest> {
 }

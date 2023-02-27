@@ -1,4 +1,4 @@
-package ee.qrental.link.application.port.in.command;
+package ee.qrental.link.application.port.in.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

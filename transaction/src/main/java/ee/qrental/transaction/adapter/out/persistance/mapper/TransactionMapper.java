@@ -4,7 +4,9 @@ import ee.qrental.transaction.adapter.out.persistance.jpaentity.TransactionJpaEn
 import ee.qrental.transaction.adapter.out.persistance.jpaentity.TransactionTypeJpaEntity;
 import ee.qrental.transaction.domain.Transaction;
 import ee.qrental.transaction.domain.TransactionType;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TransactionMapper {
 
     public Transaction mapToDomain(final TransactionJpaEntity jpaEntity) {

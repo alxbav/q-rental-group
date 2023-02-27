@@ -1,9 +1,9 @@
 package ee.qrental.link.application.service;
 
-import ee.qrental.link.application.port.in.command.LinkAddCommand;
+import ee.qrental.link.application.port.in.request.LinkAddCommand;
 import ee.qrental.link.application.port.in.usecase.LinkAddUseCase;
 import ee.qrental.link.application.port.out.LinkDeletePort;
-import ee.qrental.link.application.port.in.command.LinkUpdateCommand;
+import ee.qrental.link.application.port.in.request.LinkUpdateCommand;
 import ee.qrental.link.application.port.in.usecase.LinkDeleteUseCase;
 import ee.qrental.link.application.port.in.usecase.LinkUpdateUseCase;
 import ee.qrental.link.application.port.out.LinkAddPort;

@@ -1,8 +1,9 @@
 package ee.qrental.link.application.port.in.usecase;
 
-import ee.qrental.link.application.port.in.command.LinkDeleteCommand;
+import ee.qrental.common.core.api.usecase.DeleteUseCase;
+import ee.qrental.link.application.port.in.request.LinkDeleteRequest;
 
-public interface LinkDeleteUseCase {
-    void delete(LinkDeleteCommand deleteCommand);
+public interface LinkDeleteUseCase
+        extends DeleteUseCase<LinkDeleteRequest> {
 }
 

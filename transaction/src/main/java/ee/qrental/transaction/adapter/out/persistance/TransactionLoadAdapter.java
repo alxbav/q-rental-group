@@ -16,17 +16,17 @@ import static java.util.stream.Collectors.toList;
 @Component
 public class TransactionLoadAdapter implements TransactionLoadPort {
 
-    private final SpringDataTransactionRepository springDataTransactionRepository;
+    private final SpringDataTransactionRepository springRepository;
     private final TransactionMapper mapper;
 
     @Override
     public Transaction loadById(final Long id) {
-        return mapper.mapToDomain(springDataTransactionRepository.getReferenceById(id));
+        return mapper.mapToDomain(springRepository.getReferenceById(id));
     }
 
     @Override
     public List<Transaction> loadAll() {
-        return springDataTransactionRepository.findAll()
+        return springRepository.findAll()
                 .stream()
                 .map(mapper::mapToDomain)
                 .collect(toList());
@@ -34,7 +34,7 @@ public class TransactionLoadAdapter implements TransactionLoadPort {
 
     @Override
     public List<Transaction> loadAllByDriverId(final Long driverId) {
-        return springDataTransactionRepository.findByDriverId(driverId)
+        return springRepository.findByDriverId(driverId)
                 .stream()
                 .map(mapper::mapToDomain)
                 .collect(toList());
@@ -43,7 +43,7 @@ public class TransactionLoadAdapter implements TransactionLoadPort {
     @Override
     public List<Transaction> loadAllBetweenDays(
             final LocalDate dateStart, final LocalDate dateEnd) {
-        return springDataTransactionRepository.findAllByDateBetween(dateStart, dateEnd)
+        return springRepository.findAllByDateBetween(dateStart, dateEnd)
                 .stream()
                 .map(mapper::mapToDomain)
                 .collect(toList());
@@ -52,7 +52,7 @@ public class TransactionLoadAdapter implements TransactionLoadPort {
     @Override
     public List<Transaction> loadAllByDriverIdAndBetweenDays(
             final Long driverId, final LocalDate dateStart, final LocalDate dateEnd) {
-        return springDataTransactionRepository
+        return springRepository
                 .findAllByDateBetweenAndDriverId(dateStart, dateEnd, driverId)
                 .stream()
                 .map(mapper::mapToDomain)

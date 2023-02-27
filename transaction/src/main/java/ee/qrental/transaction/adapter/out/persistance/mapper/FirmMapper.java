@@ -2,7 +2,9 @@ package ee.qrental.transaction.adapter.out.persistance.mapper;
 
 import ee.qrental.transaction.adapter.out.persistance.jpaentity.FirmJpaEntity;
 import ee.qrental.transaction.domain.Firm;
+import org.springframework.stereotype.Component;
 
+@Component
 public class FirmMapper {
 
     public Firm mapToDomain(final FirmJpaEntity jpaEntity) {
