@@ -33,9 +33,6 @@ public class LinkJpaEntity {
     @Column(name = "driver_id")
     private Long driverId;
 
-    @Column(name = "link_type")
-    private String linkType;
-
     @Column(name = "date_start")
     private LocalDate dateStart;
 

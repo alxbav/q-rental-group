@@ -10,13 +10,10 @@ import static java.lang.String.format;
 
 @Getter
 public class Link {
-
-
     private static final Integer COMMENT_MAX_SIZE = 150;
     private Long id;
     private Long carId;
     private Long driverId;
-    private String linkType;
     private LocalDate dateStart;
     private LocalDate dateEnd;
     private String comment;
@@ -24,7 +21,6 @@ public class Link {
     public Link(Long id,
                 Long carId,
                 Long driverId,
-                String linkType,
                 LocalDate dateStart,
                 LocalDate dateEnd,
                 String comment) {
@@ -32,38 +28,9 @@ public class Link {
         this.id = id;
         this.carId = carId;
         this.driverId = driverId;
-        this.linkType = linkType;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.comment = comment;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Long getCarId() {
-        return carId;
-    }
-
-    public Long getDriverId() {
-        return driverId;
-    }
-
-    public String getLinkType() {
-        return linkType;
-    }
-
-    public LocalDate getDateStart() {
-        return dateStart;
-    }
-
-    public LocalDate getDateEnd() {
-        return dateEnd;
-    }
-
-    public String getComment() {
-        return comment;
     }
 
     public void setId(Long id) {
@@ -76,10 +43,6 @@ public class Link {
 
     public void setDriverId(Long driverId) {
         this.driverId = driverId;
-    }
-
-    public void setLinkType(String linkType) {
-        this.linkType = linkType;
     }
 
     public void setDateStart(LocalDate dateStart) {

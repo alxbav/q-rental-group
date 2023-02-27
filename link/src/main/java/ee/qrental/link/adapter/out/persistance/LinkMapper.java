@@ -9,7 +9,6 @@ public class LinkMapper {
                 jpaEntity.getId(),
                 jpaEntity.getCarId(),
                 jpaEntity.getDriverId(),
-                jpaEntity.getLinkType(),
                 jpaEntity.getDateStart(),
                 jpaEntity.getDateEnd(),
                 jpaEntity.getComment()
@@ -22,7 +21,6 @@ public class LinkMapper {
                 .id(domain.getId())
                 .carId(domain.getCarId())
                 .driverId(domain.getDriverId())
-                .linkType(domain.getLinkType())
                 .dateStart(domain.getDateStart())
                 .dateEnd(domain.getDateEnd())
                 .comment(domain.getComment())

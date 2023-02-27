@@ -34,7 +34,6 @@ class LinkService implements
                 null,
                 command.getCarId(),
                 command.getDriverId(),
-                command.getLinkType(),
                 command.getDateStart(),
                 command.getDateEnd(),
                 command.getComment());
@@ -57,7 +56,6 @@ class LinkService implements
             final Link toUpdate) {
         toUpdate.setCarId(command.getCarId());
         toUpdate.setDriverId(command.getDriverId());
-        toUpdate.setLinkType(command.getLinkType());
         toUpdate.setDateStart(command.getDateStart());
         toUpdate.setDateEnd(command.getDateEnd());
         toUpdate.setComment(command.getComment());

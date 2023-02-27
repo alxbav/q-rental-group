@@ -51,7 +51,6 @@
                        type="date"/>
             </div>
         </div>
-
         <div class="col">
             <div class="mb-3">
                 <label class="form-label text-muted" for="dateEnd"> Date End</label>
@@ -61,14 +60,6 @@
             </div>
         </div>
     </div>
-
-    <div class="mb-3">
-        <label class="form-label text-muted" for="linkType">Link Type</label>
-        <input class="form-control" id="linkType" placeholder="Enter Link Type"
-               th:field="*{linkType}"
-               type="text"/>
-    </div>
-
     <div class="mb-3">
         <label class="form-label text-muted" for="comment">Comment</label>
         <textarea class="form-control"
@@ -76,7 +67,6 @@
                   placeholder="Enter Comment"
                   th:field="*{comment}"/>
     </div>
-
     <div th:replace="fragments/addUpdateFormButtonsFragment.html :: addUpdateButtons(
             submitValue='Update',
             cancelHref='/links'

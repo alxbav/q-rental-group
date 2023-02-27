@@ -95,14 +95,12 @@ public class LinkController {
     private String getObjectInfo(final Link link) {
         final var driver = driverLoadPort.loadById(link.getDriverId());
         final var car = carLoadPort.loadCarById(link.getCarId());
-        final var linkType = link.getLinkType();
         final var linkDateStart = link.getDateStart().toString();
         final var linkDateEnd = link.getDateEnd().toString();
         final var linkDriver = driver.getFirstName() + " " + driver.getLastName();
         final var linkCar = car.getRegNumber();
 
-        return format("Link: %s for Car: %s  and Driver: %s from: %s - to: %s",
-                linkType,
+        return format("Link: %s for Car: %s  and Driver: from: %s - to: %s",
                 linkCar,
                 linkDriver,
                 linkDateStart,
@@ -120,7 +118,6 @@ public class LinkController {
                 domain.getId(),
                 domain.getCarId(),
                 domain.getDriverId(),
-                domain.getLinkType(),
                 domain.getDateStart(),
                 domain.getDateEnd(),
                 domain.getComment());

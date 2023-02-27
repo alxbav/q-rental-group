@@ -17,7 +17,6 @@ public class LinkUpdateCommand {
     private Long id;
     private Long carId;
     private Long driverId;
-    private String linkType;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateStart;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
