@@ -1,8 +1,7 @@
-package ee.qrental.common.ui.controller;
+package ee.qrental.common.ui.controller.link;
 
 
 import ee.qrental.car.application.port.out.CarLoadPort;
-import ee.qrental.driver.application.port.out.DriverLoadPort;
 import ee.qrental.link.application.port.in.query.GetLinkQuery;
 import ee.qrental.link.application.port.in.request.LinkAddRequest;
 import ee.qrental.link.application.port.in.request.LinkDeleteRequest;
@@ -10,7 +9,7 @@ import ee.qrental.link.application.port.in.request.LinkUpdateRequest;
 import ee.qrental.link.application.port.in.usecase.LinkAddUseCase;
 import ee.qrental.link.application.port.in.usecase.LinkDeleteUseCase;
 import ee.qrental.link.application.port.in.usecase.LinkUpdateUseCase;
-import ee.qrental.link.application.port.out.LinkLoadPort;
+import ee.qrental.transaction.application.port.in.query.GetBalanceQuery;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,27 +19,50 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/links")
-public class LinkController {
+public class LinkUseCaseController {
 
     private final LinkAddUseCase linkAddUseCase;
     private final LinkUpdateUseCase linkUpdateUseCase;
     private final LinkDeleteUseCase linkDeleteUseCase;
-    private final LinkLoadPort linkLoadPort;
-    private final DriverLoadPort driverLoadPort;
     private final CarLoadPort carLoadPort;
     private final GetLinkQuery linkQuery;
+    private final GetBalanceQuery balanceQuery;
 
-    @GetMapping
-    public String getLinkView(final Model model) {
-        addLinkListToModel(model);
+    @GetMapping(value = "/add-form")
+    public String addForm(final Model model) {
+        addAddRequestToModel(model, new LinkAddRequest());
         addCarListToModel(model);
         addDriverListToModel(model);
-        return "links";
+
+        return "forms/addLink";
     }
 
-    private void addLinkListToModel(final Model model) {
-        final var links = linkLoadPort.loadAll();
-        model.addAttribute("links", links);
+    @PostMapping(value = "/add")
+    public String addLinkLink(@ModelAttribute final LinkAddRequest request,
+                              final Model model) {
+        linkAddUseCase.add(request);
+        if (request.hasViolations()) {
+            addAddRequestToModel(model, request);
+            addCarListToModel(model);
+            addDriverListToModel(model);
+
+            return "forms/addLink";
+        }
+
+        return "redirect:/links";
+    }
+
+    @GetMapping(value = "/update-form/{id}")
+    public String updateForm(@PathVariable("id") long id, Model model) {
+        final var updateRequest = linkQuery.getUpdateRequestById(id);
+        model.addAttribute("updateRequest", updateRequest);
+        addCarListToModel(model);
+        addDriverListToModel(model);
+        return "forms/updateLink";
+    }
+
+    private void addAddRequestToModel(final Model model, final LinkAddRequest addRequest) {
+        model.addAttribute("addRequest", addRequest);
     }
 
     private void addCarListToModel(final Model model) {
@@ -49,50 +71,27 @@ public class LinkController {
     }
 
     private void addDriverListToModel(final Model model) {
-        final var drivers = driverLoadPort.loadAll();
+        final var drivers = balanceQuery.getAll();
         model.addAttribute("drivers", drivers);
     }
 
-    @GetMapping(value = "/add-form")
-    public String addForm(final Model model) {
-        model.addAttribute("linkAddCommand", new LinkAddRequest());
-        addCarListToModel(model);
-        addDriverListToModel(model);
-        return "forms/addLink";
-    }
-
-    @PostMapping(value = "/add")
-    public String addLinkLink(@ModelAttribute final LinkAddRequest linkInfo) {
-        linkAddUseCase.add(linkInfo);
-        return "redirect:/links";
-    }
-
-    @GetMapping(value = "/update-form/{id}")
-    public String updateForm(@PathVariable("id") long id, Model model) {
-        final var linkUpdateCommand = linkQuery.getUpdateRequestById(id);
-        model.addAttribute("linkUpdateCommand", linkUpdateCommand);
-        addCarListToModel(model);
-        addDriverListToModel(model);
-        return "forms/updateLink";
-    }
-
     @PostMapping("/update")
-    public String updateLinkLink(final LinkUpdateRequest linkUpdateCommand) {
-        linkUpdateUseCase.update(linkUpdateCommand);
+    public String updateLinkLink(final LinkUpdateRequest updateRequest) {
+        linkUpdateUseCase.update(updateRequest);
         return "redirect:/links";
     }
 
     @GetMapping(value = "/delete-form/{id}")
     public String deleteForm(@PathVariable("id") long id, Model model) {
         final var request = new LinkDeleteRequest(id);
-        model.addAttribute("linkDeleteCommand", request);
+        model.addAttribute("deleteRequest", request);
         model.addAttribute("objectInfo", linkQuery.getObjectInfo(id));
         return "forms/deleteLink";
     }
 
     @PostMapping("/delete")
-    public String deleteForm(final LinkDeleteRequest request) {
-        linkDeleteUseCase.delete(request);
+    public String deleteForm(final LinkDeleteRequest deleteRequest) {
+        linkDeleteUseCase.delete(deleteRequest);
         return "redirect:/links";
     }
 }

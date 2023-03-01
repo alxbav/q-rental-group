@@ -9,7 +9,7 @@
 
 <form th:fragment="deleteForm"
       th:action="@{/links/delete}"
-      th:object="${linkDeleteCommand}"
+      th:object="${deleteRequest}"
       method="post">
     <input id="linkId" required
            th:field="*{id}"

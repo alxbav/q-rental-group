@@ -12,6 +12,7 @@ import ee.qrental.link.application.port.out.LinkAddPort;
 import ee.qrental.link.application.port.out.LinkDeletePort;
 import ee.qrental.link.application.port.out.LinkLoadPort;
 import ee.qrental.link.application.port.out.LinkUpdatePort;
+import ee.qrental.link.application.validator.LinkBusinessRuleValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,13 +27,19 @@ class LinkUseCaseService implements
     private final LinkUpdatePort linkUpdatePort;
     private final LinkLoadPort linkLoadPort;
     private final LinkDeletePort linkDeletePort;
-
     private final LinkAddRequestMapper addRequestMapper;
     private final LinkUpdateRequestMapper updateRequestMapper;
+    private final LinkBusinessRuleValidator businessRuleValidator;
 
     @Override
     public void add(final LinkAddRequest request) {
-        linkAddPort.addLink(addRequestMapper.toDomain(request));
+        final var domain = addRequestMapper.toDomain(request);
+        final var violationsCollector = businessRuleValidator.validate(domain);
+        if (violationsCollector.hasViolations()) {
+            request.setViolations(violationsCollector.getViolations());
+            return;
+        }
+        linkAddPort.addLink(domain);
     }
 
     @Override
@@ -51,4 +58,6 @@ class LinkUseCaseService implements
     public void delete(LinkDeleteRequest request) {
         linkDeletePort.deleteLink(request.getId());
     }
+
+
 }
