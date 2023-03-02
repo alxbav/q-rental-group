@@ -27,6 +27,7 @@ public class Car {
     private String fuelType;
     private Boolean lpg;
     private LocalDate dateInstallLpg;
+    private LocalDate dateEndLpg;
     private String insuranceFirm;
     private LocalDate insuranceDateStart;
     private LocalDate insuranceDateEnd;

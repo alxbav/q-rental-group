@@ -104,6 +104,7 @@ public class CarController {
         result.setFuelType(domain.getFuelType());
         result.setLpg(domain.getLpg());
         result.setDateInstallLpg(domain.getDateInstallLpg());
+        result.setDateEndLpg(domain.getDateEndLpg());
         result.setInsuranceFirm(domain.getInsuranceFirm());
         result.setInsuranceDateStart(domain.getInsuranceDateStart());
         result.setInsuranceDateEnd(domain.getInsuranceDateEnd());

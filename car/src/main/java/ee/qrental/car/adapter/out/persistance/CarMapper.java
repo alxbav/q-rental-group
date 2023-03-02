@@ -20,6 +20,7 @@ public class CarMapper {
                 jpaEntity.getFuelType(),
                 jpaEntity.getLpg(),
                 jpaEntity.getDateInstallLpg(),
+                jpaEntity.getDateEndLpg(),
                 jpaEntity.getInsuranceFirm(),
                 jpaEntity.getInsuranceDateStart(),
                 jpaEntity.getInsuranceDateEnd(),
@@ -48,6 +49,7 @@ public class CarMapper {
                 .fuelType(domain.getFuelType())
                 .lpg(domain.getLpg())
                 .dateInstallLpg(domain.getDateInstallLpg())
+                .dateEndLpg(domain.getDateEndLpg())
                 .insuranceFirm(domain.getInsuranceFirm())
                 .insuranceDateStart(domain.getInsuranceDateStart())
                 .insuranceDateEnd(domain.getInsuranceDateEnd())

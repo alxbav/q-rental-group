@@ -130,18 +130,27 @@
     <div class="row">
         <div class="col">
             <div class="mb-3">
-                <label class="form-check-label" for="lpg">LPG</label>
-                <input class="form-check-input" id="lpg"
+                <label class="form-label text-muted" for="lpgId">LPG</label>
+                <input class="form-check-input" id="lpgId"
                        th:field="*{lpg}"
                        type="checkbox"/>
             </div>
         </div>
-
+    </div>
+    <div class="row">
         <div class="col">
             <div class="mb-3">
-                <label class="form-label text-muted" for="dateInstallLpg">Date Installing LPG</label>
-                <input class="form-control" id="dateInstallLpg" placeholder="Enter date Install Lpg"
+                <label class="form-label text-muted" for="dateInstallLpgId">Date Installing LPG</label>
+                <input class="form-control" id="dateInstallLpgId" placeholder="Enter date Install Lpg"
                        th:field="*{dateInstallLpg}"
+                       type="date"/>
+            </div>
+        </div>
+        <div class="col">
+            <div class="mb-3">
+                <label class="form-label text-muted" for="dateEndLpgId">End Date of added fee for LPG</label>
+                <input class="form-control" id="dateEndLpgId" placeholder="Enter end date of added fee for Lpg"
+                       th:field="*{dateEndLpg}"
                        type="date"/>
             </div>
         </div>

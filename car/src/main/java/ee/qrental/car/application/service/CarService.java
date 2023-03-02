@@ -43,6 +43,7 @@ class CarService implements
                 command.getFuelType(),
                 command.getLpg(),
                 command.getDateInstallLpg(),
+                command.getDateEndLpg(),
                 command.getInsuranceFirm(),
                 command.getInsuranceDateStart(),
                 command.getInsuranceDateEnd(),
@@ -82,6 +83,7 @@ class CarService implements
         toUpdate.setFuelType(command.getFuelType());
         toUpdate.setLpg(command.getLpg());
         toUpdate.setDateInstallLpg(command.getDateInstallLpg());
+        toUpdate.setDateEndLpg(command.getDateEndLpg());
         toUpdate.setInsuranceFirm(command.getInsuranceFirm());
         toUpdate.setInsuranceDateStart(command.getInsuranceDateStart());
         toUpdate.setInsuranceDateEnd(command.getInsuranceDateEnd());

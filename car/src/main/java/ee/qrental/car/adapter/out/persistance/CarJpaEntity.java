@@ -65,6 +65,8 @@ public class CarJpaEntity {
 
     @Column(name = "date_install_lpg")
     private LocalDate dateInstallLpg;
+    @Column(name="date_end_lpg")
+    private LocalDate dateEndLpg;
 
     @Column(name = "insurance_firm")
     private String insuranceFirm;

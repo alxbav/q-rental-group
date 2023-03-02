@@ -7,6 +7,11 @@
         <li class="nav-item">
             <a class="nav-link" href="/firms">Firms</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" th:classappend="${activeTab == 'transactionTypes'} ? active : ''"
+               href="/transaction-types">Transaction Types</a>
+        </li>
+
     </ul>
 
     <h2 class="py-5">Constants</h2>

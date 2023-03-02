@@ -29,6 +29,8 @@ public class CarUpdateCommand {
     private Boolean lpg;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateInstallLpg;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate dateEndLpg;
     private String insuranceFirm;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate insuranceDateStart;
