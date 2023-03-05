@@ -38,11 +38,11 @@ public class LinkUseCaseController {
     }
 
     @PostMapping(value = "/add")
-    public String addLinkLink(@ModelAttribute final LinkAddRequest request,
+    public String addLinkLink(@ModelAttribute final LinkAddRequest addRequest,
                               final Model model) {
-        linkAddUseCase.add(request);
-        if (request.hasViolations()) {
-            addAddRequestToModel(model, request);
+        linkAddUseCase.add(addRequest);
+        if (addRequest.hasViolations()) {
+            addAddRequestToModel(model, addRequest);
             addCarListToModel(model);
             addDriverListToModel(model);
 
@@ -58,6 +58,7 @@ public class LinkUseCaseController {
         model.addAttribute("updateRequest", updateRequest);
         addCarListToModel(model);
         addDriverListToModel(model);
+
         return "forms/updateLink";
     }
 
@@ -78,20 +79,23 @@ public class LinkUseCaseController {
     @PostMapping("/update")
     public String updateLinkLink(final LinkUpdateRequest updateRequest) {
         linkUpdateUseCase.update(updateRequest);
+
         return "redirect:/links";
     }
 
     @GetMapping(value = "/delete-form/{id}")
-    public String deleteForm(@PathVariable("id") long id, Model model) {
-        final var request = new LinkDeleteRequest(id);
-        model.addAttribute("deleteRequest", request);
+    public String deleteForm(@PathVariable("id") long id, final Model model) {
+        final var deleteRequest = new LinkDeleteRequest(id);
+        model.addAttribute("deleteRequest", deleteRequest);
         model.addAttribute("objectInfo", linkQuery.getObjectInfo(id));
+
         return "forms/deleteLink";
     }
 
     @PostMapping("/delete")
     public String deleteForm(final LinkDeleteRequest deleteRequest) {
         linkDeleteUseCase.delete(deleteRequest);
+
         return "redirect:/links";
     }
 }

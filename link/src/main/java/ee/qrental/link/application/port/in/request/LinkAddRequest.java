@@ -13,7 +13,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class LinkAddRequest {
-
     private Long carId;
     private Long driverId;
     private String linkType;

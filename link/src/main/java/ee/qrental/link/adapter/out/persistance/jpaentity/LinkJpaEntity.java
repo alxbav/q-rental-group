@@ -22,7 +22,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "link")
 public class LinkJpaEntity {
-
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;

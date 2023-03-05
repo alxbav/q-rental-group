@@ -45,6 +45,7 @@
         <module>transaction</module>
         <module>link</module>
         <module>thymeleaf</module>
+        <module>callsignlink</module>
     </modules>
 
 </project>

@@ -22,33 +22,34 @@ public class TransactionTypeUseCaseService implements
         TransactionTypeUpdateUseCase,
         TransactionTypeDeleteUseCase {
 
-    private final TransactionTypeAddPort transactionTypeAddPort;
-    private final TransactionTypeUpdatePort transactionTypeUpdatePort;
-    private final TransactionTypeDeletePort transactionTypeDeletePort;
+    private final TransactionTypeAddPort addPort;
+    private final TransactionTypeUpdatePort updatePort;
+    private final TransactionTypeDeletePort deletePort;
 
-    private final TransactionTypeLoadPort transactionTypeLoadPort;
+    private final TransactionTypeLoadPort loadPort;
 
     private final TransactionTypeAddRequestMapper addRequestMapper;
     private final TransactionTypeUpdateRequestMapper updateRequestMapper;
 
     @Override
     public void add(final TransactionTypeAddRequest request) {
-        transactionTypeAddPort.add(addRequestMapper.toDomain(request));
+        addPort.add(addRequestMapper.toDomain(request));
     }
 
     @Override
     public void update(final TransactionTypeUpdateRequest request) {
-        final var transactionTypeId = request.getId();
-        final var domain = transactionTypeLoadPort.loadById(transactionTypeId);
-        if (domain == null) {
-            throw new RuntimeException("Update of Transaction Type failed. No Transaction Type with id = "
-                    + transactionTypeId);
-        }
-        transactionTypeUpdatePort.update(updateRequestMapper.toDomain(request));
+        checkExistence(request.getId());
+        updatePort.update(updateRequestMapper.toDomain(request));
     }
 
     @Override
     public void delete(final TransactionTypeDeleteRequest request) {
-        transactionTypeDeletePort.delete(request.getId());
+        deletePort.delete(request.getId());
+    }
+
+    private void checkExistence(final Long id) {
+        if (loadPort.loadById(id) == null) {
+            throw new RuntimeException("Update of Transaction Type failed. No Record with id = " + id);
+        }
     }
 }

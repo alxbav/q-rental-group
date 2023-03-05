@@ -1,6 +1,5 @@
 package ee.qrental.driver.adapter;
 
-import ee.qrental.driver.adapter.out.persistance.CallSignLinkMapper;
 import ee.qrental.driver.adapter.out.persistance.DriverMapper;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
@@ -17,9 +16,4 @@ public class DriverAdapterConfig {
         return new DriverMapper();
     }
 
-
-    @Bean
-    public CallSignLinkMapper getCallSignLinkMapper(){
-        return new CallSignLinkMapper();
-    }
 }

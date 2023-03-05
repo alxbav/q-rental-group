@@ -23,10 +23,10 @@ class LinkUseCaseService implements
         LinkUpdateUseCase,
         LinkDeleteUseCase {
 
-    private final LinkAddPort linkAddPort;
-    private final LinkUpdatePort linkUpdatePort;
-    private final LinkLoadPort linkLoadPort;
-    private final LinkDeletePort linkDeletePort;
+    private final LinkAddPort addPort;
+    private final LinkUpdatePort updatePort;
+    private final LinkLoadPort loadPort;
+    private final LinkDeletePort deletePort;
     private final LinkAddRequestMapper addRequestMapper;
     private final LinkUpdateRequestMapper updateRequestMapper;
     private final LinkBusinessRuleValidator businessRuleValidator;
@@ -39,25 +39,23 @@ class LinkUseCaseService implements
             request.setViolations(violationsCollector.getViolations());
             return;
         }
-        linkAddPort.addLink(domain);
+        addPort.addLink(domain);
     }
 
     @Override
     public void update(final LinkUpdateRequest request) {
         checkExistence(request.getId());
-        linkUpdatePort.updateLink(updateRequestMapper.toDomain(request));
+        updatePort.updateLink(updateRequestMapper.toDomain(request));
     }
 
     private void checkExistence(final Long id) {
-        if (linkLoadPort.loadById(id) == null) {
-            throw new RuntimeException("Update of Link failed. No Link with id = " + id);
+        if (loadPort.loadById(id) == null) {
+            throw new RuntimeException("Update of Link failed. No Record with id = " + id);
         }
     }
 
     @Override
     public void delete(LinkDeleteRequest request) {
-        linkDeletePort.deleteLink(request.getId());
+        deletePort.deleteLink(request.getId());
     }
-
-
 }

@@ -15,10 +15,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@AllArgsConstructor
 
 @Controller
 @RequestMapping("/transactions")
+@AllArgsConstructor
 public class TransactionUseCaseController {
 
     private final TransactionAddUseCase addUseCase;
@@ -41,8 +41,8 @@ public class TransactionUseCaseController {
     }
 
     @PostMapping(value = "/add")
-    public String addTransactionTransaction(@ModelAttribute final TransactionAddRequest transactionInfo) {
-        addUseCase.add(transactionInfo);
+    public String addTransactionTransaction(@ModelAttribute final TransactionAddRequest addRequest) {
+        addUseCase.add(addRequest);
 
         return "redirect:/transactions";
     }

@@ -22,33 +22,32 @@ public class TransactionUseCaseService implements
         TransactionUpdateUseCase,
         TransactionDeleteUseCase {
 
-    private final TransactionAddPort transactionAddPort;
-    private final TransactionUpdatePort transactionUpdatePort;
-    private final TransactionLoadPort transactionLoadPort;
-    private final TransactionDeletePort transactionDeletePort;
-
+    private final TransactionAddPort addPort;
+    private final TransactionUpdatePort updatePort;
+    private final TransactionDeletePort deletePort;
+    private final TransactionLoadPort loadPort;
     private final TransactionAddRequestMapper addRequestMapper;
     private final TransactionUpdateRequestMapper updateRequestMapper;
 
     @Override
     public void add(final TransactionAddRequest request) {
-        transactionAddPort.add(addRequestMapper.toDomain(request));
+        addPort.add(addRequestMapper.toDomain(request));
     }
 
     @Override
     public void update(final TransactionUpdateRequest request) {
         checkExistence(request.getId());
-        transactionUpdatePort.update(updateRequestMapper.toDomain(request));
+        updatePort.update(updateRequestMapper.toDomain(request));
     }
 
     private void checkExistence(final Long id) {
-        if (transactionLoadPort.loadById(id) == null) {
+        if (loadPort.loadById(id) == null) {
             throw new RuntimeException("Update of Transaction failed. No Transaction with id = " + id);
         }
     }
 
     @Override
     public void delete(final TransactionDeleteRequest request) {
-        transactionDeletePort.delete(request.getId());
+        deletePort.delete(request.getId());
     }
 }

@@ -18,16 +18,4 @@ public class DriverApplicationConfig {
                 driverLoadPort,
                 driverDeletePort);
     }
-
-    @Bean
-    public CallSignLinkService getCallSignLinkService(
-            final CallSignLinkAddPort callSignLinkAddPort,
-            final CallSignLinkUpdatePort callSignLinkUpdatePort,
-            final CallSignLinkLoadPort callSignLinkLoadPort,
-            final CallSignLinkDeletePort callSignLinkDeletePort) {
-        return new CallSignLinkService(callSignLinkAddPort,
-                callSignLinkUpdatePort,
-                callSignLinkLoadPort,
-                callSignLinkDeletePort);
-    }
 }

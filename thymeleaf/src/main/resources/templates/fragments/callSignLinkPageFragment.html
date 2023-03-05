@@ -1,14 +1,7 @@
 <div th:fragment="callSignLinkPage">
     <nav th:replace="fragments/navigationFragment.html :: qrental-navigation"></nav>
-    <th>
-        <a class="btn btn-sm btn-outline-secondary"
-           href="/call-sign-links"
-           aria-controls="offcanvasExample">
-            <span class="bi-layers-half"></span>
-            Links
-        </a>
-    </th>
-    <h1 class="py-5">Call Sign Links</h1>
+    <ul th:replace="fragments/callsignTabFragment.html :: callsignTabs('callSignLinks')"></ul>
+    <h2 class="py-3">Call Sign Links</h2>
 
     <table class="table table-striped table-bordered">
         <tr>
@@ -41,7 +34,7 @@
                     <span class="bi-trash"></span>
                     Delete</a>
             </td>
-            <td th:text="${callSignLink.driverId}"></td>
+            <td th:text="${callSignLink.driverInfo}"></td>
             <td th:text="${callSignLink.callSign}"></td>
             <td th:text="${callSignLink.dateStart}"></td>
             <td th:text="${callSignLink.dateEnd}"></td>

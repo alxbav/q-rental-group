@@ -1,3 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-ee.qrental.callsignlink.adapter.CallSignLinkAdapterConfig,\
-ee.qrental.callsignlink.application.service.CallSignLinkApplicationConfig
+ee.qrental.callsignlink.adapter.AdapterConfig,\
+ee.qrental.callsignlink.application.ApplicationConfig
