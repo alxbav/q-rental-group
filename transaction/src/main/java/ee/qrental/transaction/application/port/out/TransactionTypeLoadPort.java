@@ -8,4 +8,6 @@ public interface TransactionTypeLoadPort {
     List<TransactionType> loadAll();
 
     TransactionType loadById(Long id);
+
+    TransactionType loadByName(final String name);
 }

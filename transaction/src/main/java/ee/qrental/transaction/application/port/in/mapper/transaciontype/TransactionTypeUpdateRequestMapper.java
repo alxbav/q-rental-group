@@ -13,6 +13,7 @@ public class TransactionTypeUpdateRequestMapper
     public TransactionType toDomain(final TransactionTypeUpdateRequest request) {
         final var domain = new TransactionType();
         domain.setId(request.getId());
+        domain.setName(request.getName());
         domain.setNegative(request.getNegative());
         domain.setDescription(request.getDescription());
         domain.setComment(request.getComment());

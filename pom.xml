@@ -39,6 +39,7 @@
     <modules>
         <module>commoncore</module>
         <module>application</module>
+        <module>job</module>
         <module>driverpotential</module>
         <module>driver</module>
         <module>car</module>

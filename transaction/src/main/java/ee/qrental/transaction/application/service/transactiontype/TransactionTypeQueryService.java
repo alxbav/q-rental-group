@@ -43,4 +43,9 @@ public class TransactionTypeQueryService implements GetTransactionTypeQuery {
     public TransactionTypeUpdateRequest getUpdateRequestById(Long id) {
         return updateRequestMapper.toRequest(loadPort.loadById(id));
     }
+
+    @Override
+    public TransactionTypeResponse getByName(final String name) {
+        return mapper.toResponse(loadPort.loadByName(name));
+    }
 }

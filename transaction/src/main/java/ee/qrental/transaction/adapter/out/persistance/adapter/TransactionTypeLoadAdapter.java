@@ -32,4 +32,10 @@ public class TransactionTypeLoadAdapter implements
         return mapper.mapToDomain(
                 springRepository.getReferenceById(id));
     }
+
+    @Override
+    public TransactionType loadByName(String name) {
+        return mapper.mapToDomain(
+                springRepository.findByName(name));
+    }
 }

@@ -10,6 +10,7 @@ import ee.qrental.link.domain.Link;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -37,6 +38,22 @@ public class LinkPersistenceAdapter implements
     public Link loadById(Long id) {
         return linkMapper.mapToDomain(
                 springDataLinkRepository.getReferenceById(id));
+    }
+
+    @Override
+    public List<Link> loadByDateEndGreaterThan(final LocalDate dateEnd) {
+        return springDataLinkRepository.findAllByDateEndGreaterThan(dateEnd)
+                .stream()
+                .map(linkMapper::mapToDomain)
+                .collect(toList());
+    }
+
+    @Override
+    public List<Link> loadByDateEndIsNull() {
+        return springDataLinkRepository.findAllByDateEndIsNull()
+                .stream()
+                .map(linkMapper::mapToDomain)
+                .collect(toList());
     }
 
     @Override

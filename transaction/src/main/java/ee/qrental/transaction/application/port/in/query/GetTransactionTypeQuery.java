@@ -6,5 +6,5 @@ import ee.qrental.transaction.application.port.in.response.transactiontype.Trans
 
 public interface GetTransactionTypeQuery
         extends BaseGetQuery<TransactionTypeUpdateRequest, TransactionTypeResponse> {
-
+    TransactionTypeResponse getByName(final String name);
 }
