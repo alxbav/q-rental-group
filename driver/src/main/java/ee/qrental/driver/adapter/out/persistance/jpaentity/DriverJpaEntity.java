@@ -1,4 +1,4 @@
-package ee.qrental.driver.adapter.out.persistance;
+package ee.qrental.driver.adapter.out.persistance.jpaentity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

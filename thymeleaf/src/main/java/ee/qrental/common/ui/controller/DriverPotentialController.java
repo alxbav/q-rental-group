@@ -1,8 +1,8 @@
 package ee.qrental.common.ui.controller;
 
 
-import ee.qrental.driver.application.port.in.command.DriverDeleteCommand;
-import ee.qrental.driver.domain.Driver;
+//import ee.qrental.driver.application.port.in.command.DriverDeleteCommand;
+//import ee.qrental.driver.domain.Driver;
 import ee.qrental.driverpotential.application.port.in.command.DriverPotentialAddCommand;
 import ee.qrental.driverpotential.application.port.in.command.DriverPotentialDeleteCommand;
 import ee.qrental.driverpotential.application.port.in.command.DriverPotentialUpdateCommand;

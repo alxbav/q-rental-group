@@ -1,5 +1,6 @@
-package ee.qrental.driver.adapter.out.persistance;
+package ee.qrental.driver.adapter.out.persistance.mapper;
 
+import ee.qrental.driver.adapter.out.persistance.jpaentity.DriverJpaEntity;
 import ee.qrental.driver.domain.Driver;
 
 public class DriverMapper {

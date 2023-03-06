@@ -1,5 +1,8 @@
 package ee.qrental.driver.application.port.out;
 
-public interface DriverDeletePort {
-    void deleteDriver(Long id);
+import ee.qrental.common.core.api.port.DeletePort;
+
+public interface DriverDeletePort
+extends DeletePort {
+
 }

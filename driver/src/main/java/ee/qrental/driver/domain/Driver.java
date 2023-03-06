@@ -2,6 +2,7 @@ package ee.qrental.driver.domain;
 
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
@@ -9,6 +10,7 @@ import static java.lang.String.format;
 
 
 @Getter
+@NoArgsConstructor
 public class Driver {
     private static final Integer FIRST_NAME_MAX_SIZE = 15;
     private static final Integer LAST_NAME_MAX_SIZE = 30;
@@ -68,6 +70,9 @@ public class Driver {
         this.comment = comment;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
     public void setActive(Boolean active) {
         this.active = active;
     }
