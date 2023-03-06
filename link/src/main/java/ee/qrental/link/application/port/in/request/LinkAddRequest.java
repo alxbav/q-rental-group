@@ -1,18 +1,19 @@
 package ee.qrental.link.application.port.in.request;
 
+import ee.qrental.common.core.api.application.request.AbstractAddRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class LinkAddRequest {
+public class LinkAddRequest
+        extends AbstractAddRequest {
+
     private Long carId;
     private Long driverId;
     private String linkType;
@@ -21,10 +22,5 @@ public class LinkAddRequest {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateEnd;
     private String comment;
-    private List<String> violations = new ArrayList<>();
-
-    public boolean hasViolations() {
-        return !violations.isEmpty();
-    }
 }
 

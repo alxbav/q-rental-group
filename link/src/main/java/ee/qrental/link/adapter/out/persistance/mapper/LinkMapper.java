@@ -1,12 +1,13 @@
 package ee.qrental.link.adapter.out.persistance.mapper;
 
-import ee.qrental.common.core.api.mapper.DomainMapper;
+import ee.qrental.common.core.api.adapter.mapper.DomainMapper;
 import ee.qrental.link.adapter.out.persistance.jpaentity.LinkJpaEntity;
 import ee.qrental.link.domain.Link;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LinkMapper implements DomainMapper<Link, LinkJpaEntity> {
+public class LinkMapper
+        implements DomainMapper<Link, LinkJpaEntity> {
 
     @Override
     public Link mapToDomain(final LinkJpaEntity jpaEntity) {

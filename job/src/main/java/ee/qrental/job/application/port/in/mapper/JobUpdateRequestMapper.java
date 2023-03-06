@@ -1,6 +1,6 @@
 package ee.qrental.job.application.port.in.mapper;
 
-import ee.qrental.common.core.api.mapper.UpdateRequestMapper;
+import ee.qrental.common.core.api.application.mapper.UpdateRequestMapper;
 import ee.qrental.job.application.port.in.request.JobUpdateRequest;
 import ee.qrental.job.domain.Job;
 import org.springframework.stereotype.Component;

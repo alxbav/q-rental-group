@@ -1,6 +1,6 @@
 package ee.qrental.job.application.port.in.mapper;
 
-import ee.qrental.common.core.api.mapper.ResponseMapper;
+import ee.qrental.common.core.api.application.mapper.ResponseMapper;
 import ee.qrental.job.application.port.in.response.JobResponse;
 import ee.qrental.job.domain.Job;
 import org.springframework.stereotype.Component;

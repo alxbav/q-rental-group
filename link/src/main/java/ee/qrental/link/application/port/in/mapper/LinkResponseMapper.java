@@ -1,6 +1,6 @@
 package ee.qrental.link.application.port.in.mapper;
 
-import ee.qrental.common.core.api.mapper.ResponseMapper;
+import ee.qrental.common.core.api.application.mapper.ResponseMapper;
 import ee.qrental.link.application.port.in.response.LinkResponse;
 import ee.qrental.link.domain.Link;
 import org.springframework.stereotype.Component;

@@ -14,7 +14,8 @@ import static java.util.stream.Collectors.toList;
 
 @AllArgsConstructor
 @Component
-public class TransactionLoadAdapter implements TransactionLoadPort {
+public class TransactionLoadAdapter
+        implements TransactionLoadPort {
 
     private final SpringDataTransactionRepository springRepository;
     private final TransactionMapper mapper;

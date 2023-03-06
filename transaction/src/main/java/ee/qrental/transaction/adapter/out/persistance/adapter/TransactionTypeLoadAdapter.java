@@ -13,8 +13,8 @@ import static java.util.stream.Collectors.toList;
 
 @Component
 @AllArgsConstructor
-public class TransactionTypeLoadAdapter implements
-        TransactionTypeLoadPort {
+public class TransactionTypeLoadAdapter
+        implements TransactionTypeLoadPort {
 
     private final SpringDataTransactionTypeRepository springRepository;
     private final TransactionTypeMapper mapper;

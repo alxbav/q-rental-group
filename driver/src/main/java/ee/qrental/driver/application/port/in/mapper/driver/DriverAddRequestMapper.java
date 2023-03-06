@@ -1,13 +1,14 @@
 package ee.qrental.driver.application.port.in.mapper.driver;
 
-import ee.qrental.common.core.api.mapper.AddRequestMapper;
+
+import ee.qrental.common.core.api.application.mapper.AddRequestMapper;
 import ee.qrental.driver.application.port.in.request.driver.DriverAddRequest;
 import ee.qrental.driver.domain.Driver;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DriverAddRequestMapper implements
-        AddRequestMapper<DriverAddRequest, Driver> {
+public class DriverAddRequestMapper
+        implements AddRequestMapper<DriverAddRequest, Driver> {
 
     @Override
     public Driver toDomain(DriverAddRequest request) {

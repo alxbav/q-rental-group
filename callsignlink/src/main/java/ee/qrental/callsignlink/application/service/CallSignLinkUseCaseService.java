@@ -25,15 +25,11 @@ class CallSignLinkUseCaseService implements
         CallSignLinkDeleteUseCase {
 
     private final CallSignLinkAddPort addPort;
-
     private final CallSignLinkUpdatePort updatePort;
-
     private final CallSignLinkDeletePort deletePort;
     private final CallSignLinkLoadPort loadPort;
-
     private final CallSignLinkAddRequestMapper addRequestMapper;
     private final CallSignLinkUpdateRequestMapper updateRequestMapper;
-
     private final CallSignLinkBusinessRuleValidator businessRuleValidator;
 
     @Override

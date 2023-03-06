@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-ee.qrental.common.ui.ControllerConfig
+ee.qrental.thymeleaf.ui.ControllerConfig

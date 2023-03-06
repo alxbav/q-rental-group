@@ -1,5 +1,7 @@
 package ee.qrental.job.application.port.out;
 
-public interface JobDeletePort {
-    void delete(final Long id);
+import ee.qrental.common.core.api.application.port.DeletePort;
+
+public interface JobDeletePort
+        extends DeletePort {
 }

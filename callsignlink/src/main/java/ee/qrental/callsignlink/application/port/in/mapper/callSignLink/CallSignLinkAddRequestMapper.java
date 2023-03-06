@@ -2,14 +2,14 @@ package ee.qrental.callsignlink.application.port.in.mapper.callSignLink;
 
 import ee.qrental.callsignlink.application.port.in.request.callsignlink.CallSignLinkAddRequest;
 import ee.qrental.callsignlink.domain.CallSignLink;
-import ee.qrental.common.core.api.mapper.AddRequestMapper;
+import ee.qrental.common.core.api.application.mapper.AddRequestMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class CallSignLinkAddRequestMapper implements
-        AddRequestMapper<CallSignLinkAddRequest, CallSignLink> {
+public class CallSignLinkAddRequestMapper
+        implements AddRequestMapper<CallSignLinkAddRequest, CallSignLink> {
 
     @Override
     public CallSignLink toDomain(CallSignLinkAddRequest request) {

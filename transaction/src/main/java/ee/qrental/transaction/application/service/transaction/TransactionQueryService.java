@@ -19,7 +19,8 @@ import static java.util.stream.Collectors.toList;
 
 @Service
 @AllArgsConstructor
-public class TransactionQueryService implements GetTransactionQuery {
+public class TransactionQueryService
+        implements GetTransactionQuery {
 
     private final TransactionLoadPort transactionLoadPort;
     private final List<TransactionLoadStrategy> loadStrategies;

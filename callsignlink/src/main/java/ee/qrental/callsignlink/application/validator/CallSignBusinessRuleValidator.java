@@ -2,8 +2,8 @@ package ee.qrental.callsignlink.application.validator;
 
 import ee.qrental.callsignlink.application.port.out.callsign.CallSignLoadPort;
 import ee.qrental.callsignlink.domain.CallSign;
-import ee.qrental.common.core.api.validation.QValidator;
-import ee.qrental.common.core.api.validation.ViolationsCollector;
+import ee.qrental.common.core.api.application.validation.QValidator;
+import ee.qrental.common.core.api.application.validation.ViolationsCollector;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -32,7 +32,6 @@ public class CallSignBusinessRuleValidator implements QValidator<CallSign> {
         if (domainFromDb.getId() == domain.getId()) {
             return;
         }
-
         violationCollector.collect(format("Call Sign %d already exists", callSign));
     }
 }

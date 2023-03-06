@@ -1,7 +1,7 @@
 package ee.qrental.link.application.validator;
 
-import ee.qrental.common.core.api.validation.QValidator;
-import ee.qrental.common.core.api.validation.ViolationsCollector;
+import ee.qrental.common.core.api.application.validation.QValidator;
+import ee.qrental.common.core.api.application.validation.ViolationsCollector;
 import ee.qrental.driver.application.port.out.DriverLoadPort;
 import ee.qrental.link.domain.Link;
 import ee.qrental.transaction.application.port.out.TransactionLoadPort;
@@ -15,7 +15,8 @@ import static java.lang.String.format;
 
 @Component
 @AllArgsConstructor
-public class LinkBusinessRuleValidator implements QValidator<Link> {
+public class LinkBusinessRuleValidator
+        implements QValidator<Link> {
 
     private final DriverLoadPort driverLoadPort;
     private final TransactionLoadPort transactionLoadPort;

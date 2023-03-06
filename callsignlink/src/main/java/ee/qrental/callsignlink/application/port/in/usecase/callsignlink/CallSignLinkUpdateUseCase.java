@@ -1,7 +1,7 @@
 package ee.qrental.callsignlink.application.port.in.usecase.callsignlink;
 
 import ee.qrental.callsignlink.application.port.in.request.callsignlink.CallSignLinkUpdateRequest;
-import ee.qrental.common.core.api.usecase.UpdateUseCase;
+import ee.qrental.common.core.api.application.usecase.UpdateUseCase;
 
 
 public interface CallSignLinkUpdateUseCase

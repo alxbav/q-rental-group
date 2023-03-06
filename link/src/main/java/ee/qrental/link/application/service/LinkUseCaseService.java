@@ -18,8 +18,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-class LinkUseCaseService implements
-        LinkAddUseCase,
+class LinkUseCaseService
+        implements LinkAddUseCase,
         LinkUpdateUseCase,
         LinkDeleteUseCase {
 
@@ -39,7 +39,7 @@ class LinkUseCaseService implements
             request.setViolations(violationsCollector.getViolations());
             return;
         }
-        addPort.addLink(domain);
+        addPort.add(domain);
     }
 
     @Override
@@ -56,6 +56,6 @@ class LinkUseCaseService implements
 
     @Override
     public void delete(LinkDeleteRequest request) {
-        deletePort.deleteLink(request.getId());
+        deletePort.delete(request.getId());
     }
 }

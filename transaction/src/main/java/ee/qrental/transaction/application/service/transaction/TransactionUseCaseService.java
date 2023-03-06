@@ -17,8 +17,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class TransactionUseCaseService implements
-        TransactionAddUseCase,
+public class TransactionUseCaseService
+        implements TransactionAddUseCase,
         TransactionUpdateUseCase,
         TransactionDeleteUseCase {
 

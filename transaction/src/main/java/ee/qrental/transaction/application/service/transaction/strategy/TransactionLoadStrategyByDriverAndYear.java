@@ -11,7 +11,8 @@ import java.util.List;
 
 @Component
 @AllArgsConstructor
-public class TransactionLoadStrategyByDriverAndYear implements TransactionLoadStrategy {
+public class TransactionLoadStrategyByDriverAndYear
+        implements TransactionLoadStrategy {
 
     private final TransactionLoadPort transactionLoadPort;
 

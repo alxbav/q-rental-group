@@ -2,13 +2,14 @@ package ee.qrental.callsignlink.adapter.out.persistance.mapper;
 
 import ee.qrental.callsignlink.adapter.out.persistance.jpaentity.CallSignJpaEntity;
 import ee.qrental.callsignlink.domain.CallSign;
-import ee.qrental.common.core.api.mapper.DomainMapper;
+import ee.qrental.common.core.api.adapter.mapper.DomainMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class CallSignMapper implements DomainMapper<CallSign, CallSignJpaEntity> {
+public class CallSignMapper
+        implements DomainMapper<CallSign, CallSignJpaEntity> {
 
     @Override
     public CallSign mapToDomain(final CallSignJpaEntity jpaEntity) {

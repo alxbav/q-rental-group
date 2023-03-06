@@ -2,7 +2,7 @@ package ee.qrental.callsignlink.application.port.in.mapper.callSign;
 
 import ee.qrental.callsignlink.application.port.in.response.CallSignResponse;
 import ee.qrental.callsignlink.domain.CallSign;
-import ee.qrental.common.core.api.mapper.ResponseMapper;
+import ee.qrental.common.core.api.application.mapper.ResponseMapper;
 import org.springframework.stereotype.Component;
 
 import static java.lang.String.format;

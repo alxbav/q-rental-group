@@ -16,8 +16,8 @@ import static java.util.stream.Collectors.toList;
 
 @Component
 @AllArgsConstructor
-public class JobPersistenceAdapter implements
-        JobLoadPort,
+public class JobPersistenceAdapter
+        implements JobLoadPort,
         JobAddPort,
         JobUpdatePort,
         JobDeletePort {
@@ -40,7 +40,7 @@ public class JobPersistenceAdapter implements
     }
 
     @Override
-    public Job addLink(final Job domain) {
+    public Job add(final Job domain) {
         return linkMapper.mapToDomain(
                 springDataJobRepository.save(
                         linkMapper.mapToEntity(domain)

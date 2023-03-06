@@ -1,6 +1,6 @@
 package ee.qrental.transaction.application.port.in.mapper.transaciontype;
 
-import ee.qrental.common.core.api.mapper.UpdateRequestMapper;
+import ee.qrental.common.core.api.application.mapper.UpdateRequestMapper;
 import ee.qrental.transaction.application.port.in.request.transactiontype.TransactionTypeUpdateRequest;
 import ee.qrental.transaction.domain.TransactionType;
 import org.springframework.stereotype.Component;

@@ -3,7 +3,7 @@ package ee.qrental.callsignlink.application.port.in.mapper.callSignLink;
 import ee.qrental.callsignlink.application.port.in.response.CallSignLinkResponse;
 import ee.qrental.callsignlink.application.port.out.callsign.CallSignLoadPort;
 import ee.qrental.callsignlink.domain.CallSignLink;
-import ee.qrental.common.core.api.mapper.ResponseMapper;
+import ee.qrental.common.core.api.application.mapper.ResponseMapper;
 import ee.qrental.driver.application.port.out.DriverLoadPort;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;

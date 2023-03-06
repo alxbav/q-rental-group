@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class TransactionTypePersistenceAdapter implements
-        TransactionTypeAddPort,
+public class TransactionTypePersistenceAdapter
+        implements TransactionTypeAddPort,
         TransactionTypeUpdatePort,
         TransactionTypeDeletePort {
 

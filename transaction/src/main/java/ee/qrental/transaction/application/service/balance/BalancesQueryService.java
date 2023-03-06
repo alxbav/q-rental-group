@@ -15,7 +15,8 @@ import static java.util.stream.Collectors.toList;
 
 @Service
 @AllArgsConstructor
-public class BalancesQueryService implements GetBalanceQuery {
+public class BalancesQueryService
+        implements GetBalanceQuery {
 
     private final TransactionLoadPort transactionLoadPort;
     private final DriverLoadPort driverLoadPort;

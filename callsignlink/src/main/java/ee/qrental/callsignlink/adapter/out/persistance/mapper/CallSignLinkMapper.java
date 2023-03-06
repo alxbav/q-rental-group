@@ -3,7 +3,7 @@ package ee.qrental.callsignlink.adapter.out.persistance.mapper;
 import ee.qrental.callsignlink.adapter.out.persistance.repository.CallSignSpringDataRepository;
 import ee.qrental.callsignlink.adapter.out.persistance.jpaentity.CallSignLinkJpaEntity;
 import ee.qrental.callsignlink.domain.CallSignLink;
-import ee.qrental.common.core.api.mapper.DomainMapper;
+import ee.qrental.common.core.api.adapter.mapper.DomainMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

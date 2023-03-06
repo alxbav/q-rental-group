@@ -1,6 +1,6 @@
 package ee.qrental.transaction.application.port.in.mapper.transaciontype;
 
-import ee.qrental.common.core.api.mapper.ResponseMapper;
+import ee.qrental.common.core.api.application.mapper.ResponseMapper;
 import ee.qrental.transaction.application.port.in.response.transactiontype.TransactionTypeResponse;
 import ee.qrental.transaction.domain.TransactionType;
 import org.springframework.stereotype.Component;

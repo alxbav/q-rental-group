@@ -1,6 +1,7 @@
 package ee.qrental.driver.application.port.in.mapper.driver;
 
-import ee.qrental.common.core.api.mapper.ResponseMapper;
+
+import ee.qrental.common.core.api.application.mapper.ResponseMapper;
 import ee.qrental.driver.application.port.in.response.driver.DriverResponse;
 import ee.qrental.driver.domain.Driver;
 import org.springframework.stereotype.Component;

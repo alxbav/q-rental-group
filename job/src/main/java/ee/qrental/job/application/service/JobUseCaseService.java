@@ -18,8 +18,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-class JobUseCaseService implements
-        JobAddUseCase,
+class JobUseCaseService
+        implements JobAddUseCase,
         JobUpdateUseCase,
         JobDeleteUseCase {
 
@@ -39,7 +39,7 @@ class JobUseCaseService implements
             request.setViolations(violationsCollector.getViolations());
             return;
         }
-        addPort.addLink(domain);
+        addPort.add(domain);
     }
 
     @Override

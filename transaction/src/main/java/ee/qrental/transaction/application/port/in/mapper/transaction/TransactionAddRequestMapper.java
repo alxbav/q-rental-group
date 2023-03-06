@@ -1,6 +1,6 @@
 package ee.qrental.transaction.application.port.in.mapper.transaction;
 
-import ee.qrental.common.core.api.mapper.AddRequestMapper;
+import ee.qrental.common.core.api.application.mapper.AddRequestMapper;
 import ee.qrental.transaction.application.port.in.request.transaction.TransactionAddRequest;
 import ee.qrental.transaction.application.port.out.TransactionTypeLoadPort;
 import ee.qrental.transaction.domain.Transaction;
@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class TransactionAddRequestMapper implements
-        AddRequestMapper<TransactionAddRequest, Transaction> {
+public class TransactionAddRequestMapper
+        implements AddRequestMapper<TransactionAddRequest, Transaction> {
 
     private final TransactionTypeLoadPort transactionTypeLoadPort;
 

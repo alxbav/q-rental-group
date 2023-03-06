@@ -1,6 +1,7 @@
 package ee.qrental.driver.application.port.in.request.driver;
 
-import ee.qrental.common.core.api.request.AbstractUpdateRequest;
+
+import ee.qrental.common.core.api.application.request.AbstractUpdateRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

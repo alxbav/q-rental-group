@@ -1,6 +1,6 @@
 package ee.qrental.link.application.port.in.request;
 
-import ee.qrental.common.core.api.request.AbstractUpdateRequest;
+import ee.qrental.common.core.api.application.request.AbstractUpdateRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +13,9 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class LinkUpdateRequest extends AbstractUpdateRequest {
+public class LinkUpdateRequest
+        extends AbstractUpdateRequest {
+
     private Long carId;
     private Long driverId;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)

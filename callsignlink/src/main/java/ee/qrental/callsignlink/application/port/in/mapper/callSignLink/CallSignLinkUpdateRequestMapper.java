@@ -2,7 +2,7 @@ package ee.qrental.callsignlink.application.port.in.mapper.callSignLink;
 
 import ee.qrental.callsignlink.application.port.in.request.callsignlink.CallSignLinkUpdateRequest;
 import ee.qrental.callsignlink.domain.CallSignLink;
-import ee.qrental.common.core.api.mapper.UpdateRequestMapper;
+import ee.qrental.common.core.api.application.mapper.UpdateRequestMapper;
 import org.springframework.stereotype.Component;
 
 @Component

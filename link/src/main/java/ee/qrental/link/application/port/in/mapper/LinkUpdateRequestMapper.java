@@ -1,6 +1,6 @@
 package ee.qrental.link.application.port.in.mapper;
 
-import ee.qrental.common.core.api.mapper.UpdateRequestMapper;
+import ee.qrental.common.core.api.application.mapper.UpdateRequestMapper;
 import ee.qrental.link.application.port.in.request.LinkUpdateRequest;
 import ee.qrental.link.domain.Link;
 import org.springframework.stereotype.Component;

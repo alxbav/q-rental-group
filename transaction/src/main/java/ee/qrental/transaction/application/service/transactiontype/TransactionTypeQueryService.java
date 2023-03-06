@@ -15,7 +15,8 @@ import static java.util.stream.Collectors.toList;
 
 @Service
 @AllArgsConstructor
-public class TransactionTypeQueryService implements GetTransactionTypeQuery {
+public class TransactionTypeQueryService
+        implements GetTransactionTypeQuery {
 
     private final TransactionTypeLoadPort loadPort;
     private final TransactionTypeResponseMapper mapper;

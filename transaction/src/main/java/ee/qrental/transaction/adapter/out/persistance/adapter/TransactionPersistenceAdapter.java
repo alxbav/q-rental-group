@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class TransactionPersistenceAdapter implements
-        TransactionAddPort,
+public class TransactionPersistenceAdapter
+        implements TransactionAddPort,
         TransactionUpdatePort,
         TransactionDeletePort {
 
@@ -39,7 +39,4 @@ public class TransactionPersistenceAdapter implements
     public void delete(Long id) {
         springRepository.deleteById(id);
     }
-
-
-
 }

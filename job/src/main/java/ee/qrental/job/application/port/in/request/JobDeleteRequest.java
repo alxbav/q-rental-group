@@ -1,6 +1,6 @@
 package ee.qrental.job.application.port.in.request;
 
-import ee.qrental.common.core.api.request.AbstractDeleteRequest;
+import ee.qrental.common.core.api.application.request.AbstractDeleteRequest;
 
 import javax.validation.constraints.NotNull;
 
