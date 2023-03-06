@@ -2,7 +2,9 @@ package ee.qrental.driver.adapter.out.persistance.mapper;
 
 import ee.qrental.driver.adapter.out.persistance.jpaentity.DriverJpaEntity;
 import ee.qrental.driver.domain.Driver;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DriverMapper {
 
     public Driver mapToDomain(final DriverJpaEntity jpaEntity) {
