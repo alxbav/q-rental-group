@@ -9,7 +9,7 @@
 
 <form th:fragment="updateForm"
       th:action="@{/drivers/update}"
-      th:object="${driverUpdateCommand}"
+      th:object="${updateRequest}"
       method="post">
 
 
@@ -19,6 +19,16 @@
            type="text"
            hidden/>
 
+    <div class="row">
+        <div class="col">
+            <div class="mb-3">
+                <label class="form-check-label text-muted" for="activeId">Active Driver</label>
+                <input class="form-check-input" id="activeId"
+                       th:field="*{active}"
+                       type="checkbox"/>
+            </div>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col">

@@ -1,4 +1,4 @@
-package ee.qrental.common.ui.controller.driver;
+package ee.qrental.thymeleaf.ui.controller.driver;
 
 
 

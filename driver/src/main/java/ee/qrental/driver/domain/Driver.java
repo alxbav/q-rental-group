@@ -3,13 +3,16 @@ package ee.qrental.driver.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 import static java.lang.String.format;
 
+import static java.util.Locale.getDefault;
 
 @Getter
+@Setter
 @NoArgsConstructor
 public class Driver {
     private static final Integer FIRST_NAME_MAX_SIZE = 15;

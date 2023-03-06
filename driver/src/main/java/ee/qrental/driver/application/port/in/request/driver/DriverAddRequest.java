@@ -1,15 +1,18 @@
 package ee.qrental.driver.application.port.in.request.driver;
 
+import ee.qrental.common.core.api.application.request.AbstractAddRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class DriverAddRequest {
+public class DriverAddRequest
+        extends AbstractAddRequest {
     private Boolean active;
     private String firstName;
     private String lastName;
@@ -20,7 +23,8 @@ public class DriverAddRequest {
     private String iban2;
     private String iban3;
     private String driverLicenseNumber;
-    private LocalDate driverLicenseExp;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate driverLicenseExp = LocalDate.now();
     private String taxiLicense;
     private String address;
     private String comment;
