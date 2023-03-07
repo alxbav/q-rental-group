@@ -1,7 +1,8 @@
 package ee.qrental.car.application.port.in.usecase;
 
-import ee.qrental.car.application.port.in.command.CarUpdateCommand;
+import ee.qrental.car.application.port.in.request.CarUpdateRequest;
+import ee.qrental.common.core.api.application.usecase.UpdateUseCase;
 
-public interface CarUpdateUseCase {
-    void update(CarUpdateCommand car);
+public interface CarUpdateUseCase
+        extends UpdateUseCase<CarUpdateRequest> {
 }

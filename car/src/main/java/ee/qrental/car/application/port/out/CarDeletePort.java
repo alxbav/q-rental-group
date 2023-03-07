@@ -1,5 +1,7 @@
 package ee.qrental.car.application.port.out;
 
-public interface CarDeletePort {
-    void deleteCar(Long id);
+import ee.qrental.common.core.api.application.port.DeletePort;
+
+public interface CarDeletePort
+        extends DeletePort {
 }

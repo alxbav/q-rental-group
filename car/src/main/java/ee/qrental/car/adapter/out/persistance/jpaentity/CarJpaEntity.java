@@ -1,4 +1,4 @@
-package ee.qrental.car.adapter.out.persistance;
+package ee.qrental.car.adapter.out.persistance.jpaentity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,15 +12,14 @@ import java.time.LocalDate;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+@Entity
+@Table(name = "car")
 
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-
-@Entity
-@Table(name = "car")
 public class CarJpaEntity {
 
     @Id

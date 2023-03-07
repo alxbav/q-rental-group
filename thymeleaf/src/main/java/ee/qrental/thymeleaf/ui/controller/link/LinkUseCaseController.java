@@ -1,7 +1,7 @@
 package ee.qrental.thymeleaf.ui.controller.link;
 
 
-import ee.qrental.car.application.port.out.CarLoadPort;
+import ee.qrental.car.application.port.in.query.GetCarQuery;
 import ee.qrental.link.application.port.in.query.GetLinkQuery;
 import ee.qrental.link.application.port.in.request.LinkAddRequest;
 import ee.qrental.link.application.port.in.request.LinkDeleteRequest;
@@ -15,16 +15,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@AllArgsConstructor
 
 @Controller
 @RequestMapping("/links")
+
+@AllArgsConstructor
 public class LinkUseCaseController {
 
     private final LinkAddUseCase linkAddUseCase;
     private final LinkUpdateUseCase linkUpdateUseCase;
     private final LinkDeleteUseCase linkDeleteUseCase;
-    private final CarLoadPort carLoadPort;
+    private final GetCarQuery carQuery;
     private final GetLinkQuery linkQuery;
     private final GetBalanceQuery balanceQuery;
 
@@ -67,7 +68,7 @@ public class LinkUseCaseController {
     }
 
     private void addCarListToModel(final Model model) {
-        final var cars = carLoadPort.loadAllCars();
+        final var cars = carQuery.getAll();
         model.addAttribute("cars", cars);
     }
 

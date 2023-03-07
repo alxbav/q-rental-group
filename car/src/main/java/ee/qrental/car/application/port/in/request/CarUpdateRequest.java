@@ -1,5 +1,6 @@
-package ee.qrental.car.application.port.in.command;
+package ee.qrental.car.application.port.in.request;
 
+import ee.qrental.common.core.api.application.request.AbstractUpdateRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,10 +11,8 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CarUpdateCommand {
-
-
-    private Long id;
+public class CarUpdateRequest
+        extends AbstractUpdateRequest {
     private Boolean active;
     private Boolean qRent;
     private String regNumber;
@@ -44,5 +43,4 @@ public class CarUpdateCommand {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate gasInspectionEnd;
     private String comment;
-
 }

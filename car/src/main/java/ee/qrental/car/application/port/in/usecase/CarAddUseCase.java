@@ -1,7 +1,8 @@
 package ee.qrental.car.application.port.in.usecase;
 
-import ee.qrental.car.application.port.in.command.CarAddCommand;
+import ee.qrental.car.application.port.in.request.CarAddRequest;
+import ee.qrental.common.core.api.application.usecase.AddUseCase;
 
-public interface CarAddUseCase {
-    void add(CarAddCommand car);
+public interface CarAddUseCase
+        extends AddUseCase<CarAddRequest> {
 }

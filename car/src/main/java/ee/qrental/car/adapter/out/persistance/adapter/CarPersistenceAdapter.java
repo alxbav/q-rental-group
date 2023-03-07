@@ -1,23 +1,18 @@
-package ee.qrental.car.adapter.out.persistance;
+package ee.qrental.car.adapter.out.persistance.adapter;
 
+import ee.qrental.car.adapter.out.persistance.mapper.CarMapper;
+import ee.qrental.car.adapter.out.persistance.repository.SpringDataCarRepository;
 import ee.qrental.car.application.port.out.CarAddPort;
 import ee.qrental.car.application.port.out.CarDeletePort;
-import ee.qrental.car.application.port.out.CarLoadPort;
 import ee.qrental.car.application.port.out.CarUpdatePort;
 import ee.qrental.car.domain.Car;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.Optional;
-
-import static java.util.stream.Collectors.toList;
-
 @Component
 @AllArgsConstructor
-public class CarPersistenceAdapterLoadAddUpdateDelete implements
-        CarLoadPort,
-        CarAddPort,
+public class CarPersistenceAdapter
+        implements CarAddPort,
         CarUpdatePort,
         CarDeletePort {
 
@@ -25,23 +20,7 @@ public class CarPersistenceAdapterLoadAddUpdateDelete implements
     private final CarMapper carMapper;
 
     @Override
-    public List<Car> loadAllCars() {
-        return springDataCarRepository.findAll()
-                .stream()
-                .map(carMapper::mapToDomain)
-                .collect(toList());
-    }
-
-
-
-    @Override
-    public Car loadCarById(Long id) {
-        return carMapper.mapToDomain(
-                springDataCarRepository.getReferenceById(id));
-    }
-
-    @Override
-    public Car addCar(final Car car) {
+    public Car add(final Car car) {
         return carMapper.mapToDomain(
                 springDataCarRepository.save(
                         carMapper.mapToEntity(car)
@@ -49,7 +28,7 @@ public class CarPersistenceAdapterLoadAddUpdateDelete implements
     }
 
     @Override
-    public Car updateCar(final Car car) {
+    public Car update(final Car car) {
         return carMapper.mapToDomain(
                 springDataCarRepository.save(
                         carMapper.mapToEntity(car)
@@ -57,7 +36,7 @@ public class CarPersistenceAdapterLoadAddUpdateDelete implements
     }
 
     @Override
-    public void deleteCar(Long id) {
+    public void delete(Long id) {
         springDataCarRepository.deleteById(id);
     }
 }

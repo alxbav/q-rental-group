@@ -1,8 +1,8 @@
 package ee.qrental.thymeleaf.ui.controller.link;
 
 
-import ee.qrental.car.application.port.out.CarLoadPort;
-import ee.qrental.link.application.port.out.LinkLoadPort;
+import ee.qrental.car.application.port.in.query.GetCarQuery;
+import ee.qrental.link.application.port.in.query.GetLinkQuery;
 import ee.qrental.transaction.application.port.in.query.GetBalanceQuery;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/links")
 public class LinkQueryController {
 
-    private final LinkLoadPort linkLoadPort;
-    private final CarLoadPort carLoadPort;
+    private final GetLinkQuery linkQuery;
+    private final GetCarQuery carQuery;
     private final GetBalanceQuery balanceQuery;
 
     @GetMapping
@@ -28,12 +28,12 @@ public class LinkQueryController {
     }
 
     private void addLinkListToModel(final Model model) {
-        final var links = linkLoadPort.loadAll();
+        final var links = linkQuery.getAll();
         model.addAttribute("links", links);
     }
 
     private void addCarListToModel(final Model model) {
-        final var cars = carLoadPort.loadAllCars();
+        final var cars = carQuery.getAll();
         model.addAttribute("cars", cars);
     }
 

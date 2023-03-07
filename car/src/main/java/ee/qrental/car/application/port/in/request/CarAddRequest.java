@@ -1,5 +1,6 @@
-package ee.qrental.car.application.port.in.command;
+package ee.qrental.car.application.port.in.request;
 
+import ee.qrental.common.core.api.application.request.AbstractAddRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,7 +11,8 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CarAddCommand {
+public class CarAddRequest
+        extends AbstractAddRequest {
     private Boolean active;
     private Boolean qRent;
     private String regNumber;

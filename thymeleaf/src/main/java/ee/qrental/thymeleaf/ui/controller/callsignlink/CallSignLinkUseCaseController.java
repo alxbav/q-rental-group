@@ -16,20 +16,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@AllArgsConstructor
 
 @Controller
 @RequestMapping("/call-sign-links")
+@AllArgsConstructor
 public class CallSignLinkUseCaseController {
 
-    private final CallSignLinkAddUseCase callSignLinkAddUseCase;
-    private final CallSignLinkUpdateUseCase callSignLinkUpdateUseCase;
-    private final CallSignLinkDeleteUseCase callSignLinkDeleteUseCase;
+    private final CallSignLinkAddUseCase addUseCase;
+    private final CallSignLinkUpdateUseCase updateUseCase;
+    private final CallSignLinkDeleteUseCase deleteUseCase;
     private final GetCallSignLinkQuery callSignLinkQuery;
     private final DriverLoadPort driverLoadPort;
-
     private final GetCallSignQuery callSignQuery;
-
 
     private void addDriverListToModel(final Model model) {
         final var drivers = driverLoadPort.loadAll();
@@ -43,20 +41,21 @@ public class CallSignLinkUseCaseController {
 
     @GetMapping(value = "/add-form")
     public String addForm(final Model model) {
-        addAddRequestToModel(new CallSignLinkAddRequest(), model);
+        addAddRequestToModel(model, new CallSignLinkAddRequest());
         addDriverListToModel(model);
         addCallSignListToModel(model);
 
         return "forms/addCallSignLink";
     }
 
-
     @PostMapping(value = "/add")
-    public String addCallSignLink(@ModelAttribute final CallSignLinkAddRequest addRequest,
-                                  final Model model) {
-        callSignLinkAddUseCase.add(addRequest);
+    public String addCallSignLink(
+            @ModelAttribute final CallSignLinkAddRequest addRequest,
+            final Model model) {
+
+        addUseCase.add(addRequest);
         if (addRequest.hasViolations()) {
-            addAddRequestToModel(addRequest, model);
+            addAddRequestToModel(model, addRequest);
             addDriverListToModel(model);
             addCallSignListToModel(model);
 
@@ -68,16 +67,18 @@ public class CallSignLinkUseCaseController {
 
 
     private void addAddRequestToModel(
-            final CallSignLinkAddRequest addRequest,
-            final Model model) {
+            final Model model,
+            final CallSignLinkAddRequest addRequest) {
         model.addAttribute("addRequest", addRequest);
     }
 
     @GetMapping(value = "/update-form/{id}")
-    public String updateForm(@PathVariable("id") long id,
-                             final Model model) {
-        model.addAttribute(
-                "updateRequest",
+    public String updateForm(
+            final Model model,
+            @PathVariable("id") long id) {
+
+        addUpdateRequestToModel(
+                model,
                 callSignLinkQuery.getUpdateRequestById(id));
         addDriverListToModel(model);
         addCallSignListToModel(model);
@@ -89,7 +90,8 @@ public class CallSignLinkUseCaseController {
     public String updateCallSignCallSignLink(
             final Model model,
             final CallSignLinkUpdateRequest updateRequest) {
-        callSignLinkUpdateUseCase.update(updateRequest);
+
+        updateUseCase.update(updateRequest);
         if (updateRequest.hasViolations()) {
             addUpdateRequestToModel(model, updateRequest);
             addDriverListToModel(model);
@@ -101,13 +103,17 @@ public class CallSignLinkUseCaseController {
         return "redirect:/call-sign-links";
     }
 
-    private void addUpdateRequestToModel(final Model model,
-                                         final CallSignLinkUpdateRequest updateRequest) {
+    private void addUpdateRequestToModel(
+            final Model model,
+            final CallSignLinkUpdateRequest updateRequest) {
         model.addAttribute("updateRequest", updateRequest);
     }
 
     @GetMapping(value = "/delete-form/{id}")
-    public String deleteForm(@PathVariable("id") long id, Model model) {
+    public String deleteForm(
+            final Model model,
+            @PathVariable("id") long id) {
+
         model.addAttribute("deleteRequest", new TransactionTypeDeleteRequest(id));
         model.addAttribute("objectInfo", callSignLinkQuery.getObjectInfo(id));
 
@@ -115,8 +121,10 @@ public class CallSignLinkUseCaseController {
     }
 
     @PostMapping("/delete")
-    public String deleteForm(final CallSignLinkDeleteRequest deleteRequest) {
-        callSignLinkDeleteUseCase.delete(deleteRequest);
+    public String deleteForm(
+            final CallSignLinkDeleteRequest deleteRequest) {
+        deleteUseCase.delete(deleteRequest);
+
         return "redirect:/call-sign-links";
     }
 }

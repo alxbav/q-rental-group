@@ -9,7 +9,7 @@
 
 <form th:fragment="updateForm"
       th:action="@{/cars/update}"
-      th:object="${carUpdateCommand}"
+      th:object="${updateRequest}"
       method="post">
 
     <input id="carId" required

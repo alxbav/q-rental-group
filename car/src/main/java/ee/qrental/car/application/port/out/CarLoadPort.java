@@ -1,12 +1,10 @@
 package ee.qrental.car.application.port.out;
 
+
 import ee.qrental.car.domain.Car;
+import ee.qrental.common.core.api.application.port.LoadPort;
 
-import java.util.List;
-import java.util.Optional;
-
-public interface CarLoadPort {
-    List<Car> loadAllCars();
-
-    Car loadCarById(Long id);
+public interface CarLoadPort
+        extends LoadPort<Car> {
+    Car loadByRegNumber(final String regNumber);
 }
