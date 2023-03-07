@@ -1,12 +1,8 @@
 package ee.qrental.driver.application.port.out;
 
+import ee.qrental.common.core.api.application.port.LoadPort;
 import ee.qrental.driver.domain.Driver;
 
-import java.util.List;
-
-public interface DriverLoadPort {
-    List<Driver> loadAll();
-
-    Driver loadById(Long id);
-
+public interface DriverLoadPort
+        extends LoadPort<Driver> {
 }

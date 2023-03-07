@@ -1,7 +1,7 @@
 package ee.qrental.transaction.application.port.in.mapper.transaction;
 
 import ee.qrental.common.core.api.application.mapper.ResponseMapper;
-import ee.qrental.driver.application.port.out.DriverLoadPort;
+import ee.qrental.driver.application.port.in.query.GetDriverQuery;
 import ee.qrental.transaction.application.port.in.response.transaction.TransactionResponse;
 import ee.qrental.transaction.domain.Transaction;
 import lombok.AllArgsConstructor;
@@ -14,17 +14,15 @@ import static java.lang.String.format;
 public class TransactionResponseMapper
         implements ResponseMapper<TransactionResponse, Transaction> {
 
-    private final DriverLoadPort driverLoadPort;
+    private final GetDriverQuery driverQuery;
 
     @Override
     public TransactionResponse toResponse(final Transaction domain) {
-        var driver = driverLoadPort.loadById(domain.getDriverId());
-        var driverInfo = driver.getFirstName() + " " + driver.getLastName();
         return TransactionResponse.builder()
                 .id(domain.getId())
                 .realAmount(domain.getRealAmount())
                 .type(domain.getType().getName())
-                .driverInfo(driverInfo)
+                .driverInfo(driverQuery.getObjectInfo(domain.getDriverId()))
                 .date(domain.getDate())
                 .weekNumber(domain.getWeekNumber())
                 .comment(domain.getComment())
@@ -33,18 +31,16 @@ public class TransactionResponseMapper
 
     @Override
     public String toObjectInfo(Transaction domain) {
-        final var driver = driverLoadPort.loadById(domain.getDriverId());
         final var type = domain.getType().getName();
         final var realAmount = domain.getRealAmount();
         final var date = domain.getDate().toString();
         final var weekNumber = domain.getWeekNumber();
-        final var driverInfo = driver.getFirstName() + " " + driver.getLastName();
 
         return format("Transaction: %s %d EURO, week number: %d (%s), for driver: %s",
                 type,
                 realAmount,
                 weekNumber,
                 date,
-                driverInfo);
+                driverQuery.getObjectInfo(domain.getDriverId()));
     }
 }

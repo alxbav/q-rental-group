@@ -6,7 +6,6 @@ import ee.qrental.driver.application.port.in.query.GetDriverQuery;
 import ee.qrental.driver.application.port.in.request.driver.DriverUpdateRequest;
 import ee.qrental.driver.application.port.in.response.driver.DriverResponse;
 import ee.qrental.driver.application.port.out.DriverLoadPort;
-
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +14,10 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 @Service
+
 @AllArgsConstructor
-public class DriverQueryService implements GetDriverQuery {
+public class DriverQueryService
+        implements GetDriverQuery {
 
     private final DriverLoadPort loadPort;
     private final DriverResponseMapper mapper;
@@ -44,6 +45,4 @@ public class DriverQueryService implements GetDriverQuery {
     public DriverUpdateRequest getUpdateRequestById(Long id) {
         return updateRequestMapper.toRequest(loadPort.loadById(id));
     }
-
-
 }

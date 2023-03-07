@@ -2,10 +2,10 @@ package ee.qrental.link.application.validator;
 
 import ee.qrental.common.core.api.application.validation.QValidator;
 import ee.qrental.common.core.api.application.validation.ViolationsCollector;
-import ee.qrental.driver.application.port.out.DriverLoadPort;
+import ee.qrental.driver.application.port.in.query.GetDriverQuery;
 import ee.qrental.link.domain.Link;
-import ee.qrental.transaction.application.port.out.TransactionLoadPort;
-import ee.qrental.transaction.domain.Transaction;
+import ee.qrental.transaction.application.port.in.query.GetTransactionQuery;
+import ee.qrental.transaction.application.port.in.response.transaction.TransactionResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -14,12 +14,13 @@ import java.util.List;
 import static java.lang.String.format;
 
 @Component
+
 @AllArgsConstructor
 public class LinkBusinessRuleValidator
         implements QValidator<Link> {
 
-    private final DriverLoadPort driverLoadPort;
-    private final TransactionLoadPort transactionLoadPort;
+    private final GetDriverQuery driverQuery;
+    private final GetTransactionQuery transactionQuery;
 
     @Override
     public ViolationsCollector validate(final Link link) {
@@ -32,7 +33,7 @@ public class LinkBusinessRuleValidator
 
     private void checkDriverAvailability(final Link domain, final ViolationsCollector violationCollector) {
         final var driverId = domain.getDriverId();
-        final var driver = driverLoadPort.loadById(driverId);
+        final var driver = driverQuery.getById(driverId);
         if (driver == null) {
             violationCollector.collect(format("Driver with id = %d does not exist", driverId));
             return;
@@ -57,14 +58,13 @@ public class LinkBusinessRuleValidator
         }
     }
 
-    //TODO refactor!!!
     private Long getTotalByDriverId(final Long driverId) {
-        return calculateTotal(transactionLoadPort.loadAllByDriverId(driverId));
+        return calculateTotal(transactionQuery.getAllByDriverId(driverId));
     }
 
-    private Long calculateTotal(final List<Transaction> transactions) {
+    private Long calculateTotal(final List<TransactionResponse> transactions) {
         return transactions.stream()
-                .mapToLong(Transaction::getRealAmount)
+                .mapToLong(TransactionResponse::getRealAmount)
                 .sum();
     }
 }

@@ -5,7 +5,7 @@ import ee.qrental.callsignlink.application.port.out.callsignlink.CallSignLinkLoa
 import ee.qrental.callsignlink.domain.CallSignLink;
 import ee.qrental.common.core.api.application.validation.QValidator;
 import ee.qrental.common.core.api.application.validation.ViolationsCollector;
-import ee.qrental.driver.application.port.out.DriverLoadPort;
+import ee.qrental.driver.application.port.in.query.GetDriverQuery;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +19,7 @@ public class CallSignLinkBusinessRuleValidator implements QValidator<CallSignLin
 
     private final CallSignLinkLoadPort callSignLinkLoadPort;
     private final CallSignLoadPort callSignLoadPort;
-    private final DriverLoadPort driverLoadPort;
+    private final GetDriverQuery driverQuery;
 
     @Override
     public ViolationsCollector validate(final CallSignLink domain) {
@@ -64,8 +64,9 @@ public class CallSignLinkBusinessRuleValidator implements QValidator<CallSignLin
         if (callSignLinkByDriverOpt.get().getId().equals(domain.getId())) {
             return;
         }
-        final var driver = driverLoadPort.loadById(driverId);
-        violationCollector.collect(format("Driver: %s %s already has an active Call Sign.",
-                driver.getLastName(), driver.getFirstName()));
+        violationCollector.collect(
+                format(
+                        "Driver: %s already has an active Call Sign.",
+                        driverQuery.getObjectInfo(driverId)));
     }
 }

@@ -12,15 +12,14 @@ import java.time.LocalDate;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+@Entity
+@Table(name = "driver")
 
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-
-@Entity
-@Table(name = "driver")
 public class DriverJpaEntity {
 
     @Id
@@ -64,10 +63,8 @@ public class DriverJpaEntity {
     @Column(name = "taxi_license")
     private String taxiLicense;
 
-
     @Column(name = "address")
     private String address;
-
 
     @Column(name = "comment")
     private String comment;

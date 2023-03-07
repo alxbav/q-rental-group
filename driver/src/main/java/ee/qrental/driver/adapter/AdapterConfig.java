@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan(basePackages = "ee.qrental.driver.adapter.*")
 @EnableJpaRepositories
 @EntityScan("ee.qrental.driver.adapter.out.persistance.jpaentity")
-public class DriverAdapterConfig {
+public class AdapterConfig {
 }

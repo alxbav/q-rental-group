@@ -36,5 +36,4 @@ public class DriverLoadAdapter
         return mapper.mapToDomain(
                 springRepository.getReferenceById(id));
     }
-
 }

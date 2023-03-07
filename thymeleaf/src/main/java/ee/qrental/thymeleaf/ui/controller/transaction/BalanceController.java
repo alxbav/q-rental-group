@@ -1,6 +1,6 @@
 package ee.qrental.thymeleaf.ui.controller.transaction;
 
-import ee.qrental.driver.application.port.out.DriverLoadPort;
+import ee.qrental.driver.application.port.in.query.GetDriverQuery;
 import ee.qrental.transaction.application.port.in.query.GetBalanceQuery;
 import ee.qrental.transaction.application.port.in.query.GetTransactionQuery;
 import ee.qrental.transaction.application.port.in.request.transaction.TransactionFilterRequest;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import static ee.qrental.transaction.application.port.in.utils.TransactionUtils.getSum;
-import static java.lang.String.format;
 
 @AllArgsConstructor
 @Controller
@@ -22,8 +21,7 @@ public class BalanceController {
 
     private final GetBalanceQuery balanceQuery;
     private final GetTransactionQuery transactionQuery;
-    //TODO change to GetDriverQuery when available;
-    private final DriverLoadPort driverLoadPort;
+    private final GetDriverQuery driverQuery;
 
     @GetMapping
     public String getBalanceView(final Model model) {
@@ -58,7 +56,6 @@ public class BalanceController {
     private void addDriverDataToModel(final Long driverId, final Model model) {
         model.addAttribute("driverId", driverId);
         model.addAttribute("total", balanceQuery.getTotalByDriverId(driverId));
-        final var driver = driverLoadPort.loadById(driverId);
-        model.addAttribute("driverInfo", format("%s %s", driver.getFirstName(), driver.getLastName()));
+        model.addAttribute("driverInfo", driverQuery.getObjectInfo(driverId));
     }
 }

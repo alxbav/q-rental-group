@@ -10,11 +10,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+
 @AllArgsConstructor
-
-
-public class DriverPersistenceAdapter implements
-        DriverAddPort,
+public class DriverPersistenceAdapter
+        implements DriverAddPort,
         DriverUpdatePort,
         DriverDeletePort {
 

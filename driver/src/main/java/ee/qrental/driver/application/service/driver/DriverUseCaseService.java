@@ -16,9 +16,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+
 @AllArgsConstructor
-public class DriverUseCaseService implements
-        DriverAddUseCase,
+public class DriverUseCaseService
+        implements DriverAddUseCase,
         DriverUpdateUseCase,
         DriverDeleteUseCase {
 

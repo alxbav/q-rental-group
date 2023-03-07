@@ -1,3 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-ee.qrental.driver.adapter.DriverAdapterConfig,\
-ee.qrental.driver.application.service.DriverApplicationConfig
+ee.qrental.driver.adapter.AdapterConfig,\
+ee.qrental.driver.application.ApplicationConfig

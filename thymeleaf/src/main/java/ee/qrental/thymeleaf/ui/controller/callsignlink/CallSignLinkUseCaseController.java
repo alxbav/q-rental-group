@@ -9,7 +9,7 @@ import ee.qrental.callsignlink.application.port.in.request.callsignlink.CallSign
 import ee.qrental.callsignlink.application.port.in.usecase.callsignlink.CallSignLinkAddUseCase;
 import ee.qrental.callsignlink.application.port.in.usecase.callsignlink.CallSignLinkDeleteUseCase;
 import ee.qrental.callsignlink.application.port.in.usecase.callsignlink.CallSignLinkUpdateUseCase;
-import ee.qrental.driver.application.port.out.DriverLoadPort;
+import ee.qrental.driver.application.port.in.query.GetDriverQuery;
 import ee.qrental.transaction.application.port.in.request.transactiontype.TransactionTypeDeleteRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -26,11 +26,11 @@ public class CallSignLinkUseCaseController {
     private final CallSignLinkUpdateUseCase updateUseCase;
     private final CallSignLinkDeleteUseCase deleteUseCase;
     private final GetCallSignLinkQuery callSignLinkQuery;
-    private final DriverLoadPort driverLoadPort;
+    private final GetDriverQuery driverQuery;
     private final GetCallSignQuery callSignQuery;
 
     private void addDriverListToModel(final Model model) {
-        final var drivers = driverLoadPort.loadAll();
+        final var drivers = driverQuery.getAll();
         model.addAttribute("drivers", drivers);
     }
 

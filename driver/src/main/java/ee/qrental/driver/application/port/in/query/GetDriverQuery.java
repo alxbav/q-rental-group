@@ -7,5 +7,4 @@ import ee.qrental.driver.application.port.in.response.driver.DriverResponse;
 
 public interface GetDriverQuery
         extends BaseGetQuery<DriverUpdateRequest, DriverResponse> {
-
 }

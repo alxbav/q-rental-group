@@ -1,7 +1,7 @@
 package ee.qrental.thymeleaf.ui.controller.transaction;
 
 
-import ee.qrental.driver.application.port.out.DriverLoadPort;
+import ee.qrental.driver.application.port.in.query.GetDriverQuery;
 import ee.qrental.transaction.application.port.in.query.GetTransactionQuery;
 import ee.qrental.transaction.application.port.in.query.GetTransactionTypeQuery;
 import ee.qrental.transaction.application.port.in.request.transaction.TransactionAddRequest;
@@ -27,15 +27,13 @@ public class TransactionUseCaseController {
 
     private final GetTransactionQuery transactionQuery;
     private final GetTransactionTypeQuery transactionTypeQuery;
-
-    //TODO Switch to GetDriverQuery when available
-    private final DriverLoadPort driverLoadPort;
+    private final GetDriverQuery driverQuery;
 
     @GetMapping(value = "/add-form")
     public String addForm(final Model model) {
         model.addAttribute("addRequest", new TransactionAddRequest());
         model.addAttribute("transactionTypes", transactionTypeQuery.getAll());
-        model.addAttribute("drivers", driverLoadPort.loadAll());
+        model.addAttribute("drivers", driverQuery.getAll());
 
         return "forms/addTransaction";
     }
@@ -51,7 +49,7 @@ public class TransactionUseCaseController {
     public String updateForm(@PathVariable("id") long id, Model model) {
         model.addAttribute("updateRequest", transactionQuery.getUpdateRequestById(id));
         model.addAttribute("transactionTypes", transactionTypeQuery.getAll());
-        model.addAttribute("drivers", driverLoadPort.loadAll());
+        model.addAttribute("drivers", driverQuery.getAll());
 
         return "forms/updateTransaction";
     }

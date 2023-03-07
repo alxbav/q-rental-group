@@ -1,7 +1,7 @@
 package ee.qrental.transaction.application.service.balance;
 
-import ee.qrental.driver.application.port.out.DriverLoadPort;
-import ee.qrental.driver.domain.Driver;
+import ee.qrental.driver.application.port.in.query.GetDriverQuery;
+import ee.qrental.driver.application.port.in.response.driver.DriverResponse;
 import ee.qrental.transaction.application.port.in.query.GetBalanceQuery;
 import ee.qrental.transaction.application.port.in.response.balance.BalanceResponse;
 import ee.qrental.transaction.application.port.out.TransactionLoadPort;
@@ -19,11 +19,11 @@ public class BalancesQueryService
         implements GetBalanceQuery {
 
     private final TransactionLoadPort transactionLoadPort;
-    private final DriverLoadPort driverLoadPort;
+    private final GetDriverQuery driverQuery;
 
     @Override
     public List<BalanceResponse> getAll() {
-        return driverLoadPort.loadAll()
+        return driverQuery.getAll()
                 .stream()
                 .map(this::getBalanceByDriverId)
                 .collect(toList());
@@ -34,7 +34,7 @@ public class BalancesQueryService
         return calculateTotal(transactionLoadPort.loadAllByDriverId(driverId));
     }
 
-    private BalanceResponse getBalanceByDriverId(final Driver driver) {
+    private BalanceResponse getBalanceByDriverId(final DriverResponse driver) {
         final var driverId = driver.getId();
         final var total = calculateTotal(transactionLoadPort.loadAllByDriverId(driverId));
         final var balanceResponse = new BalanceResponse();
