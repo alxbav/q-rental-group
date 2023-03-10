@@ -15,4 +15,5 @@ public class TransactionResponse {
     private Integer weekNumber;
     private LocalDate date;
     private String comment;
+    private LocalDate dateStamp;
 }

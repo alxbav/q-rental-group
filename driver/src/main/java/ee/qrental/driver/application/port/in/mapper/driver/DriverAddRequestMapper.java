@@ -28,6 +28,7 @@ public class DriverAddRequestMapper
         domain.setTaxiLicense(request.getTaxiLicense());
         domain.setAddress(request.getAddress());
         domain.setComment(request.getComment());
+        domain.setDeposit(request.getDeposit());
 
         return domain;
     }

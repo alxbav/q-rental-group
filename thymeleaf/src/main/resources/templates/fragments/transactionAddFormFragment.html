@@ -6,17 +6,28 @@
         )">
     </div>
 </div>
+
+
 <div th:fragment="addForm">
     <form method="post"
           th:action="@{/transactions/add}"
           th:object="${addRequest}">
+
+        <input id="dateStampId" required
+               th:field="*{dateStamp}"
+               type="date"
+               hidden=""/>
+
         <div class="mb-3">
             <label class="form-label text-muted" for="driverId">Driver</label>
-            <select id="driverId" class="form-select"
+            <select id="driverId" class="form-select" required
                     th:field="*{driverId}">
+                <option th:value="''" th:text="Select"></option>
                 <option th:each="driver : ${drivers}"
                         th:value="${driver.id}"
-                        th:text="|${driver.firstName} ${driver.lastName} - ${driver.isikukood}|"></option>
+                        th:text="|${driver.lastName} ${driver.firstName}  - ${driver.isikukood}|">
+
+                </option>
             </select>
         </div>
         <div class="row">
@@ -36,7 +47,7 @@
                     <label class="form-label text-muted" for="amountId">Amount</label>
                     <input class="form-control" id="amountId" placeholder="Enter  amount" required
                            th:field="*{amount}"
-                           type="number"/>
+                           type="number" step=0.01/>
                 </div>
             </div>
         </div>
@@ -53,6 +64,8 @@
                       placeholder="Enter Comment"
                       th:field="*{comment}"/>
         </div>
+
+
         <div th:replace="fragments/addUpdateFormButtonsFragment.html :: addUpdateButtons(
             submitValue='Add',
             cancelHref='/transactions'

@@ -18,4 +18,6 @@ public class TransactionUpdateRequest
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate date;
     private String comment;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate dateStamp = LocalDate.now();
 }

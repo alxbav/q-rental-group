@@ -41,4 +41,6 @@ public class TransactionJpaEntity {
 
     @Column(name = "comment")
     private String comment;
+    @Column(name = "date_stamp")
+    private LocalDate dateStamp;
 }

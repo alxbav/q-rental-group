@@ -36,6 +36,7 @@ public class Driver {
     private String taxiLicense;
     private String address;
     private String comment;
+    private Long deposit;
 
     public Driver(Long id,
                   Boolean active,
@@ -51,7 +52,8 @@ public class Driver {
                   LocalDate driverLicenseExp,
                   String taxiLicense,
                   String address,
-                  String comment) {
+                  String comment,
+                  Long deposit) {
         validateFirstName(firstName);
         validateLastName(lastName);
         validatePhone(phone);
@@ -71,11 +73,13 @@ public class Driver {
         this.taxiLicense = taxiLicense;
         this.address = address;
         this.comment = comment;
+        this.deposit = deposit;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
+
     public void setActive(Boolean active) {
         this.active = active;
     }
@@ -131,6 +135,7 @@ public class Driver {
         this.address = address;
     }
 
+    public void setDeposit(Long deposit) { this.deposit = deposit; }
 
     public void setComment(String comment) {
         validateComment(comment);

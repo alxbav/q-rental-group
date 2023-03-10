@@ -28,6 +28,7 @@ public class DriverUpdateRequestMapper
         domain.setTaxiLicense(request.getTaxiLicense());
         domain.setAddress(request.getAddress());
         domain.setComment(request.getComment());
+        domain.setDeposit(request.getDeposit());
 
         return domain;
     }
@@ -50,6 +51,7 @@ public class DriverUpdateRequestMapper
         request.setTaxiLicense(domain.getTaxiLicense());
         request.setAddress(domain.getAddress());
         request.setComment(domain.getComment());
+        request.setDeposit(domain.getDeposit());
 
         return request;
     }

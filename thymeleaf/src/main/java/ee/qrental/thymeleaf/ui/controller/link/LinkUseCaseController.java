@@ -22,9 +22,9 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class LinkUseCaseController {
 
-    private final LinkAddUseCase linkAddUseCase;
-    private final LinkUpdateUseCase linkUpdateUseCase;
-    private final LinkDeleteUseCase linkDeleteUseCase;
+    private final LinkAddUseCase addUseCase;
+    private final LinkUpdateUseCase updateUseCase;
+    private final LinkDeleteUseCase deleteUseCase;
     private final GetCarQuery carQuery;
     private final GetLinkQuery linkQuery;
     private final GetBalanceQuery balanceQuery;
@@ -41,7 +41,7 @@ public class LinkUseCaseController {
     @PostMapping(value = "/add")
     public String addLinkLink(@ModelAttribute final LinkAddRequest addRequest,
                               final Model model) {
-        linkAddUseCase.add(addRequest);
+        addUseCase.add(addRequest);
         if (addRequest.hasViolations()) {
             addAddRequestToModel(model, addRequest);
             addCarListToModel(model);
@@ -79,7 +79,7 @@ public class LinkUseCaseController {
 
     @PostMapping("/update")
     public String updateLinkLink(final LinkUpdateRequest updateRequest) {
-        linkUpdateUseCase.update(updateRequest);
+        updateUseCase.update(updateRequest);
 
         return "redirect:/links";
     }
@@ -95,7 +95,7 @@ public class LinkUseCaseController {
 
     @PostMapping("/delete")
     public String deleteForm(final LinkDeleteRequest deleteRequest) {
-        linkDeleteUseCase.delete(deleteRequest);
+        deleteUseCase.delete(deleteRequest);
 
         return "redirect:/links";
     }

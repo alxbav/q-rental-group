@@ -28,6 +28,7 @@ public class DriverResponseMapper
                 .taxiLicense(domain.getTaxiLicense())
                 .address(domain.getAddress())
                 .comment(domain.getComment())
+                .deposit(domain.getDeposit())
                 .build();
     }
 

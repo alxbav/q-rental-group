@@ -18,6 +18,10 @@ public class FirmResponseMapper
                 .iban(domain.getIban())
                 .regNumber(domain.getRegNumber())
                 .vatNumber(domain.getVatNumber())
+                .eMail(domain.getEMail())
+                .postAddress(domain.getPostAddress())
+                .phone(domain.getPhone())
+                .bank(domain.getBank())
                 .comment(domain.getComment())
                 .build();
     }

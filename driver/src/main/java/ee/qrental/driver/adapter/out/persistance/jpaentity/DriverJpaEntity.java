@@ -68,4 +68,7 @@ public class DriverJpaEntity {
 
     @Column(name = "comment")
     private String comment;
+
+    @Column(name = "deposit")
+    private Long deposit;
 }

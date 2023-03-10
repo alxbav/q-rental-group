@@ -33,10 +33,16 @@ public class FirmJpaEntity {
     private String iban;
     @Column(name = "reg_number")
     private Long regNumber;
-
     @Column(name = "vat_number")
     private String vatNumber;
-
+    @Column(name = "email")
+    private String email;
+    @Column(name = "post_address")
+    private String postAddress;
+    @Column(name = " phone")
+    private String phone;
+    @Column(name = " bank")
+    private String bank;
     @Column(name = "comment")
     private String comment;
 

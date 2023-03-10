@@ -23,7 +23,8 @@ public class DriverMapper {
                 jpaEntity.getDriverLicenseExp(),
                 jpaEntity.getTaxiLicense(),
                 jpaEntity.getAddress(),
-                jpaEntity.getComment()
+                jpaEntity.getComment(),
+                jpaEntity.getDeposit()
         );
     }
 
@@ -44,6 +45,7 @@ public class DriverMapper {
                 .taxiLicense(domain.getTaxiLicense())
                 .address(domain.getAddress())
                 .comment(domain.getComment())
+                .deposit(domain.getDeposit())
                 .build();
     }
 }

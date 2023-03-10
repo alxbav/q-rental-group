@@ -23,6 +23,7 @@ public class TransactionAddRequestMapper
         domain.setDriverId(request.getDriverId());
         domain.setDate(request.getDate());
         domain.setComment(request.getComment());
+        domain.setDateStamp(request.getDateStamp());
 
         return domain;
     }

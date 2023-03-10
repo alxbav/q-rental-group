@@ -12,6 +12,10 @@ public class FirmAddRequest {
     private String iban;
     private Long regNumber;
     private String vatNumber;
+    private String eMail;
+    private String postAddress;
+    private String phone;
+    private String bank;
     private String comment;
 
 }

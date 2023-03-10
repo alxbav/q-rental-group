@@ -29,4 +29,5 @@ public class DriverUpdateRequest
     private String taxiLicense;
     private String address;
     private String comment;
+    private Long deposit;
 }

@@ -18,11 +18,13 @@ public class TransactionUpdateRequestMapper
     public Transaction toDomain(TransactionUpdateRequest request) {
         final var domain = new Transaction();
         final var type = typeLoadPort.loadById(request.getTransactionTypeId());
+        domain.setId(request.getId());
         domain.setType(type);
         domain.setDriverId(request.getDriverId());
         domain.setAmount(request.getAmount());
         domain.setDate(request.getDate());
         domain.setComment(request.getComment());
+        domain.setDateStamp(request.getDateStamp());
 
         return domain;
     }
@@ -36,6 +38,7 @@ public class TransactionUpdateRequestMapper
         request.setDriverId(domain.getDriverId());
         request.setDate(domain.getDate());
         request.setComment(domain.getComment());
+        request.setDateStamp(domain.getDateStamp());
 
         return request;
     }

@@ -34,6 +34,10 @@ class FirmUseCaseService implements
                 command.getIban(),
                 command.getRegNumber(),
                 command.getVatNumber(),
+                command.getEMail(),
+                command.getPostAddress(),
+                command.getPhone(),
+                command.getBank(),
                 command.getComment());
         firmAddPort.add(firmDomain);
     }
@@ -56,6 +60,10 @@ class FirmUseCaseService implements
         toUpdate.setIban(request.getIban());
         toUpdate.setRegNumber(request.getRegNumber());
         toUpdate.setVatNumber(request.getVatNumber());
+        toUpdate.seteMail(request.getEMail());
+        toUpdate.setPostAddress(request.getPostAddress());
+        toUpdate.setPhone(request.getPhone());
+        toUpdate.setBank(request.getBank());
         toUpdate.setComment(request.getComment());
     }
 

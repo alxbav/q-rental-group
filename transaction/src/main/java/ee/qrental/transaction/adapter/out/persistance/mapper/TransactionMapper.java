@@ -23,7 +23,8 @@ public class TransactionMapper {
                 jpaEntity.getDriverId(),
                 jpaEntity.getAmount(),
                 jpaEntity.getDate(),
-                jpaEntity.getComment());
+                jpaEntity.getComment(),
+                jpaEntity.getDateStamp());
     }
 
     public TransactionJpaEntity mapToEntity(final Transaction domain) {
@@ -42,6 +43,7 @@ public class TransactionMapper {
                 .amount(domain.getAmount())
                 .date(domain.getDate())
                 .comment(domain.getComment())
+                .dateStamp(domain.getDateStamp())
                 .build();
     }
 }

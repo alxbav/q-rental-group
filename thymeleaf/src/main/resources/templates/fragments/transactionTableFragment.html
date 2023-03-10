@@ -15,6 +15,7 @@
         <th>Week</th>
         <th>Date</th>
         <th>Comment</th>
+        <th>Date Stamp</th>
     </tr>
     <tr th:if="${#lists.isEmpty(transactions)}">
         <td colspan="5">No Transactions</td>
@@ -41,5 +42,6 @@
         <td th:text="${transaction.weekNumber}">???</td>
         <td th:text="${transaction.date}">???</td>
         <td th:text="${transaction.comment}">???</td>
+        <td th:text="${transaction.dateStamp}">???</td>
     </tr>
 </table>

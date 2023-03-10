@@ -14,6 +14,10 @@ public class FirmMapper {
                 jpaEntity.getIban(),
                 jpaEntity.getRegNumber(),
                 jpaEntity.getVatNumber(),
+                jpaEntity.getEmail(),
+                jpaEntity.getPostAddress(),
+                jpaEntity.getPhone(),
+                jpaEntity.getBank(),
                 jpaEntity.getComment()
         );
     }
@@ -25,6 +29,10 @@ public class FirmMapper {
                 .iban(domain.getIban())
                 .regNumber(domain.getRegNumber())
                 .vatNumber(domain.getVatNumber())
+                .email(domain.getEMail())
+                .postAddress(domain.getPostAddress())
+                .phone(domain.getPhone())
+                .bank(domain.getBank())
                 .comment(domain.getComment())
                 .build();
     }

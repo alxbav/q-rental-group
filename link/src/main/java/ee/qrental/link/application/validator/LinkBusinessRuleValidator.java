@@ -48,8 +48,9 @@ public class LinkBusinessRuleValidator
 
     private void checkDriverBalance(final Link domain, final ViolationsCollector violationsCollector) {
         final var driverId = domain.getDriverId();
-        final var weeklyRent = 200;
-        final var requiredDeposit = 200 + weeklyRent;
+        final var weeklyRent = 0;
+        final var weeklyCasco = 0;
+        final var requiredDeposit =  weeklyRent + weeklyCasco;
         final var total = getTotalByDriverId(driverId);
         if (total < requiredDeposit) {
             violationsCollector.collect(
