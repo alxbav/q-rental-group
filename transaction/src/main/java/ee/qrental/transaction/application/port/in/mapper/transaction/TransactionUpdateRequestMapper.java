@@ -38,7 +38,7 @@ public class TransactionUpdateRequestMapper
         request.setDriverId(domain.getDriverId());
         request.setDate(domain.getDate());
         request.setComment(domain.getComment());
-        request.setDateStamp(domain.getDateStamp());
+
 
         return request;
     }
