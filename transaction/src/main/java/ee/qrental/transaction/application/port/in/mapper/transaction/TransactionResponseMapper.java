@@ -26,13 +26,14 @@ public class TransactionResponseMapper
                 .date(domain.getDate())
                 .weekNumber(domain.getWeekNumber())
                 .comment(domain.getComment())
+                .dateStamp(domain.getDateStamp())
                 .build();
     }
 
     @Override
     public String toObjectInfo(Transaction domain) {
         final var type = domain.getType().getName();
-        final var realAmount = domain.getRealAmount()/100 ;
+        final var realAmount = domain.getRealAmount() ;
         final var date = domain.getDate().toString();
         final var weekNumber = domain.getWeekNumber();
 

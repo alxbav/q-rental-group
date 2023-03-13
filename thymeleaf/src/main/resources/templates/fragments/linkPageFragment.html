@@ -1,6 +1,23 @@
 <div th:fragment="linkPage">
     <nav th:replace="fragments/navigationFragment.html :: qrental-navigation"></nav>
-    <h2 class="py-3">Links</h2>
+    <ul th:replace="fragments/linkTabFragment :: linkTabs('links')"></ul>
+
+
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-5 align-self-start">
+                    <h2 class="py-3" th:text="|Links|">Links</h2>
+                </div>
+                <div class="col align-self-md-end">
+                    <small th:text="|Total Active: ___ Links|"
+                           class="fs-5 d-inline-flex mb-3 px-2 py-1 fw-semibold border bg-opacity-10
+                               border-opacity-10 rounded-2"
+                           th:classappend="'text-success bg-success border-success'">???</small>
+                </div>
+            </div>
+        </div>
+    </div>
     <table class="table table-striped table-bordered">
         <tr>
             <th>
@@ -12,7 +29,8 @@
                     Add new Link
                 </a>
             </th>
-            <th>Car</th>
+            <th>Car Number</th>
+            <th>Call Sign</th>
             <th>Driver</th>
             <th>Date Start</th>
             <th>Date End</th>
@@ -33,6 +51,7 @@
                     Delete</a>
             </td>
             <td th:text="${link.carId}"></td>
+            <td></td>
             <td th:text="${link.driverId}"></td>
             <td th:text="${link.dateStart}"></td>
             <td th:text="${link.dateEnd}"></td>
