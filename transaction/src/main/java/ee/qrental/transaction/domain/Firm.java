@@ -2,11 +2,16 @@ package ee.qrental.transaction.domain;
 
 
 import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import static java.lang.String.format;
 
-
 @Getter
+@Setter
+@NoArgsConstructor
+
 public class Firm {
 
     private static final Integer COMMENT_MAX_SIZE = 150;
@@ -15,59 +20,28 @@ public class Firm {
     private String iban;
     private Long regNumber;
     private String vatNumber;
+    private String comment;
     private String eMail;
     private String postAddress;
     private String phone;
     private String bank;
-    private String comment;
+    private Boolean qGroup;
 
-    public Firm(Long id, String name, String iban, Long regNumber, String vatNumber, String eMail, String postAddress, String phone, String bank, String comment) {
+    public Firm(Long id, String name, String iban, Long regNumber,
+                String vatNumber, String comment, String eMail,
+                String postAddress, String phone, String bank,
+                Boolean qGroup) {
         this.id = id;
         this.name = name;
         this.iban = iban;
         this.regNumber = regNumber;
         this.vatNumber = vatNumber;
+        this.comment = comment;
         this.eMail = eMail;
         this.postAddress = postAddress;
         this.phone = phone;
         this.bank = bank;
-        this.comment = comment;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setIban(String iban) {
-        this.iban = iban;
-    }
-
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
-    }
-
-    public void setPostAddress(String postAddress) {
-        this.postAddress = postAddress;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public void setBank(String bank) {
-        this.bank = bank;
-    }
-
-    public void setRegNumber(Long regNumber) {
-        this.regNumber = regNumber;
-    }
-
-    public void setVatNumber(String vatNumber) {
-        this.vatNumber = vatNumber;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
+        this.qGroup = qGroup;
     }
 
     private void validateComment(final String comment) {

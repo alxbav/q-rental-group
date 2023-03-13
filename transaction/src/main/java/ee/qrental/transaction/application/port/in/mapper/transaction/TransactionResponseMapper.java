@@ -32,7 +32,7 @@ public class TransactionResponseMapper
     @Override
     public String toObjectInfo(Transaction domain) {
         final var type = domain.getType().getName();
-        final var realAmount = domain.getRealAmount();
+        final var realAmount = domain.getRealAmount()/100 ;
         final var date = domain.getDate().toString();
         final var weekNumber = domain.getWeekNumber();
 

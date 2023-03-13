@@ -35,6 +35,8 @@ public class FirmJpaEntity {
     private Long regNumber;
     @Column(name = "vat_number")
     private String vatNumber;
+    @Column(name = "comment")
+    private String comment;
     @Column(name = "email")
     private String email;
     @Column(name = "post_address")
@@ -43,7 +45,7 @@ public class FirmJpaEntity {
     private String phone;
     @Column(name = " bank")
     private String bank;
-    @Column(name = "comment")
-    private String comment;
+    @Column(name = "q_group")
+    private Boolean qGroup;
 
 }

@@ -14,11 +14,12 @@ public class FirmMapper {
                 jpaEntity.getIban(),
                 jpaEntity.getRegNumber(),
                 jpaEntity.getVatNumber(),
+                jpaEntity.getComment(),
                 jpaEntity.getEmail(),
                 jpaEntity.getPostAddress(),
                 jpaEntity.getPhone(),
                 jpaEntity.getBank(),
-                jpaEntity.getComment()
+                jpaEntity.getQGroup()
         );
     }
 
@@ -29,11 +30,12 @@ public class FirmMapper {
                 .iban(domain.getIban())
                 .regNumber(domain.getRegNumber())
                 .vatNumber(domain.getVatNumber())
+                .comment(domain.getComment())
                 .email(domain.getEMail())
                 .postAddress(domain.getPostAddress())
                 .phone(domain.getPhone())
                 .bank(domain.getBank())
-                .comment(domain.getComment())
+                .qGroup(domain.getQGroup())
                 .build();
     }
 }

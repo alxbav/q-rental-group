@@ -24,6 +24,16 @@
                                  : 'text-success bg-success border-success'">???</small>
                     </div>
                 </div>
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <th>Call Sign :</th>
+                        <th>Car : </th>
+                        <th>Phone :</th>
+                        <th>Deposit :</th>
+                    </tr>
+                </table>
+
+
                 <div th:replace="fragments/balanceDriverFragment.html :: detailView"></div>
             </div>
         </div>
@@ -86,7 +96,7 @@
                                  : 'text-success bg-success border-success'"
                 th:text="${transaction.realAmount}">???
             </td>
-            <td th:text="${transaction.comment}">??? </td>
+            <td th:text="${transaction.comment}">???</td>
         </tr>
     </table>
 

@@ -15,9 +15,10 @@ public class FirmUpdateRequest
     private String iban;
     private Long regNumber;
     private String vatNumber;
+    private String comment;
     private String eMail;
     private String postAddress;
     private String phone;
     private String bank;
-    private String comment;
+    private Boolean qGroup;
 }

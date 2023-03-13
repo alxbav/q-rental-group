@@ -7,4 +7,5 @@ import ee.qrental.transaction.application.port.in.response.firm.FirmResponse;
 public interface GetFirmQuery
         extends BaseGetQuery<FirmUpdateRequest, FirmResponse> {
 
+    FirmResponse getByName(final String name);
 }

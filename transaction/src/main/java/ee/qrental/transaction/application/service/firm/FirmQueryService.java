@@ -1,6 +1,7 @@
-package ee.qrental.transaction.application.service;
+package ee.qrental.transaction.application.service.firm;
 
-import ee.qrental.transaction.application.port.in.mapper.FirmResponseMapper;
+import ee.qrental.transaction.application.port.in.mapper.firm.FirmResponseMapper;
+import ee.qrental.transaction.application.port.in.mapper.firm.FirmUpdateRequestMapper;
 import ee.qrental.transaction.application.port.in.query.GetFirmQuery;
 import ee.qrental.transaction.application.port.in.request.firm.FirmUpdateRequest;
 import ee.qrental.transaction.application.port.in.response.firm.FirmResponse;
@@ -14,14 +15,16 @@ import static java.util.stream.Collectors.toList;
 
 @Service
 @AllArgsConstructor
-class FirmQueryService implements GetFirmQuery {
+public class FirmQueryService
+        implements GetFirmQuery {
 
-    private final FirmLoadPort firmLoadPort;
+    private final FirmLoadPort loadPort;
     private final FirmResponseMapper mapper;
+    private final FirmUpdateRequestMapper updateRequestMapper;
 
     @Override
     public List<FirmResponse> getAll() {
-        return firmLoadPort.loadAll()
+        return loadPort.loadAll()
                 .stream()
                 .map(mapper::toResponse)
                 .collect(toList());
@@ -29,20 +32,21 @@ class FirmQueryService implements GetFirmQuery {
 
     @Override
     public FirmResponse getById(final Long id) {
-        return mapper.toResponse(firmLoadPort.loadById(id));
+        return mapper.toResponse(loadPort.loadById(id));
     }
 
     @Override
     public String getObjectInfo(Long id) {
-        return mapper.toObjectInfo(firmLoadPort.loadById(id));
+        return mapper.toObjectInfo(loadPort.loadById(id));
     }
 
     @Override
     public FirmUpdateRequest getUpdateRequestById(Long id) {
-        //TODO use mapper
-       // return mapper.(firmLoadPort.loadById(id));
-        return null;
+        return updateRequestMapper.toRequest(loadPort.loadById(id));
     }
 
-
+    @Override
+    public FirmResponse getByName(final String name) {
+        return mapper.toResponse(loadPort.loadByName(name));
+    }
 }
