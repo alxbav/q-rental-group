@@ -11,4 +11,6 @@ public interface CallSignLinkSpringDataRepository
         extends JpaRepository<CallSignLinkJpaEntity, Long> {
 
     List<CallSignLinkJpaEntity> findAllByDateEndIsNull();
+
+    CallSignLinkJpaEntity findFirstByDriverId(final Long driverId);
 }

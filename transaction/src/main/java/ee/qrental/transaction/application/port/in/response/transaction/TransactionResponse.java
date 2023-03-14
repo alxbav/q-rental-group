@@ -11,9 +11,10 @@ public class TransactionResponse {
     private Long id;
     private String type;
     private String driverInfo;
+    private Integer callSign;
     private Long realAmount;
     private Integer weekNumber;
     private LocalDate date;
-    private String comment;
     private LocalDate dateStamp;
+    private String comment;
 }

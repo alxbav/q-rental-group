@@ -11,8 +11,9 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-@AllArgsConstructor
 @Component
+
+@AllArgsConstructor
 public class CallSignLinkLoadAdapter implements CallSignLinkLoadPort {
 
     private final CallSignLinkSpringDataRepository springRepository;
@@ -37,5 +38,10 @@ public class CallSignLinkLoadAdapter implements CallSignLinkLoadPort {
                 .stream()
                 .map(mapper::mapToDomain)
                 .collect(toList());
+    }
+
+    @Override
+    public CallSignLink loadByDriverId(final Long driverId) {
+        return mapper.mapToDomain(springRepository.findFirstByDriverId(driverId));
     }
 }

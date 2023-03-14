@@ -14,6 +14,7 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 @Service
+
 @AllArgsConstructor
 public class CallSignLinkQueryService implements GetCallSignLinkQuery {
 
@@ -42,5 +43,10 @@ public class CallSignLinkQueryService implements GetCallSignLinkQuery {
     @Override
     public CallSignLinkUpdateRequest getUpdateRequestById(Long id) {
         return updateRequestMapper.toRequest(loadPort.loadById(id));
+    }
+
+    @Override
+    public CallSignLinkResponse getCallSignLinkByDriverId(final Long driverId) {
+        return mapper.toResponse(loadPort.loadByDriverId(driverId));
     }
 }

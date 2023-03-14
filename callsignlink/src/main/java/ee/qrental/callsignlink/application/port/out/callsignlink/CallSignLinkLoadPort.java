@@ -9,4 +9,6 @@ public interface CallSignLinkLoadPort
         extends LoadPort<CallSignLink> {
 
     List<CallSignLink> loadActiveCallSignLinks();
+
+    CallSignLink loadByDriverId(final Long driverId);
 }

@@ -17,9 +17,11 @@ import java.util.List;
 import static ee.qrental.thymeleaf.ui.controller.transaction.TransactionFilterRequestUtils.addCleanFilterRequestToModel;
 import static ee.qrental.thymeleaf.ui.controller.transaction.TransactionFilterRequestUtils.addFilterOptionsToModel;
 
-@AllArgsConstructor
+
 @Controller
 @RequestMapping("/transactions")
+
+@AllArgsConstructor
 public class TransactionQueryController {
     private final GetTransactionQuery transactionQuery;
 
