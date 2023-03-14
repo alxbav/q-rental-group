@@ -32,16 +32,17 @@ class CarUseCaseService
     private final CarUpdateRequestMapper updateRequestMapper;
     private final CarBusinessRuleValidator businessRuleValidator;
 
-
     @Override
-    public void add(final CarAddRequest request) {
+    public Long add(final CarAddRequest request) {
         final var domain = addRequestMapper.toDomain(request);
         final var violationsCollector = businessRuleValidator.validate(domain);
         if (violationsCollector.hasViolations()) {
             request.setViolations(violationsCollector.getViolations());
-            return;
+
+            return null;
         }
-        addPort.add(addRequestMapper.toDomain(request));
+
+        return addPort.add(addRequestMapper.toDomain(request)).getId();
     }
 
     @Override

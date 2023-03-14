@@ -59,4 +59,13 @@ public class TransactionLoadAdapter
                 .map(mapper::mapToDomain)
                 .collect(toList());
     }
+
+    @Override
+    public List<Transaction> loadAllByCalculationId(Long calculationId) {
+        return springRepository
+                .findAllByCalculationId(calculationId)
+                .stream()
+                .map(mapper::mapToDomain)
+                .collect(toList());
+    }
 }

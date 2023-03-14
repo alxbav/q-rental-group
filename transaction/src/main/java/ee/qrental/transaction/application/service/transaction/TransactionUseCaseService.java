@@ -16,6 +16,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+
 @AllArgsConstructor
 public class TransactionUseCaseService
         implements TransactionAddUseCase,
@@ -30,8 +31,8 @@ public class TransactionUseCaseService
     private final TransactionUpdateRequestMapper updateRequestMapper;
 
     @Override
-    public void add(final TransactionAddRequest request) {
-        addPort.add(addRequestMapper.toDomain(request));
+    public Long add(final TransactionAddRequest request) {
+        return addPort.add(addRequestMapper.toDomain(request)).getId();
     }
 
     @Override

@@ -8,4 +8,6 @@ public interface ConstantLoadPort {
     List<Constant> loadAllConstants();
 
     Constant loadConstantById(Long id);
+
+    Constant loadConstantByName(final String name);
 }

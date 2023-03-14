@@ -24,7 +24,7 @@
     <artifactId>q-rental-parent-pom</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Parent POM</name>
-    <description>Parent POM file for  q-rental Auto Rent application</description>
+    <description>Parent POM file for q-rental Auto Rent application</description>
 
     <packaging>pom</packaging>
 
@@ -37,9 +37,9 @@
     </properties>
 
     <modules>
-        <module>commoncore</module>
         <module>application</module>
-        <module>job</module>
+        <module>commoncore</module>
+        <module>calculation</module>
         <module>driverpotential</module>
         <module>driver</module>
         <module>car</module>

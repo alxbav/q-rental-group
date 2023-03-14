@@ -2,10 +2,9 @@ package ee.qrental.transaction.domain;
 
 
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
-import static java.lang.String.format;
-
-
+@SuperBuilder
 @Getter
 public class Constant {
 
@@ -38,7 +37,8 @@ public class Constant {
         this.negative = negative;
     }
 
-    public void setValue(Double value) {  this.value = value;
+    public void setValue(Double value) {
+        this.value = value;
     }
 
     private void validateNegative(final Boolean negative) {

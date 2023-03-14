@@ -18,9 +18,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+
 @AllArgsConstructor
-class CallSignUseCaseService implements
-        CallSignAddUseCase,
+class CallSignUseCaseService
+        implements CallSignAddUseCase,
         CallSignUpdateUseCase,
         CallSignDeleteUseCase {
 
@@ -34,14 +35,16 @@ class CallSignUseCaseService implements
     private final CallSignBusinessRuleValidator businessRuleValidator;
 
     @Override
-    public void add(final CallSignAddRequest request) {
+    public Long add(final CallSignAddRequest request) {
         final var domain = addRequestMapper.toDomain(request);
         final var violationsCollector = businessRuleValidator.validate(domain);
         if (violationsCollector.hasViolations()) {
             request.setViolations(violationsCollector.getViolations());
-            return;
+
+            return null;
         }
-        addPort.add(addRequestMapper.toDomain(request));
+
+        return addPort.add(addRequestMapper.toDomain(request)).getId();
     }
 
     @Override

@@ -8,5 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SpringDataConstantRepository
         extends JpaRepository<ConstantJpaEntity, Long> {
+
+    ConstantJpaEntity findByName(final String name);
 }
 

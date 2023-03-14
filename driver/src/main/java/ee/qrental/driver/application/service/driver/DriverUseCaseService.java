@@ -26,15 +26,13 @@ public class DriverUseCaseService
     private final DriverAddPort addPort;
     private final DriverUpdatePort updatePort;
     private final DriverDeletePort deletePort;
-
     private final DriverLoadPort loadPort;
-
     private final DriverAddRequestMapper addRequestMapper;
     private final DriverUpdateRequestMapper updateRequestMapper;
 
     @Override
-    public void add(final DriverAddRequest request) {
-        addPort.add(addRequestMapper.toDomain(request));
+    public Long add(final DriverAddRequest request) {
+        return addPort.add(addRequestMapper.toDomain(request)).getId();
     }
 
     @Override

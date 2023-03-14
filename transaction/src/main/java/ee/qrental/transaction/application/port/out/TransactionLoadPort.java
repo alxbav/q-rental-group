@@ -16,4 +16,6 @@ public interface TransactionLoadPort
 
     List<Transaction> loadAllByDriverIdAndBetweenDays(
             final Long driverId, final LocalDate dateStart, final LocalDate dateEnd);
+
+    List<Transaction> loadAllByCalculationId(final Long calculationId);
 }

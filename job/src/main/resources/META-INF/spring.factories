@@ -1,3 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-ee.qrental.job.adapter.AdapterConfig,\
-ee.qrental.job.application.ApplicationConfig

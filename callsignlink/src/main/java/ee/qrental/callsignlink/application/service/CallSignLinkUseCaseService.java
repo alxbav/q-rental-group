@@ -33,14 +33,15 @@ class CallSignLinkUseCaseService implements
     private final CallSignLinkBusinessRuleValidator businessRuleValidator;
 
     @Override
-    public void add(final CallSignLinkAddRequest request) {
+    public Long add(final CallSignLinkAddRequest request) {
         final var domain = addRequestMapper.toDomain(request);
         final var violationsCollector = businessRuleValidator.validate(domain);
         if (violationsCollector.hasViolations()) {
             request.setViolations(violationsCollector.getViolations());
-            return;
+            return null;
         }
-        addPort.add(addRequestMapper.toDomain(request));
+
+        return addPort.add(addRequestMapper.toDomain(request)).getId();
     }
 
     @Override

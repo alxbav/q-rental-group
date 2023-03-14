@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+ee.qrental.calculation.adapter.AdapterConfig,\
+ee.qrental.calculation.application.ApplicationConfig

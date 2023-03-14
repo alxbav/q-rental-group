@@ -1,14 +1,12 @@
 package ee.qrental.transaction.domain;
 
 
+import ee.qrental.common.core.utils.QTimeUtils;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.temporal.WeekFields;
-
-import static java.util.Locale.getDefault;
 
 @NoArgsConstructor
 @Getter
@@ -39,11 +37,11 @@ public class Transaction {
         this.dateStamp = dateStamp;
     }
 
-
     public Long getRealAmount() {
         return type.getNegative() ? -amount : amount;
     }
+
     public Integer getWeekNumber() {
-        return date.get(WeekFields.of(getDefault()).weekOfWeekBasedYear());
+        return QTimeUtils.getWeekNumber(date);
     }
 }

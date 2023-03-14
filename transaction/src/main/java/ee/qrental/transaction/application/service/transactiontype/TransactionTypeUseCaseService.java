@@ -16,6 +16,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+
 @AllArgsConstructor
 public class TransactionTypeUseCaseService
         implements TransactionTypeAddUseCase,
@@ -25,15 +26,13 @@ public class TransactionTypeUseCaseService
     private final TransactionTypeAddPort addPort;
     private final TransactionTypeUpdatePort updatePort;
     private final TransactionTypeDeletePort deletePort;
-
     private final TransactionTypeLoadPort loadPort;
-
     private final TransactionTypeAddRequestMapper addRequestMapper;
     private final TransactionTypeUpdateRequestMapper updateRequestMapper;
 
     @Override
-    public void add(final TransactionTypeAddRequest request) {
-        addPort.add(addRequestMapper.toDomain(request));
+    public Long add(final TransactionTypeAddRequest request) {
+        return addPort.add(addRequestMapper.toDomain(request)).getId();
     }
 
     @Override

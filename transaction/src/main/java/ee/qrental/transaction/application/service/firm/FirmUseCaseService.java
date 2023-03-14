@@ -8,11 +8,15 @@ import ee.qrental.transaction.application.port.in.request.firm.FirmUpdateRequest
 import ee.qrental.transaction.application.port.in.usecase.firm.FirmAddUseCase;
 import ee.qrental.transaction.application.port.in.usecase.firm.FirmDeleteUseCase;
 import ee.qrental.transaction.application.port.in.usecase.firm.FirmUpdateUseCase;
-import ee.qrental.transaction.application.port.out.*;
+import ee.qrental.transaction.application.port.out.FirmAddPort;
+import ee.qrental.transaction.application.port.out.FirmDeletePort;
+import ee.qrental.transaction.application.port.out.FirmLoadPort;
+import ee.qrental.transaction.application.port.out.FirmUpdatePort;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+
 @AllArgsConstructor
 public class FirmUseCaseService
         implements FirmAddUseCase,
@@ -29,8 +33,8 @@ public class FirmUseCaseService
     private final FirmUpdateRequestMapper updateRequestMapper;
 
     @Override
-    public void add(final FirmAddRequest request) {
-        addPort.add(addRequestMapper.toDomain(request));
+    public Long add(final FirmAddRequest request) {
+        return addPort.add(addRequestMapper.toDomain(request)).getId();
     }
 
     @Override

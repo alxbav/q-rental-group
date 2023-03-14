@@ -18,6 +18,7 @@ import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
 
 @Service
+
 @AllArgsConstructor
 public class TransactionQueryService
         implements GetTransactionQuery {
@@ -45,6 +46,11 @@ public class TransactionQueryService
     @Override
     public List<TransactionResponse> getAllByDriverId(final Long driverId) {
         return mapToTransactionResponseList(transactionLoadPort.loadAllByDriverId(driverId));
+    }
+
+    @Override
+    public List<TransactionResponse> getAllByCalculationId(Long calculationId) {
+        return mapToTransactionResponseList(transactionLoadPort.loadAllByCalculationId(calculationId));
     }
 
     @Override

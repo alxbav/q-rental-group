@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+
 @AllArgsConstructor
 class LinkUseCaseService
         implements LinkAddUseCase,
@@ -32,14 +33,16 @@ class LinkUseCaseService
     private final LinkBusinessRuleValidator businessRuleValidator;
 
     @Override
-    public void add(final LinkAddRequest request) {
+    public Long add(final LinkAddRequest request) {
         final var domain = addRequestMapper.toDomain(request);
         final var violationsCollector = businessRuleValidator.validate(domain);
         if (violationsCollector.hasViolations()) {
             request.setViolations(violationsCollector.getViolations());
-            return;
+
+            return null;
         }
-        addPort.add(domain);
+
+        return addPort.add(domain).getId();
     }
 
     @Override

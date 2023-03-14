@@ -15,9 +15,10 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 @Component
+
 @AllArgsConstructor
-public class ConstantPersistenceAdapterLoadAddUpdateDelete implements
-        ConstantLoadPort,
+public class ConstantPersistenceAdapterLoadAddUpdateDelete
+        implements ConstantLoadPort,
         ConstantAddPort,
         ConstantUpdatePort,
         ConstantDeletePort {
@@ -37,6 +38,12 @@ public class ConstantPersistenceAdapterLoadAddUpdateDelete implements
     public Constant loadConstantById(Long id) {
         return constantMapper.mapToDomain(
                 springDataConstantRepository.getReferenceById(id));
+    }
+
+    @Override
+    public Constant loadConstantByName(final String name) {
+        return constantMapper.mapToDomain(
+                springDataConstantRepository.findByName(name));
     }
 
     @Override
