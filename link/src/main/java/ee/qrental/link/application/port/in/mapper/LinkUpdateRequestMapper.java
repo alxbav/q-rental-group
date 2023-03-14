@@ -21,8 +21,9 @@ public class LinkUpdateRequestMapper
     }
 
     @Override
-    public LinkUpdateRequest toRequest(Link domain) {
+    public LinkUpdateRequest toRequest(final Link domain) {
         final var request = new LinkUpdateRequest();
+        request.setId(domain.getId());
         request.setDriverId(domain.getDriverId());
         request.setCarId(domain.getCarId());
         request.setDateStart(domain.getDateStart());
