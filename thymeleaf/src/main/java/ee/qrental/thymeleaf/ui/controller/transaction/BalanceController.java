@@ -14,9 +14,11 @@ import java.util.List;
 
 import static ee.qrental.transaction.application.port.in.utils.TransactionUtils.getSum;
 
-@AllArgsConstructor
+
 @Controller
 @RequestMapping("/balances")
+
+@AllArgsConstructor
 public class BalanceController {
 
     private final GetBalanceQuery balanceQuery;
@@ -30,7 +32,9 @@ public class BalanceController {
     }
 
     @GetMapping(value = "/driver/{id}")
-    public String getDriverTransactionsView(@PathVariable("id") long id, final Model model) {
+    public String getDriverTransactionsView(
+            @PathVariable("id") long id,
+            final Model model) {
         TransactionFilterRequestUtils.addCleanFilterRequestToModel(id, model);
         TransactionFilterRequestUtils.addFilterOptionsToModel(model);
         addTransactionDataToModel(transactionQuery.getAllByDriverId(id), model);
@@ -40,7 +44,10 @@ public class BalanceController {
     }
 
     @PostMapping(value = "/driver/{id}")
-    public String getFilteredDriverTransactionsView(@PathVariable("id") long id, @ModelAttribute final TransactionFilterRequest transactionFilterRequest, final Model model) {
+    public String getFilteredDriverTransactionsView(
+            @PathVariable("id") long id,
+            @ModelAttribute final TransactionFilterRequest transactionFilterRequest,
+            final Model model) {
         TransactionFilterRequestUtils.addFilterOptionsToModel(model);
         addTransactionDataToModel(transactionQuery.getAllByFilterRequest(transactionFilterRequest), model);
         addDriverDataToModel(id, model);
