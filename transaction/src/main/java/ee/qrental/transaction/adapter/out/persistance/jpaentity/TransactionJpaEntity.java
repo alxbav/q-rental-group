@@ -8,6 +8,7 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -34,7 +35,7 @@ public class TransactionJpaEntity {
     private Long driverId;
 
     @Column(name = "amount")
-    private Long amount;
+    private BigDecimal amount;
 
     @Column(name = "date")
     private LocalDate date;

@@ -9,6 +9,7 @@ import ee.qrental.transaction.domain.Transaction;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -30,7 +31,7 @@ public class BalancesQueryService
     }
 
     @Override
-    public Long getTotalByDriverId(final Long driverId) {
+    public BigDecimal getTotalByDriverId(final Long driverId) {
         return calculateTotal(transactionLoadPort.loadAllByDriverId(driverId));
     }
 
@@ -47,9 +48,9 @@ public class BalancesQueryService
         return balanceResponse;
     }
 
-    private Long calculateTotal(final List<Transaction> transactions) {
+    private BigDecimal calculateTotal(final List<Transaction> transactions) {
         return transactions.stream()
-                .mapToLong(Transaction::getRealAmount)
-                .sum();
+                .map(Transaction::getRealAmount)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }
