@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @NoArgsConstructor
@@ -20,14 +21,14 @@ public class Transaction {
 
     private Long driverId;
 
-    private Long amount;
+    private BigDecimal amount;
 
     private LocalDate date;
 
     private String comment;
     private LocalDate dateStamp;
 
-    public Transaction(Long id, TransactionType type, Long driverId, Long amount, LocalDate date, String comment, LocalDate dateStamp) {
+    public Transaction(Long id, TransactionType type, Long driverId, BigDecimal amount, LocalDate date, String comment, LocalDate dateStamp) {
         this.id = id;
         this.type = type;
         this.driverId = driverId;
@@ -37,8 +38,8 @@ public class Transaction {
         this.dateStamp = dateStamp;
     }
 
-    public Long getRealAmount() {
-        return type.getNegative() ? -amount : amount;
+    public BigDecimal getRealAmount() {
+        return type.getNegative() ? amount.negate() : amount;
     }
 
     public Integer getWeekNumber() {

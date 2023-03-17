@@ -5,6 +5,7 @@ import ee.qrental.transaction.application.port.out.ConstantLoadPort;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.time.Period;
 
 @Component
@@ -21,11 +22,10 @@ public class PartialWeekRateCalculationStrategy implements RateCalculationStrate
     }
 
     @Override
-    public Long calculate(final QWeek week) {
+    public BigDecimal calculate(final QWeek week) {
         final var rate = constantLoadPort.loadConstantByName(DAILY_RENT_FEE).getValue();
         final var days = Period.between(week.start(), week.end()).getDays();
-        final Double totalRate = (days + 1) * rate * 100;
 
-        return totalRate.longValue();
+        return BigDecimal.valueOf((days + 1) * rate * 100);
     }
 }
