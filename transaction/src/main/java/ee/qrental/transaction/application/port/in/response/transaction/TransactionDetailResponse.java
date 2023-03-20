@@ -11,6 +11,7 @@ public class TransactionDetailResponse {
     private Long id;
     private String typeId;
     private String driverId;
+
     private Long amount;
     private Integer weekNumber;
     private LocalDate date;

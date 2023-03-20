@@ -2,6 +2,7 @@ package ee.qrental.transaction.application.port.in.mapper.transaction;
 
 import ee.qrental.callsignlink.application.port.in.query.GetCallSignLinkQuery;
 import ee.qrental.common.core.api.application.mapper.ResponseMapper;
+import ee.qrental.driver.application.port.in.query.GetDriverQuery;
 import ee.qrental.transaction.application.port.in.response.transaction.TransactionResponse;
 import ee.qrental.transaction.domain.Transaction;
 import lombok.AllArgsConstructor;
@@ -16,17 +17,21 @@ public class TransactionResponseMapper
         implements ResponseMapper<TransactionResponse, Transaction> {
 
     private final GetCallSignLinkQuery callSignLinkQuery;
+    private final GetDriverQuery driverQuery;
 
     @Override
     public TransactionResponse toResponse(final Transaction domain) {
         final var callSignLinkResponse = callSignLinkQuery.getCallSignLinkByDriverId(
                 domain.getDriverId());
+        final var driverInfo = driverQuery.getObjectInfo(domain.getDriverId());
+
+
 
         return TransactionResponse.builder()
                 .id(domain.getId())
                 .realAmount(domain.getRealAmount())
                 .type(domain.getType().getName())
-                .driverInfo(callSignLinkResponse.getDriverInfo())
+                .driverInfo(driverInfo)
                 .callSign(callSignLinkResponse.getCallSign())
                 .date(domain.getDate())
                 .weekNumber(domain.getWeekNumber())
@@ -36,7 +41,7 @@ public class TransactionResponseMapper
     }
 
     @Override
-    public String toObjectInfo(Transaction domain) {
+    public String toObjectInfo(final Transaction domain) {
         final var type = domain.getType().getName();
         final var realAmount = domain.getRealAmount();
         final var date = domain.getDate().toString();

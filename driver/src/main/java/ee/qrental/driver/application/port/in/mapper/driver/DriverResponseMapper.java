@@ -34,7 +34,8 @@ public class DriverResponseMapper
 
     @Override
     public String toObjectInfo(Driver domain) {
-        return format("Driver : %s ",
-                domain.getLastName());
+        return format("%s %s",
+                domain.getLastName(),
+                domain.getFirstName());
     }
 }

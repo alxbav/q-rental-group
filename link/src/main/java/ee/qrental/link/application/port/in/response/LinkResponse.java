@@ -14,7 +14,11 @@ import java.time.LocalDate;
 public class LinkResponse {
     private Long id;
     private Long carId;
+    private String carInfo;
     private Long driverId;
+    private String driverInfo;
+    private Long callSignId;
+    private Integer callSign;
     private LocalDate dateStart;
     private LocalDate dateEnd;
     private String comment;

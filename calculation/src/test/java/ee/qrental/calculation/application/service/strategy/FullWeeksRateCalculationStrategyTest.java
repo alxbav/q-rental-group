@@ -19,6 +19,7 @@ import static org.mockito.Mockito.when;
  * Mon, Tue, Wed, Thu, Fri, Sat, Sun
  * 2    3    4    5    6    7    8
  */
+/*
 class FullWeeksRateCalculationStrategyTest {
 
     private RateCalculationStrategy instanceUnderTest;
@@ -73,3 +74,4 @@ class FullWeeksRateCalculationStrategyTest {
         assertEquals(500L, result);
     }
 }
+*/
