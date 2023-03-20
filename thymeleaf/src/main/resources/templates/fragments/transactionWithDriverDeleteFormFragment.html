@@ -8,7 +8,7 @@
 </div>
 
 <form th:fragment="deleteForm"
-      th:action="@{/balances/driver/{driverId}(driverId = ${driverId})}"
+      th:action="@{/transactions/delete/driver/{driverId}(driverId = ${driverId})}"
       th:object="${deleteRequest}"
       method="post">
     <input id="transactionId" required

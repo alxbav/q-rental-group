@@ -49,7 +49,7 @@ public class TransactionResponseMapper
         final var callSignLinkResponse = callSignLinkQuery.getCallSignLinkByDriverId(
                 domain.getDriverId());
 
-        return format("Transaction: %s %d EURO, " +
+        return format("Transaction: %s %s EURO, " +
                         "week number: %d (%s), " +
                         "for driver: %s " +
                         "with call sign: %d",

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Getter
@@ -13,7 +14,7 @@ public class TransactionAddRequest
         extends AbstractAddRequest {
     private Long transactionTypeId;
     private Long driverId;
-    private Long amount;
+    private BigDecimal amount;
     private Integer weekNumber;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate date = LocalDate.now();
