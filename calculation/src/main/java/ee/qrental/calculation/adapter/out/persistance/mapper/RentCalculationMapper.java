@@ -15,6 +15,10 @@ public class RentCalculationMapper
 
     @Override
     public RentCalculation mapToDomain(final RentCalculationJpaEntity jpaEntity) {
+        if (jpaEntity == null) {
+            return null;
+        }
+
         final var domain = new RentCalculation();
         domain.setId(jpaEntity.getId());
         domain.setActionDate(jpaEntity.getActionDate());

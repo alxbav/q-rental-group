@@ -22,20 +22,9 @@ public class RentCalculationBusinessRuleValidator
     @Override
     public ViolationsCollector validate(final RentCalculation domain) {
         final var violationsCollector = new ViolationsCollector();
-        checkIfRunIsRequired(domain, violationsCollector);
+
 
         return violationsCollector;
     }
 
-    private void checkIfRunIsRequired(
-            final RentCalculation domain,
-            final ViolationsCollector violationCollector) {
-        final var actionDate = getLastSundayFromDate(domain.getActionDate());
-        final var lastSuccessfulCalculation = loadPort.loadLastCalculation();
-
-        final var daysAfterLastSuccessfulCalculation = DAYS.between(lastSuccessfulCalculation.getActionDate(), actionDate);
-        if (daysAfterLastSuccessfulCalculation < 6) {
-            violationCollector.collect("Rent calculation is done. Next calculation is available from upcoming Sunday");
-        }
-    }
 }
