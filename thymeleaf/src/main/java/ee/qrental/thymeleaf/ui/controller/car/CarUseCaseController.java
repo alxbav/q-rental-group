@@ -7,6 +7,8 @@ import ee.qrental.car.application.port.in.request.CarUpdateRequest;
 import ee.qrental.car.application.port.in.usecase.CarAddUseCase;
 import ee.qrental.car.application.port.in.usecase.CarDeleteUseCase;
 import ee.qrental.car.application.port.in.usecase.CarUpdateUseCase;
+import ee.qrental.transaction.application.port.in.request.firm.FirmAddRequest;
+import ee.qrental.transaction.application.port.in.request.firm.FirmUpdateRequest;
 import ee.qrental.transaction.application.port.in.request.transactiontype.TransactionTypeDeleteRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -27,57 +29,32 @@ public class CarUseCaseController {
 
     @GetMapping(value = "/add-form")
     public String addForm(final Model model) {
-        addAddRequestToModel(new CarAddRequest(), model);
+        model.addAttribute("addRequest", new CarAddRequest());
 
         return "forms/addCar";
     }
 
     @PostMapping(value = "/add")
     public String addCarCar(
-            final Model model,
-            @ModelAttribute final CarAddRequest addRequest) {
-
-        addUseCase.add(addRequest);
-        if (addRequest.hasViolations()) {
-            addAddRequestToModel(addRequest, model);
-
-            return "forms/addCar";
-        }
+            @ModelAttribute final CarAddRequest carInfo) {
+        addUseCase.add(carInfo);
 
         return "redirect:/cars";
     }
 
-    private void addAddRequestToModel(
-            final CarAddRequest addRequest,
-            final Model model) {
-        model.addAttribute("addRequest", addRequest);
-    }
-
-
     @GetMapping(value = "/update-form/{id}")
     public String updateForm(@PathVariable("id") long id, Model model) {
-        addUpdateRequestToModel(model, carQuery.getUpdateRequestById(id));
+        model.addAttribute("updateRequest", carQuery.getUpdateRequestById(id));
 
         return "forms/updateCar";
     }
 
     @PostMapping("/update")
     public String updateCarCar(
-            final Model model,
-            final CarUpdateRequest updateRequest) {
-        updateUseCase.update(updateRequest);
-        if (updateRequest.hasViolations()) {
-            addUpdateRequestToModel(model, updateRequest);
-
-            return "forms/updateCar";
-        }
+            final CarUpdateRequest carUpdateRequest) {
+        updateUseCase.update(carUpdateRequest);
 
         return "redirect:/cars";
-    }
-
-    private void addUpdateRequestToModel(final Model model,
-                                         final CarUpdateRequest updateRequest) {
-        model.addAttribute("updateRequest", updateRequest);
     }
 
     @GetMapping(value = "/delete-form/{id}")

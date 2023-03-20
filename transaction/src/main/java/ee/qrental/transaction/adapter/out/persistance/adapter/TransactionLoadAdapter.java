@@ -5,9 +5,11 @@ import ee.qrental.transaction.adapter.out.persistance.repostories.SpringDataTran
 import ee.qrental.transaction.application.port.out.TransactionLoadPort;
 import ee.qrental.transaction.domain.Transaction;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;

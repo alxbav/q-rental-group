@@ -1,8 +1,8 @@
 package ee.qrental.car.application.port.in.mapper;
 
+import ee.qrental.common.core.api.application.mapper.ResponseMapper;
 import ee.qrental.car.application.port.in.response.CarResponse;
 import ee.qrental.car.domain.Car;
-import ee.qrental.common.core.api.application.mapper.ResponseMapper;
 import org.springframework.stereotype.Component;
 
 import static java.lang.String.format;
@@ -13,17 +13,32 @@ public class CarResponseMapper
 
     @Override
     public CarResponse toResponse(final Car domain) {
-        final var response = new CarResponse();
-        response.setId(domain.getId());
-        response.setRegNumber(domain.getRegNumber());
-        response.setReleaseDate(domain.getReleaseDate());
-        response.setManufacturer(domain.getManufacturer());
-        response.setModel(domain.getModel());
-        response.setGearType(domain.getGearType());
-        response.setFuelType(domain.getFuelType());
-        response.setComment(domain.getComment());
-
-        return response;
+        return CarResponse.builder()
+                .id(domain.getId())
+                .active(domain.getActive())
+                .qRent(domain.getQRent())
+                .regNumber(domain.getRegNumber())
+                .vin(domain.getVin())
+                .releaseDate(domain.getReleaseDate())
+                .manufacturer(domain.getManufacturer())
+                .model(domain.getModel())
+                .appropriation(domain.getAppropriation())
+                .elegance(domain.getElegance())
+                .gearType(domain.getGearType())
+                .fuelType(domain.getFuelType())
+                .lpg(domain.getLpg())
+                .dateInstallLpg(domain.getDateInstallLpg())
+                .insuranceFirm(domain.getInsuranceFirm())
+                .insuranceDateStart(domain.getInsuranceDateStart())
+                .insuranceDateEnd(domain.getInsuranceDateEnd())
+                .sCard(domain.getSCard())
+                .key2(domain.getKey2())
+                .gps(domain.getGps())
+                .technicalInspectionEnd(domain.getTechnicalInspectionEnd())
+                .gasInspectionEnd(domain.getGasInspectionEnd())
+                .comment(domain.getComment())
+                .dateEndLpg(domain.getDateEndLpg())
+                .build();
     }
 
     @Override

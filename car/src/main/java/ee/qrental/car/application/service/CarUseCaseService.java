@@ -35,13 +35,13 @@ class CarUseCaseService
     @Override
     public Long add(final CarAddRequest request) {
         final var domain = addRequestMapper.toDomain(request);
-        final var violationsCollector = businessRuleValidator.validate(domain);
-        if (violationsCollector.hasViolations()) {
-            request.setViolations(violationsCollector.getViolations());
+        //    final var violationsCollector = businessRuleValidator.validate(domain);
+        //   if (violationsCollector.hasViolations()) {
+        //        request.setViolations(violationsCollector.getViolations());
 
-            return null;
-        }
-
+        //        return null;
+        //    }
+//TODO validation
         return addPort.add(addRequestMapper.toDomain(request)).getId();
     }
 

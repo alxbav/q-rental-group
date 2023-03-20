@@ -2,14 +2,12 @@ package ee.qrental.car.adapter.out.persistance.mapper;
 
 import ee.qrental.car.adapter.out.persistance.jpaentity.CarJpaEntity;
 import ee.qrental.car.domain.Car;
-import ee.qrental.common.core.api.adapter.mapper.DomainMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CarMapper
-        implements DomainMapper<Car, CarJpaEntity> {
+public class CarMapper {
 
-    @Override
+
     public Car mapToDomain(final CarJpaEntity jpaEntity) {
         return new Car(
                 jpaEntity.getId(),
@@ -39,7 +37,7 @@ public class CarMapper
         );
     }
 
-    @Override
+
     public CarJpaEntity mapToEntity(final Car domain) {
         return CarJpaEntity.builder()
                 .id(domain.getId())

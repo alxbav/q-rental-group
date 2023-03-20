@@ -16,27 +16,27 @@ public class CarPersistenceAdapter
         CarUpdatePort,
         CarDeletePort {
 
-    private final SpringDataCarRepository springDataCarRepository;
-    private final CarMapper carMapper;
+    private final SpringDataCarRepository springRepository;
+    private final CarMapper mapper;
 
     @Override
     public Car add(final Car car) {
-        return carMapper.mapToDomain(
-                springDataCarRepository.save(
-                        carMapper.mapToEntity(car)
+        return mapper.mapToDomain(
+                springRepository.save(
+                        mapper.mapToEntity(car)
                 ));
     }
 
     @Override
     public Car update(final Car car) {
-        return carMapper.mapToDomain(
-                springDataCarRepository.save(
-                        carMapper.mapToEntity(car)
+        return mapper.mapToDomain(
+                springRepository.save(
+                        mapper.mapToEntity(car)
                 ));
     }
 
     @Override
     public void delete(Long id) {
-        springDataCarRepository.deleteById(id);
+        springRepository.deleteById(id);
     }
 }

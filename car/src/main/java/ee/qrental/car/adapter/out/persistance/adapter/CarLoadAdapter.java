@@ -12,31 +12,30 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 @Component
-
 @AllArgsConstructor
 public class CarLoadAdapter
         implements CarLoadPort {
 
-    private final SpringDataCarRepository springDataCarRepository;
-    private final CarMapper carMapper;
+    private final SpringDataCarRepository springRepository;
+    private final CarMapper mapper;
 
     @Override
     public List<Car> loadAll() {
-        return springDataCarRepository.findAll()
+        return springRepository.findAll()
                 .stream()
-                .map(carMapper::mapToDomain)
+                .map(mapper::mapToDomain)
                 .collect(toList());
     }
 
     @Override
     public Car loadById(Long id) {
-        return carMapper.mapToDomain(
-                springDataCarRepository.getReferenceById(id));
+        return mapper.mapToDomain(
+                springRepository.getReferenceById(id));
     }
 
     @Override
     public Car loadByRegNumber(final String regNumber) {
-        return carMapper.mapToDomain(
-                springDataCarRepository.findByRegNumber(regNumber));
+        return mapper.mapToDomain(
+                springRepository.findByRegNumber(regNumber));
     }
 }

@@ -36,12 +36,15 @@
                     <label class="form-label text-muted" for="transactionTypeId">Transaction type</label>
                     <select id="transactionTypeId" class="form-select"
                             th:field="*{transactionTypeId}">
-                        <option th:each="transactionType : ${transactionTypes}"
+                        <option th:each="transactionType: ${transactionTypes}"
                                 th:value="${transactionType.id}"
                                 th:text="${transactionType.name}"></option>
                     </select>
                 </div>
             </div>
+
+        </div>
+        <div class="row">
             <div class="col">
                 <div class="mb-3">
                     <label class="form-label text-muted" for="amountId">Amount</label>
