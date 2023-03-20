@@ -1,6 +1,7 @@
 package ee.qrental.calculation.application.service;
 
 import ee.qrental.calculation.application.service.strategy.RateCalculationStrategy;
+import ee.qrental.calculation.domain.RentCalculation;
 import ee.qrental.common.core.utils.QTimeUtils;
 import ee.qrental.link.application.port.in.response.LinkResponse;
 import ee.qrental.transaction.application.port.in.query.GetTransactionTypeQuery;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 
@@ -22,10 +24,10 @@ public class LinkToTransactionConverter {
 
     public List<TransactionAddRequest> toTransactionAddRequests(
             final LinkResponse linkResponse,
-            final LocalDate lastCalculationDate,
-            final LocalDate actionDate) {
-        final var calculationStartDate = getCalculationStartDate(lastCalculationDate, linkResponse);
-        final var calculationEndDate = getCalculationEndDate(actionDate, linkResponse);
+            final Optional<RentCalculation> lastCalculation,
+            final LocalDate actionDateFormal) {
+        final var calculationStartDate = getCalculationStartDate(lastCalculation, linkResponse);
+        final var calculationEndDate = getCalculationEndDate(actionDateFormal, linkResponse);
         final var weekIterator = new QWeekIterator(calculationStartDate, calculationEndDate);
         final var transactionAddRequests = new ArrayList<TransactionAddRequest>();
         while (weekIterator.hasNext()) {
@@ -58,18 +60,12 @@ public class LinkToTransactionConverter {
     }
 
     private LocalDate getCalculationStartDate(
-            final LocalDate lastCalculationDate,
+            final Optional<RentCalculation> lastCalculation,
             final LinkResponse linkResponse) {
-        final var linkDateStart = linkResponse.getDateStart();
-        if (linkDateStart.isBefore(lastCalculationDate)) {
-
-            return lastCalculationDate;
+        if (lastCalculation.isEmpty()) {
+            return linkResponse.getDateStart();
         }
-        if (linkDateStart.isAfter(lastCalculationDate)) {
-
-            return linkDateStart;
-        }
-        throw new RuntimeException("Invalid Link Start date. Start date can't be in future");
+        return lastCalculation.get().getActionDate();
     }
 
     private LocalDate getCalculationEndDate(

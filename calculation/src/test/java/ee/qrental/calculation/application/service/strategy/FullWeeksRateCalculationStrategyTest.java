@@ -6,6 +6,7 @@ import ee.qrental.transaction.domain.Constant;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Month;
 
@@ -70,6 +71,6 @@ class FullWeeksRateCalculationStrategyTest {
         final var result = instanceUnderTest.calculate(week);
 
         //then
-        assertEquals(500L, result);
+        assertEquals(BigDecimal.valueOf(500d), result);
     }
 }

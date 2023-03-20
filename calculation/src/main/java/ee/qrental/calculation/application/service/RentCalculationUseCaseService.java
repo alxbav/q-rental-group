@@ -5,7 +5,6 @@ import ee.qrental.calculation.application.port.in.request.RentCalculationAddRequ
 import ee.qrental.calculation.application.port.in.usecase.RentCalculationAddUseCase;
 import ee.qrental.calculation.application.port.out.RentCalculationAddPort;
 import ee.qrental.calculation.application.port.out.RentCalculationLoadPort;
-import ee.qrental.calculation.application.validator.RentCalculationBusinessRuleValidator;
 import ee.qrental.calculation.domain.RentCalculation;
 import ee.qrental.calculation.domain.RentCalculationResult;
 import ee.qrental.link.application.port.in.query.GetLinkQuery;
@@ -17,9 +16,12 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import static ee.qrental.common.core.utils.QTimeUtils.getLastSundayFromDate;
+import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
 
 @Service
 
@@ -33,37 +35,56 @@ public class RentCalculationUseCaseService
     private final RentCalculationLoadPort rentCalculationLoadPort;
     private final LinkToTransactionConverter linkToTransactionConverter;
     private final RentCalculationAddRequestMapper addRequestMapper;
-    private final RentCalculationBusinessRuleValidator businessRuleValidator;
+
 
     @Override
     public Long add(RentCalculationAddRequest request) {
         final var domain = addRequestMapper.toDomain(request);
-        final var violationsCollector = businessRuleValidator.validate(domain);
-        if (violationsCollector.hasViolations()) {
-            request.setViolations(violationsCollector.getViolations());
-
-            return null;
-        }
         final var actionDateFormal = getLastSundayFromDate(domain.getActionDate());
-        final var lastCalculationDate = rentCalculationLoadPort.loadLastCalculation().getActionDate();
-        final var rentCalculationResults = linkQuery.getActiveLinks()
+        final var map = linkQuery.getAll()
                 .stream()
-                .map(link -> getRentCalculationResults(link, lastCalculationDate, actionDateFormal))
+                .collect(toMap(identity(),
+                        link -> rentCalculationLoadPort.
+                                loadLastCalculationFromDateByLinkId(link.getDateStart(), link.getId())));
+        final var rentCalculationResults = map.entrySet().stream()
+                .filter(entry -> linkStartsBeforActionDate(entry.getKey(), actionDateFormal))
+                .filter(entry -> linkIsNotClosedAndFullyCalculated(entry.getKey(), entry.getValue()))
+                .map(entry -> getRentCalculationResults(entry.getKey(), entry.getValue(), actionDateFormal))
                 .flatMap(Collection::stream)
                 .collect(toList());
-
         final var rentCalculation = getRentCalculation(actionDateFormal, rentCalculationResults);
 
         return rentCalculationAddPort.add(rentCalculation).getId();
     }
 
+
+    private boolean linkStartsBeforActionDate(
+            final LinkResponse link,
+            final LocalDate actionDate) {
+        return link.getDateStart().isBefore(actionDate);
+    }
+
+    private boolean linkIsNotClosedAndFullyCalculated(
+            final LinkResponse link,
+            final Optional<RentCalculation> latestCalculation) {
+        //if the link is started after latest Sunday from past
+        if (latestCalculation.isEmpty()) {
+            return true;
+        }
+        if (link.getDateEnd().isAfter(latestCalculation.get().getActionDate())) {
+            return true;
+        }
+        return false;
+    }
+
     private List<RentCalculationResult> getRentCalculationResults(
             final LinkResponse linkResponse,
-            final LocalDate lastCalculationDate,
-            final LocalDate actionDate) {
+            final Optional<RentCalculation> latestRentCalculation,
+            final LocalDate actionDateFormal) {
+
         final var transactionAddRequests =
                 linkToTransactionConverter.toTransactionAddRequests(
-                        linkResponse, lastCalculationDate, actionDate);
+                        linkResponse, latestRentCalculation, actionDateFormal);
 
         return transactionAddRequests.stream()
                 .map(transactionAddusecase::add)

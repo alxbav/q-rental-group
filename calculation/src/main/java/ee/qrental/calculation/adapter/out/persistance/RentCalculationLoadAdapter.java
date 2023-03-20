@@ -7,7 +7,9 @@ import ee.qrental.calculation.domain.RentCalculation;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -35,8 +37,8 @@ public class RentCalculationLoadAdapter
     }
 
     @Override
-    public RentCalculation loadLastCalculation() {
-        return mapper.mapToDomain(
-                calculationRepository.findTopByOrderByActionDateDesc());
+    public Optional<RentCalculation> loadLastCalculationFromDateByLinkId(LocalDate fromDate, Long linkId) {
+        return Optional.ofNullable(mapper.mapToDomain(
+                calculationRepository.findLastCalculationAfterDateByLink(linkId, fromDate)));
     }
 }
