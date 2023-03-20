@@ -6,6 +6,7 @@ import ee.qrental.transaction.domain.Constant;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Month;
 
@@ -19,6 +20,7 @@ import static org.mockito.Mockito.when;
  * Mon, Tue, Wed, Thu, Fri, Sat, Sun
  * 2    3    4    5    6    7    8
  */
+
 class PartialWeeksRateCalculationStrategyTest {
 
     private RateCalculationStrategy instanceUnderTest;
@@ -71,6 +73,6 @@ class PartialWeeksRateCalculationStrategyTest {
         final var result = instanceUnderTest.calculate(week);
 
         //then
-        assertEquals(1000L, result);
+        assertEquals(BigDecimal.valueOf(1000d), result);
     }
 }

@@ -37,10 +37,12 @@ public class BalancesQueryService
 
     private BalanceResponse getBalanceByDriverId(final DriverResponse driver) {
         final var driverId = driver.getId();
+
         final var total = calculateTotal(transactionLoadPort.loadAllByDriverId(driverId));
 
         final var balanceResponse = new BalanceResponse();
         balanceResponse.setDriverId(driverId);
+
         balanceResponse.setTotal(total);
         balanceResponse.setFirstName(driver.getFirstName());
         balanceResponse.setLastName(driver.getLastName());

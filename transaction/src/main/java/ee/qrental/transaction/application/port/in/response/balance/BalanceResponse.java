@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 @Setter
 public class BalanceResponse {
     private Long driverId;
+    private Integer callSign;
     private String firstName;
     private String lastName;
     private BigDecimal total;

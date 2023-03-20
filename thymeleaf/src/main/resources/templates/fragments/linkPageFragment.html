@@ -10,7 +10,7 @@
                     <h2 class="py-3" th:text="|Links|">Links</h2>
                 </div>
                 <div class="col align-self-md-end">
-                    <small th:text="|Total Active: ___ Links|"
+                    <small th:text="|Total Active: ${#lists.size(links)} Links|"
                            class="fs-5 d-inline-flex mb-3 px-2 py-1 fw-semibold border bg-opacity-10
                                border-opacity-10 rounded-2"
                            th:classappend="'text-success bg-success border-success'">???</small>
@@ -50,9 +50,9 @@
                     <span class="bi-trash"></span>
                     Delete</a>
             </td>
-            <td th:text="${link.carId}"></td>
-            <td></td>
-            <td th:text="${link.driverId}"></td>
+            <td th:text="${link.carInfo}"></td>
+            <td th:text="${link.callSign}"> ... </td>
+            <td th:text="${link.driverInfo}"></td>
             <td th:text="${link.dateStart}"></td>
             <td th:text="${link.dateEnd}"></td>
             <td th:text="${link.comment}"></td>

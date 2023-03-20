@@ -28,10 +28,9 @@ public class CarResponseMapper
 
     @Override
     public String toObjectInfo(Car domain) {
-        return format("Car Registration Number: %s, %s %s released on %s",
+        return format(" %s , %s -  %s ",
                 domain.getRegNumber(),
                 domain.getManufacturer(),
-                domain.getModel(),
-                domain.getReleaseDate());
+                domain.getModel());
     }
 }
