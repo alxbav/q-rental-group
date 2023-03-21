@@ -49,4 +49,13 @@ public class TransactionTypeQueryService
     public TransactionTypeResponse getByName(final String name) {
         return mapper.toResponse(loadPort.loadByName(name));
     }
+
+    @Override
+    public List<TransactionTypeResponse> getByNegative(final boolean negative) {
+        return loadPort.loadAll()
+                .stream()
+                .filter(type -> type.getNegative() == negative)
+                .map(mapper::toResponse)
+                .collect(toList());
+    }
 }

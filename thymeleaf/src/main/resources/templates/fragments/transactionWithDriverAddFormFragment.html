@@ -8,6 +8,16 @@
 </div>
 
 <div th:fragment="addForm">
+    <script>
+        function disableAndDiscardNegativeSelect() {
+            const negativeSelect = document.getElementById("negativeTransactionTypeId");
+            negativeSelect.selectedIndex = -1;
+        }
+        function disableAndDiscardPositiveSelect() {
+            const positiveSelect = document.getElementById("positiveTransactionTypeId");
+            positiveSelect.selectedIndex = -1;
+        }
+    </script>
     <form method="post"
           th:action="@{/transactions/add/driver}"
           th:object="${addRequest}">
@@ -26,10 +36,13 @@
         <div class="row">
             <div class="col">
                 <div class="mb-3">
-                    <label class="form-label text-muted" for="transactionTypeId">Transaction type</label>
-                    <select id="transactionTypeId" class="form-select"
+                    <label class="form-label text-success"
+                           for="positiveTransactionTypeId">Positive</label>
+                    <select id="positiveTransactionTypeId"
+                            class="form-select bg-opacity-10 bg-success text-success"
+                            onchange="disableAndDiscardNegativeSelect()"
                             th:field="*{transactionTypeId}">
-                        <option th:each="transactionType : ${transactionTypes}"
+                        <option th:each="transactionType : ${positiveTransactionTypes}"
                                 th:value="${transactionType.id}"
                                 th:text="${transactionType.name}"></option>
                     </select>
@@ -37,12 +50,24 @@
             </div>
             <div class="col">
                 <div class="mb-3">
-                    <label class="form-label text-muted" for="amountId">Amount</label>
-                    <input class="form-control" id="amountId" placeholder="Enter  amount" required
-                           th:field="*{amount}"
-                           type="number" step=0.01>
+                    <label class="form-label text-danger"
+                           for="negativeTransactionTypeId">Negative</label>
+                    <select id="negativeTransactionTypeId"
+                            class="form-select bg-opacity-10 bg-danger text-danger"
+                            onchange="disableAndDiscardPositiveSelect()"
+                            th:field="*{transactionTypeId}">
+                        <option th:each="transactionType : ${negativeTransactionTypes}"
+                                th:value="${transactionType.id}"
+                                th:text="${transactionType.name}"></option>
+                    </select>
                 </div>
             </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label text-muted" for="amountId">Amount</label>
+            <input class="form-control" id="amountId" placeholder="Enter  amount" required
+                   th:field="*{amount}"
+                   type="number" step=0.01>
         </div>
         <div class="mb-3">
             <label class="form-label text-muted" for="dateId">Date</label>
@@ -57,7 +82,6 @@
                       placeholder="Enter Comment"
                       th:field="*{comment}"/>
         </div>
-
         <div th:replace="fragments/addUpdateFormButtonsFragment.html :: addUpdateButtons(
             submitValue='Add',
             cancelHref='/balances/driver/'+ ${driverId}
