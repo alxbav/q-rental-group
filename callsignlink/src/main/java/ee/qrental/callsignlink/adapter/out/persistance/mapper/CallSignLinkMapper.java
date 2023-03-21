@@ -1,7 +1,7 @@
 package ee.qrental.callsignlink.adapter.out.persistance.mapper;
 
-import ee.qrental.callsignlink.adapter.out.persistance.repository.CallSignSpringDataRepository;
 import ee.qrental.callsignlink.adapter.out.persistance.jpaentity.CallSignLinkJpaEntity;
+import ee.qrental.callsignlink.adapter.out.persistance.repository.CallSignSpringDataRepository;
 import ee.qrental.callsignlink.domain.CallSignLink;
 import ee.qrental.common.core.api.adapter.mapper.DomainMapper;
 import lombok.AllArgsConstructor;
@@ -15,6 +15,9 @@ public class CallSignLinkMapper implements DomainMapper<CallSignLink, CallSignLi
 
     @Override
     public CallSignLink mapToDomain(final CallSignLinkJpaEntity jpaEntity) {
+        if (jpaEntity == null) {
+            return null;
+        }
         final var domain = new CallSignLink();
         domain.setId(jpaEntity.getId());
         domain.setDriverId(jpaEntity.getDriverId());
