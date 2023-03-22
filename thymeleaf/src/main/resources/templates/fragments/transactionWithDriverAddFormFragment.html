@@ -36,20 +36,6 @@
         <div class="row">
             <div class="col">
                 <div class="mb-3">
-                    <label class="form-label text-success"
-                           for="positiveTransactionTypeId">Positive</label>
-                    <select id="positiveTransactionTypeId"
-                            class="form-select bg-opacity-10 bg-success text-success"
-                            onchange="discardNegativeSelect()"
-                            th:field="*{transactionTypeId}">
-                        <option th:each="transactionType : ${positiveTransactionTypes}"
-                                th:value="${transactionType.id}"
-                                th:text="${transactionType.name}"></option>
-                    </select>
-                </div>
-            </div>
-            <div class="col">
-                <div class="mb-3">
                     <label class="form-label text-danger"
                            for="negativeTransactionTypeId">Negative</label>
                     <select id="negativeTransactionTypeId"
@@ -57,6 +43,20 @@
                             onchange="discardPositiveSelect()"
                             th:field="*{transactionTypeId}">
                         <option th:each="transactionType : ${negativeTransactionTypes}"
+                                th:value="${transactionType.id}"
+                                th:text="${transactionType.name}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label class="form-label text-success"
+                           for="positiveTransactionTypeId">Positive</label>
+                    <select id="positiveTransactionTypeId"
+                            class="form-select bg-opacity-10 bg-success text-success"
+                            onchange="discardNegativeSelect()"
+                            th:field="*{transactionTypeId}">
+                        <option th:each="transactionType : ${positiveTransactionTypes}"
                                 th:value="${transactionType.id}"
                                 th:text="${transactionType.name}"></option>
                     </select>
