@@ -32,8 +32,8 @@ public class TransactionUseCaseController {
     @GetMapping(value = "/add-form")
     public String addForm(final Model model) {
         model.addAttribute("addRequest", new TransactionAddRequest());
-        model.addAttribute("positiveTransactionTypes", transactionTypeQuery.getByNegative(false));
-        model.addAttribute("negativeTransactionTypes", transactionTypeQuery.getByNegative(true));
+        model.addAttribute("positiveTransactionTypes", transactionTypeQuery.getPositive());
+        model.addAttribute("negativeTransactionTypes", transactionTypeQuery.getNegative());
         model.addAttribute("drivers", driverQuery.getAll());
 
         return "forms/addTransaction";
@@ -54,8 +54,8 @@ public class TransactionUseCaseController {
         final var addRequest = new TransactionAddRequest();
         addRequest.setDriverId(driverId);
         model.addAttribute("addRequest", addRequest);
-        model.addAttribute("positiveTransactionTypes", transactionTypeQuery.getByNegative(false));
-        model.addAttribute("negativeTransactionTypes", transactionTypeQuery.getByNegative(true));
+        model.addAttribute("positiveTransactionTypes", transactionTypeQuery.getPositive());
+        model.addAttribute("negativeTransactionTypes", transactionTypeQuery.getNegative());
         model.addAttribute("driverInfo", driverQuery.getObjectInfo(driverId));
         model.addAttribute("driverId", driverId);
 

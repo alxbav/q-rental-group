@@ -38,4 +38,12 @@ public class TransactionTypeLoadAdapter
         return mapper.mapToDomain(
                 springRepository.findByName(name));
     }
+
+    @Override
+    public List<TransactionType> loadByNegative(final Boolean negative) {
+        return springRepository.findByNegative(negative)
+                .stream()
+                .map(mapper::mapToDomain)
+                .collect(toList());
+    }
 }

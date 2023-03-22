@@ -11,5 +11,6 @@ public interface GetTransactionTypeQuery
 
     TransactionTypeResponse getByName(final String name);
 
-    List<TransactionTypeResponse> getByNegative(final boolean negative);
+    List<TransactionTypeResponse> getNegative();
+    List<TransactionTypeResponse> getPositive();
 }
