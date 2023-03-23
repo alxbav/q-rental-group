@@ -20,9 +20,9 @@ public class DriverAddRequestMapper
         domain.setIsikukood(request.getIsikukood());
         domain.setPhone(request.getPhone());
         domain.setEmail(request.getEmail());
-        domain.setIban1(request.getIban1());
-        domain.setIban2(request.getIban2());
-        domain.setIban3(request.getIban3());
+        domain.setCompany(request.getCompany());
+        domain.setRegNumber(request.getRegNumber());
+        domain.setCompanyAddress(request.getCompanyAddress());
         domain.setDriverLicenseNumber(request.getDriverLicenseNumber());
         domain.setDriverLicenseExp(request.getDriverLicenseExp());
         domain.setTaxiLicense(request.getTaxiLicense());

@@ -20,9 +20,9 @@ public class DriverUpdateRequestMapper
         domain.setIsikukood(request.getIsikukood());
         domain.setPhone(request.getPhone());
         domain.setEmail(request.getEmail());
-        domain.setIban1(request.getIban1());
-        domain.setIban2(request.getIban2());
-        domain.setIban3(request.getIban3());
+        domain.setCompany(request.getCompany());
+        domain.setRegNumber(request.getRegNumber());
+        domain.setCompanyAddress(request.getCompanyAddress());
         domain.setDriverLicenseNumber(request.getDriverLicenseNumber());
         domain.setDriverLicenseExp(request.getDriverLicenseExp());
         domain.setTaxiLicense(request.getTaxiLicense());
@@ -43,9 +43,9 @@ public class DriverUpdateRequestMapper
         request.setIsikukood(domain.getIsikukood());
         request.setPhone(domain.getPhone());
         request.setEmail(domain.getEmail());
-        request.setIban1(domain.getIban1());
-        request.setIban2(domain.getIban2());
-        request.setIban3(domain.getIban3());
+        request.setCompany(domain.getCompany());
+        request.setRegNumber(domain.getRegNumber());
+        request.setCompanyAddress(domain.getCompanyAddress());
         request.setDriverLicenseNumber(domain.getDriverLicenseNumber());
         request.setDriverLicenseExp(domain.getDriverLicenseExp());
         request.setTaxiLicense(domain.getTaxiLicense());

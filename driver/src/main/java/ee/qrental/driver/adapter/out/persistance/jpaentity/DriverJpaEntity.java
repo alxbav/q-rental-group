@@ -44,14 +44,14 @@ public class DriverJpaEntity {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "iban1")
-    private String iban1;
+    @Column(name = "company")
+    private String company;
 
-    @Column(name = "iban2")
-    private String iban2;
+    @Column(name = "reg_number")
+    private String regNumber;
 
-    @Column(name = "iban3")
-    private String iban3;
+    @Column(name = "company_address")
+    private String companyAddress;
 
     @Column(name = "driver_license_number")
     private String driverLicenseNumber;

@@ -28,9 +28,9 @@ public class Driver {
     private String phone;
     private String email;
 
-    private String iban1;
-    private String iban2;
-    private String iban3;
+    private String company;
+    private String regNumber;
+    private String companyAddress;
     private String driverLicenseNumber;
     private LocalDate driverLicenseExp;
     private String taxiLicense;
@@ -45,9 +45,9 @@ public class Driver {
                   Long isikukood,
                   String phone,
                   String email,
-                  String iban1,
-                  String iban2,
-                  String iban3,
+                  String company,
+                  String regNumber,
+                  String companyAddress,
                   String driverLicenseNumber,
                   LocalDate driverLicenseExp,
                   String taxiLicense,
@@ -65,9 +65,9 @@ public class Driver {
         this.isikukood = isikukood;
         this.phone = phone;
         this.email = email;
-        this.iban1 = iban1;
-        this.iban2 = iban2;
-        this.iban3 = iban3;
+        this.company = company;
+        this.regNumber = regNumber;
+        this.companyAddress = companyAddress;
         this.driverLicenseNumber = driverLicenseNumber;
         this.driverLicenseExp = driverLicenseExp;
         this.taxiLicense = taxiLicense;
@@ -107,16 +107,16 @@ public class Driver {
         this.email = email;
     }
 
-    public void setIban1(String iban1) {
-        this.iban1 = iban1;
+    public void setCompany(String company) {
+        this.company = company;
     }
 
-    public void setIban2(String iban2) {
-        this.iban2 = iban2;
+    public void setRegNumber(String regNumber) {
+        this.regNumber = regNumber;
     }
 
-    public void setIban3(String iban3) {
-        this.iban3 = iban3;
+    public void setCompanyAddress(String companyAddress) {
+        this.companyAddress = companyAddress;
     }
 
     public void setDriverLicenseNumber(String driverLicenseNumber) {
