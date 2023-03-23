@@ -16,9 +16,9 @@ public class DriverMapper {
                 jpaEntity.getIsikukood(),
                 jpaEntity.getPhone(),
                 jpaEntity.getEmail(),
-                jpaEntity.getIban1(),
-                jpaEntity.getIban2(),
-                jpaEntity.getIban3(),
+                jpaEntity.getCompany(),
+                jpaEntity.getRegNumber(),
+                jpaEntity.getCompanyAddress(),
                 jpaEntity.getDriverLicenseNumber(),
                 jpaEntity.getDriverLicenseExp(),
                 jpaEntity.getTaxiLicense(),
@@ -37,9 +37,9 @@ public class DriverMapper {
                 .isikukood(domain.getIsikukood())
                 .phone(domain.getPhone())
                 .email(domain.getEmail())
-                .iban1(domain.getIban1())
-                .iban2(domain.getIban2())
-                .iban3(domain.getIban3())
+                .company(domain.getCompany())
+                .regNumber(domain.getRegNumber())
+                .companyAddress(domain.getCompanyAddress())
                 .driverLicenseNumber(domain.getDriverLicenseNumber())
                 .driverLicenseExp(domain.getDriverLicenseExp())
                 .taxiLicense(domain.getTaxiLicense())

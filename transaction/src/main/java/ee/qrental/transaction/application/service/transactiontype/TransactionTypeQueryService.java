@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 import static java.util.stream.Collectors.toList;
 
 @Service
@@ -48,5 +50,21 @@ public class TransactionTypeQueryService
     @Override
     public TransactionTypeResponse getByName(final String name) {
         return mapper.toResponse(loadPort.loadByName(name));
+    }
+
+    @Override
+    public List<TransactionTypeResponse> getNegative() {
+        return loadPort.loadByNegative(TRUE)
+                .stream()
+                .map(mapper::toResponse)
+                .collect(toList());
+    }
+
+    @Override
+    public List<TransactionTypeResponse> getPositive() {
+        return loadPort.loadByNegative(FALSE)
+                .stream()
+                .map(mapper::toResponse)
+                .collect(toList());
     }
 }

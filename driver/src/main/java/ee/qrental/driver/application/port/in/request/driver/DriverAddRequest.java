@@ -19,9 +19,9 @@ public class DriverAddRequest
     private Long isikukood;
     private String phone;
     private String email;
-    private String iban1;
-    private String iban2;
-    private String iban3;
+    private String company;
+    private String regNumber;
+    private String companyAddress;
     private String driverLicenseNumber;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate driverLicenseExp = LocalDate.now();
