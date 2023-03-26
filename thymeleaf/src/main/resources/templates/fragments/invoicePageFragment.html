@@ -1,0 +1,9 @@
+<div th:fragment="invoicePage">
+    <nav th:replace="fragments/navigationFragment.html :: qrental-navigation"></nav>
+    <ul th:replace="fragments/invoiceTabFragment :: invoiceTabs('invoices')"></ul>
+    <h2 class="py-3">Invoices</h2>
+
+
+    <table th:replace="fragments/invoiceTableFragment.html :: invoiceTable"></table>
+
+</div>
