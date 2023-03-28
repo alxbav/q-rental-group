@@ -56,6 +56,7 @@
                             class="form-select bg-opacity-10 bg-success text-success"
                             onchange="discardNegativeSelect()"
                             th:field="*{transactionTypeId}">
+                        <option th:value="''" th:text="Select"></option>
                         <option th:each="transactionType : ${positiveTransactionTypes}"
                                 th:value="${transactionType.id}"
                                 th:text="${transactionType.name}"></option>

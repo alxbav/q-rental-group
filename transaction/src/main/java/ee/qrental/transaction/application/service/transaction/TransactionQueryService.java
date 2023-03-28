@@ -69,6 +69,6 @@ public class TransactionQueryService
     }
 
     private List<TransactionResponse> mapToTransactionResponseList(final List<Transaction> transactions) {
-        return transactions.stream().map(responseMapper::toResponse).sorted(comparing(TransactionResponse::getDate)).collect(toList());
+        return transactions.stream().map(responseMapper::toResponse).sorted(comparing(TransactionResponse::getDate).reversed()).collect(toList());
     }
 }
